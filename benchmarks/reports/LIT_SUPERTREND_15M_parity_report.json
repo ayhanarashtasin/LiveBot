@@ -1,0 +1,219 @@
+{
+  "benchmark_id": "LIT_SUPERTREND_15M",
+  "status": "PASS",
+  "strategy_decision_parity_pct": 100.0,
+  "benchmark_trades_count": 20,
+  "replay_trades_count": 20,
+  "matched_trades_count": 20,
+  "benchmark_net_return_pct": 7.742451933622616,
+  "replay_net_return_pct": 7.742451933622604,
+  "benchmark_arithmetic_trade_pct_sum": 7.742451933622616,
+  "replay_arithmetic_trade_pct_sum": 7.742451933622604,
+  "compounded_portfolio_return_pct": 7.137719957549274,
+  "portfolio": {
+    "initial_balance": "10000",
+    "final_balance": "10713.771995754927422003030",
+    "compounded_portfolio_return_pct": 7.137719957549274,
+    "max_drawdown_pct": 6.427716008914909,
+    "trades": 20,
+    "sizing": [
+      {
+        "trade_id": 1,
+        "entry_time_utc": "2026-08-16 14:00:00",
+        "requested_quantity": "4308.302098143121795700314506",
+        "constrained_quantity": "4308.3",
+        "size_difference": "0.002098143121795700314506",
+        "entry_price": "2.3211",
+        "exit_price": "2.29733791906912"
+      },
+      {
+        "trade_id": 2,
+        "entry_time_utc": "2026-08-17 18:30:00",
+        "requested_quantity": "4234.913919257378341250642453",
+        "constrained_quantity": "4234.9",
+        "size_difference": "0.013919257378341250642453",
+        "entry_price": "2.3348",
+        "exit_price": "2.3152056262695204"
+      },
+      {
+        "trade_id": 3,
+        "entry_time_utc": "2026-08-19 01:30:00",
+        "requested_quantity": "4109.267767644560537481548918",
+        "constrained_quantity": "4109.2",
+        "size_difference": "0.067767644560537481548918",
+        "entry_price": "2.3836",
+        "exit_price": "2.3617082939463647"
+      },
+      {
+        "trade_id": 4,
+        "entry_time_utc": "2026-08-19 08:45:00",
+        "requested_quantity": "4194.126813471722668916940647",
+        "constrained_quantity": "4194.1",
+        "size_difference": "0.026813471722668916940647",
+        "entry_price": "2.3116",
+        "exit_price": "2.2957608148779505"
+      },
+      {
+        "trade_id": 5,
+        "entry_time_utc": "2026-08-19 18:00:00",
+        "requested_quantity": "3857.495408126406202848241498",
+        "constrained_quantity": "3857.4",
+        "size_difference": "0.095408126406202848241498",
+        "entry_price": "2.4936",
+        "exit_price": "2.5801484310692384"
+      },
+      {
+        "trade_id": 6,
+        "entry_time_utc": "2026-08-20 02:15:00",
+        "requested_quantity": "3731.420696180239228235934627",
+        "constrained_quantity": "3731.4",
+        "size_difference": "0.020696180239228235934627",
+        "entry_price": "2.6647",
+        "exit_price": "2.7512135895778695"
+      },
+      {
+        "trade_id": 7,
+        "entry_time_utc": "2026-08-20 09:15:00",
+        "requested_quantity": "3539.544112951948332236115617",
+        "constrained_quantity": "3539.5",
+        "size_difference": "0.044112951948332236115617",
+        "entry_price": "2.8975",
+        "exit_price": "2.8271465018239406"
+      },
+      {
+        "trade_id": 8,
+        "entry_time_utc": "2026-08-20 16:45:00",
+        "requested_quantity": "3574.200603288464059307553005",
+        "constrained_quantity": "3574.2",
+        "size_difference": "0.000603288464059307553005",
+        "entry_price": "2.7969",
+        "exit_price": "2.72778479362498"
+      },
+      {
+        "trade_id": 9,
+        "entry_time_utc": "2026-08-21 05:45:00",
+        "requested_quantity": "3575.410936645945979119450461",
+        "constrained_quantity": "3575.4",
+        "size_difference": "0.010936645945979119450461",
+        "entry_price": "2.7241",
+        "exit_price": "2.8083977649541683"
+      },
+      {
+        "trade_id": 10,
+        "entry_time_utc": "2026-08-21 17:15:00",
+        "requested_quantity": "3356.853299561605667057987819",
+        "constrained_quantity": "3356.8",
+        "size_difference": "0.053299561605667057987819",
+        "entry_price": "2.9883",
+        "exit_price": "3.1688492100164085"
+      },
+      {
+        "trade_id": 11,
+        "entry_time_utc": "2026-08-21 21:30:00",
+        "requested_quantity": "3402.496764329054118286102840",
+        "constrained_quantity": "3402.4",
+        "size_difference": "0.096764329054118286102840",
+        "entry_price": "3.1233",
+        "exit_price": "3.016068895530704"
+      },
+      {
+        "trade_id": 12,
+        "entry_time_utc": "2026-08-23 15:15:00",
+        "requested_quantity": "3049.476691004082688916111904",
+        "constrained_quantity": "3049.4",
+        "size_difference": "0.076691004082688916111904",
+        "entry_price": "3.3618",
+        "exit_price": "3.264179316705434"
+      },
+      {
+        "trade_id": 13,
+        "entry_time_utc": "2026-08-24 19:45:00",
+        "requested_quantity": "2899.616142040851124971827433",
+        "constrained_quantity": "2899.6",
+        "size_difference": "0.016142040851124971827433",
+        "entry_price": "3.4294",
+        "exit_price": "3.6026613713973417"
+      },
+      {
+        "trade_id": 14,
+        "entry_time_utc": "2026-08-26 11:15:00",
+        "requested_quantity": "3094.756297800360291590571437",
+        "constrained_quantity": "3094.7",
+        "size_difference": "0.056297800360291590571437",
+        "entry_price": "3.3722",
+        "exit_price": "3.3193113905957503"
+      },
+      {
+        "trade_id": 15,
+        "entry_time_utc": "2026-08-26 18:15:00",
+        "requested_quantity": "3119.087169924563111906938999",
+        "constrained_quantity": "3119.0",
+        "size_difference": "0.087169924563111906938999",
+        "entry_price": "3.2901",
+        "exit_price": "3.3932340810892185"
+      },
+      {
+        "trade_id": 16,
+        "entry_time_utc": "2026-08-27 16:45:00",
+        "requested_quantity": "2933.133942850260474848610186",
+        "constrained_quantity": "2933.1",
+        "size_difference": "0.033942850260474848610186",
+        "entry_price": "3.6048",
+        "exit_price": "3.776561623796577"
+      },
+      {
+        "trade_id": 17,
+        "entry_time_utc": "2026-08-28 22:30:00",
+        "requested_quantity": "3216.769408771286578813708505",
+        "constrained_quantity": "3216.7",
+        "size_difference": "0.069408771286578813708505",
+        "entry_price": "3.4402",
+        "exit_price": "3.385087719199238"
+      },
+      {
+        "trade_id": 18,
+        "entry_time_utc": "2026-08-29 23:15:00",
+        "requested_quantity": "3081.257929668024832482897122",
+        "constrained_quantity": "3081.2",
+        "size_difference": "0.057929668024832482897122",
+        "entry_price": "3.5304",
+        "exit_price": "3.4995829237594407"
+      },
+      {
+        "trade_id": 19,
+        "entry_time_utc": "2026-08-30 10:45:00",
+        "requested_quantity": "3083.170390650917244081170039",
+        "constrained_quantity": "3083.1",
+        "size_difference": "0.070390650917244081170039",
+        "entry_price": "3.4939",
+        "exit_price": "3.5546654628751466"
+      },
+      {
+        "trade_id": 20,
+        "entry_time_utc": "2026-08-31 15:30:00",
+        "requested_quantity": "2962.730161113870669547820322",
+        "constrained_quantity": "2962.7",
+        "size_difference": "0.030161113870669547820322",
+        "entry_price": "3.6955",
+        "exit_price": "3.6198390362979844"
+      }
+    ],
+    "arithmetic_trade_pct_sum": 7.742451933622604
+  },
+  "candle_parity": {},
+  "raw_coverage": {},
+  "input_binding": {
+    "tool_version": "2.0",
+    "generated_at_ms": 1788962072511,
+    "manifest_path": "LIT_SUPERTREND_15M.yaml",
+    "manifest_hash": "aaa66bec03b17fa463d4c04374f5d81f57a856fc33ba52bf0d6fec865b6213fb",
+    "strategy_hash": "0460bef40daaf8698a7aa1643592f5377ccd6e027be6ca853fd62dba8256f5e8",
+    "helper_hash": "f9704029fcbe2eb7f39c2f0a4d5d97b8401efbe48e89c91672e3349f4d17fce1",
+    "benchmark_csv_hash": "be056ba1d6815f69ec2061e496790a768bdb5570e1ef50e852dde658085e3e05",
+    "canonical_candles_hash": "5fcad672d6e8216bf1e3b24866d26de63d5333a958ec4f1f822a43aec7c546a2",
+    "raw_file_hashes": {
+      "2026-08.parquet": "0caa9032b7c19fa4205e406816483122476620f7a05ea04c62750b236c8fcfc4"
+    }
+  },
+  "mismatches": []
+}

@@ -1,0 +1,31 @@
+# Escanor Live Trading Engine - runtime dependencies.
+#
+# Every entry corresponds to an actual import in live_engine/ or strategies/approved/.
+# Versions are lower-bounded at the release this build was tested against and upper-bounded
+# at the next major, which is enough to reproduce the tested runtime without pinning the
+# whole transitive tree.
+#
+# Tested on: Python 3.14.3 (Windows 11). Requires Python >= 3.11 (uses X | Y unions,
+# tuple[...] annotations, asyncio.to_thread and the walrus/match-free subset of 3.11+).
+#
+#   python -m pip install -r requirements.txt
+#
+# TA-Lib needs the native ta-lib C library present before pip can build the wrapper.
+# On Windows install the prebuilt wheel for your Python version; on Linux build ta-lib
+# 0.4.0+ first (see OPERATOR.md).
+
+# --- market data, indicators and historical datasets ---
+numpy>=2.4,<3.0
+pandas>=2.2,<4.0
+pyarrow>=17.0,<25.0
+
+# --- exchange connectivity ---
+websockets>=13.0,<18.0        # public aggTrade / kline streams, private user data stream
+requests>=2.32,<3.0           # REST kline backfill (urllib covers the signed endpoints)
+
+# --- configuration ---
+PyYAML>=6.0,<7.0              # frozen benchmark manifests
+
+# --- approved strategy code (frozen; hashes are verified at startup) ---
+freqtrade>=2024.1             # IStrategy base class used by the approved strategies
+TA-Lib>=0.4.28,<1.0           # ATR in strategies/approved/supertrend_helper.py

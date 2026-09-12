@@ -1,0 +1,28 @@
+{
+  "mode": "SHADOW",
+  "benchmark_manifest_path": "benchmarks/manifests/BTC_ST_09_5M.yaml",
+  "symbol": "BTCUSDT",
+  "market_type": "usdm_futures",
+  "persistence": {
+    "db_path": "data/escanor_live.db"
+  },
+  "market_data": {
+    "ws_url": "wss://fstream.binance.com/ws",
+    "kline_validator_enabled": true,
+    "max_reconnect_attempts": 10,
+    "reconnect_backoff_base": 1.5,
+    "reconnect_backoff_max": 30.0
+  },
+  "execution": {
+    "canary_mode": false,
+    "max_canary_allocation_usd": 100.0,
+    "client_order_prefix": "ESC"
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "json"
+  },
+  "monitoring": {
+    "metrics_interval_seconds": 60
+  }
+}

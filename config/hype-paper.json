@@ -1,0 +1,14 @@
+{
+  "mode": "PAPER",
+  "symbol": "HYPEUSDT",
+  "timeframe": "5m",
+  "manifest_path": "benchmarks/manifests/HYPE_LUXALGO_RANK12_5M.yaml",
+  "event_store_path": "data/hype_paper.db",
+  "kill_switch_path": ".kill_switch",
+  "warmup_candles": 1000,
+  "stake_amount": "10000.0",
+  "stake_rule": "full_compounding",
+  "max_open_trades": 12,
+  "canary_mode": false,
+  "log_level": "INFO"
+}

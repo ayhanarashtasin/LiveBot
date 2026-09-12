@@ -1,0 +1,15 @@
+{
+  "mode": "LIVE",
+  "symbol": "BTCUSDT",
+  "timeframe": "5m",
+  "manifest_path": "benchmarks/manifests/BTC_ST_09_5M.yaml",
+  "event_store_path": "data/btc_live.db",
+  "kill_switch_path": ".kill_switch",
+  "warmup_candles": 250,
+  "stake_amount": "1000.0",
+  "stake_rule": "full_compounding",
+  "max_open_trades": 1,
+  "canary_mode": true,
+  "max_canary_allocation_usd": 100.0,
+  "log_level": "INFO"
+}

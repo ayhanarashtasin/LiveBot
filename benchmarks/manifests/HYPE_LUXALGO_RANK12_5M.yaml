@@ -1,0 +1,82 @@
+benchmark_id: HYPE_LUXALGO_RANK12_5M
+exchange: binance
+market_type: usdm_futures
+symbol: HYPEUSDT
+allowed_modes: [SHADOW, PAPER, TESTNET, LIVE]
+
+strategy:
+  name: LuxAlgo Optimized Rank 12 (5m, 3-rule OR, K=12)
+  class: HYPELuxAlgoRank12_5M
+  source_file: strategies/approved/HYPELuxAlgoRank12_5M.py
+  source_hash: 9dfe0edd19a3f3f05da3165585e6eae181e98dd99a4e1239786190e5db7da16d
+
+data:
+  historical_source: binance_vision
+  canonical_event_type: aggTrade
+  base_timeframe: 1m
+  strategy_timeframe: 5m
+  timezone: UTC
+  dataset_candle_path: E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/candles/HYPEUSDT_5m.parquet
+  dataset_aggtrade_path: E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-08.parquet
+  dataset_aggtrade_paths:
+    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2025-09.parquet
+    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2025-10.parquet
+    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2025-11.parquet
+    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2025-12.parquet
+    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-01.parquet
+    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-02.parquet
+    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-03.parquet
+    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-04.parquet
+    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-05.parquet
+    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-06.parquet
+    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-07.parquet
+    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-08.parquet
+  evaluation_window_start: '2025-09-01 00:00:00+00:00'
+  evaluation_window_end: '2026-08-31 23:59:59+00:00'
+
+signal:
+  closed_candle_only: true
+  warmup_candles: 1000
+  indicator_snapshot_fields:
+    - atr
+    - adx
+    - di48_bull
+    - atrpct_lo
+    - rsi2
+    - macd_hist_rising
+    - takerbuy_ma_gt_50
+    - entry_group_1
+    - entry_group_2
+    - entry_group_3
+
+execution_model:
+  entry_order_type: market
+  exit_order_type: market
+  entry_fill_model: next_open
+  exit_fill_model: signal_reference
+  stop_model: 6.0_atr14
+  take_profit_model: 4.5_atr14
+  stop_atr_multiplier: 6.0
+  take_profit_atr_multiplier: 4.5
+  time_exit_bars: 384
+  strategy_timeframe_ms: 300000
+  intrabar_priority: first_touch_stop_on_equal_trade
+  intrabar_resolution: aggTrade
+
+fees:
+  maker: 0.0002
+  taker: 0.0005
+
+slippage:
+  model: zero_or_measured
+
+risk:
+  stake_rule: full_compounding
+  max_open_trades: 12
+  slots: 12
+  stoploss: dynamic_6.0_atr14
+  take_profit: dynamic_4.5_atr14
+  trailing_stop: false
+  leverage: 3
+
+benchmark_result_reference: benchmarks/results/HYPE_LUXALGO_RANK12_5M_trades.csv

@@ -1,0 +1,52 @@
+benchmark_id: LIT_SUPERTREND_15M
+exchange: binance
+market_type: usdm_futures
+symbol: LITUSDT
+strategy:
+  name: LITSupertrendPullback15M
+  class: LITSupertrendPullback15M
+  source_file: strategies/approved/LITSupertrendPullback15M.py
+  source_hash: 0460bef40daaf8698a7aa1643592f5377ccd6e027be6ca853fd62dba8256f5e8
+  helper_file: strategies/approved/supertrend_helper.py
+  helper_hash: f9704029fcbe2eb7f39c2f0a4d5d97b8401efbe48e89c91672e3349f4d17fce1
+data:
+  historical_source: binance_vision
+  canonical_event_type: aggTrade
+  base_timeframe: 1m
+  strategy_timeframe: 15m
+  timezone: UTC
+  dataset_candle_path: LITUSDT_USDM_DATA/candles/LITUSDT_15m.parquet
+  dataset_aggtrade_path: LITUSDT_USDM_DATA/aggTrades/2026-08.parquet
+  evaluation_window_start: '2026-08-15 00:00:00+00:00'
+  evaluation_window_end: '2026-08-31 23:59:59+00:00'
+signal:
+  closed_candle_only: true
+  warmup_candles: 250
+execution_model:
+  entry_order_type: market
+  exit_order_type: market
+  # LITSupertrendPullback15M enters at the open of the bar after the signal bar
+  # (ep = open[j+1]) and exits at the bracket price recorded on the exit bar.
+  entry_fill_model: next_open
+  exit_fill_model: signal_reference
+  stop_model: bracket_1.5_atr7
+  take_profit_model: bracket_3.0_atr7
+  time_exit_bars: 128
+  intrabar_priority: stop_first
+  intrabar_resolution: aggTrade
+fees:
+  maker: 0.0002
+  taker: 0.0005
+slippage:
+  model: zero_or_measured
+risk:
+  stake_rule: full_compounding
+  max_open_trades: 1
+  stoploss: -0.99
+  take_profit: null
+  trailing_stop: false
+  leverage: 1
+allowed_modes:
+- SHADOW
+- PAPER
+benchmark_result_reference: benchmarks/results/LIT_15M_trades.csv

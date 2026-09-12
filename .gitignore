@@ -1,0 +1,47 @@
+# Secrets and environment (NEVER commit credentials)
+.env
+*.env
+*.pem
+*.key
+*secret*
+*credentials*
+private.json
+config/private.json
+
+# Python cache and environments
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.playwright-mcp/
+.coverage
+htmlcov/
+.venv/
+env/
+venv/
+
+# Local runtime databases and state
+data/*
+!data/.gitkeep
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Runtime execution logs
+logs/*
+!logs/.gitkeep
+*.log
+*.bak
+
+# Historical heavy backtest datasets (15+ GB - not needed for live VPS execution)
+BTCUSDT_USDM_DATA/
+LITUSDT_USDM_DATA/
+ZECUSDT_USDM_DATA/
+.tmp/
+
+# IDE files
+.vscode/
+.idea/

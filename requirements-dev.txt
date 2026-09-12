@@ -1,0 +1,7 @@
+# Development and verification dependencies.
+#
+#   python -m pip install -r requirements.txt -r requirements-dev.txt
+#   python -m pytest tests -q
+-r requirements.txt
+
+pytest>=8.0,<10.0

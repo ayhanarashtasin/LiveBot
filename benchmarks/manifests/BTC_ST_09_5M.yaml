@@ -1,0 +1,54 @@
+benchmark_id: BTC_ST_09_5M
+
+exchange: binance
+market_type: usdm_futures
+symbol: BTCUSDT
+allowed_modes: [SHADOW, PAPER, TESTNET, LIVE]
+
+strategy:
+  name: BTCSupertrendPullback5M
+  class: BTCSupertrendPullback5M
+  source_file: strategies/approved/BTCSupertrendPullback5M.py
+  source_hash: ec15e095fc3256a224bb965eb733455cff90ec2cd279f9d2395e6f8ba59c0e0d
+
+data:
+  historical_source: binance_vision
+  canonical_event_type: aggTrade
+  base_timeframe: 1m
+  strategy_timeframe: 5m
+  timezone: UTC
+  dataset_candle_path: BTCUSDT_USDM_DATA/candles/BTCUSDT_5m.parquet
+  dataset_aggtrade_path: BTCUSDT_USDM_DATA/aggTrades/2026-08.parquet
+  evaluation_window_start: "2026-08-15 00:00:00+00:00"
+  evaluation_window_end: "2026-08-31 23:59:59+00:00"
+
+signal:
+  closed_candle_only: true
+  warmup_candles: 250
+
+execution_model:
+  entry_order_type: market
+  exit_order_type: market
+  entry_fill_model: signal_close
+  exit_fill_model: signal_reference
+  force_exit_at_end: false
+  stop_model: 1.5_atr
+  take_profit_model: 3.0_atr
+  intrabar_priority: stop_first
+
+fees:
+  maker: 0.0002
+  taker: 0.0005
+
+slippage:
+  model: zero_or_measured
+
+risk:
+  stake_rule: full_compounding
+  max_open_trades: 1
+  stoploss: dynamic_1.5_atr
+  take_profit: dynamic_3.0_atr
+  trailing_stop: false
+  leverage: 1
+
+benchmark_result_reference: benchmarks/results/BTC_ST_09_5M_trades.csv

@@ -1,0 +1,2940 @@
+{
+  "benchmark_id": "ZEC_MOMENTUM_M03_15M",
+  "status": "PASS",
+  "strategy_decision_parity_pct": 100.0,
+  "benchmark_trades_count": 321,
+  "replay_trades_count": 321,
+  "matched_trades_count": 321,
+  "benchmark_net_return_pct": 415.95469645340205,
+  "replay_net_return_pct": 415.95469645340205,
+  "benchmark_arithmetic_trade_pct_sum": 415.95469645340205,
+  "replay_arithmetic_trade_pct_sum": 415.95469645340205,
+  "compounded_portfolio_return_pct": 2341.9454208717,
+  "portfolio": {
+    "initial_balance": "10000",
+    "final_balance": "244194.542087170",
+    "compounded_portfolio_return_pct": 2341.9454208717,
+    "max_drawdown_pct": 30.220929990089203,
+    "trades": 321,
+    "sizing": [
+      {
+        "trade_id": 1,
+        "entry_time_utc": "2025-08-03 02:15:00",
+        "requested_quantity": "280.1120448179271708683473389",
+        "constrained_quantity": "280.112",
+        "size_difference": "0.0000448179271708683473389",
+        "entry_price": "35.7",
+        "exit_price": "35.54"
+      },
+      {
+        "trade_id": 2,
+        "entry_time_utc": "2025-08-03 08:30:00",
+        "requested_quantity": "277.2568857139671034290493449",
+        "constrained_quantity": "277.256",
+        "size_difference": "0.0008857139671034290493449",
+        "entry_price": "35.87",
+        "exit_price": "36.03"
+      },
+      {
+        "trade_id": 3,
+        "entry_time_utc": "2025-08-04 13:15:00",
+        "requested_quantity": "275.2233341798124655267512410",
+        "constrained_quantity": "275.223",
+        "size_difference": "0.0003341798124655267512410",
+        "entry_price": "36.26",
+        "exit_price": "36.53"
+      },
+      {
+        "trade_id": 4,
+        "entry_time_utc": "2025-08-06 09:15:00",
+        "requested_quantity": "280.5556303428770949720670391",
+        "constrained_quantity": "280.555",
+        "size_difference": "0.0006303428770949720670391",
+        "entry_price": "35.8",
+        "exit_price": "35.13"
+      },
+      {
+        "trade_id": 5,
+        "entry_time_utc": "2025-08-06 15:30:00",
+        "requested_quantity": "275.2577532345540956108470786",
+        "constrained_quantity": "275.257",
+        "size_difference": "0.0007532345540956108470786",
+        "entry_price": "35.77",
+        "exit_price": "39.25"
+      },
+      {
+        "trade_id": 6,
+        "entry_time_utc": "2025-08-10 19:15:00",
+        "requested_quantity": "273.7392671349226477301547045",
+        "constrained_quantity": "273.739",
+        "size_difference": "0.0002671349226477301547045",
+        "entry_price": "39.43",
+        "exit_price": "39.01"
+      },
+      {
+        "trade_id": 7,
+        "entry_time_utc": "2025-08-11 00:00:00",
+        "requested_quantity": "270.4140146907477820025348542",
+        "constrained_quantity": "270.414",
+        "size_difference": "0.0000146907477820025348542",
+        "entry_price": "39.45",
+        "exit_price": "39.04"
+      },
+      {
+        "trade_id": 8,
+        "entry_time_utc": "2025-08-12 14:30:00",
+        "requested_quantity": "278.2678296073878627968337731",
+        "constrained_quantity": "278.267",
+        "size_difference": "0.0008296073878627968337731",
+        "entry_price": "37.9",
+        "exit_price": "38.38"
+      },
+      {
+        "trade_id": 9,
+        "entry_time_utc": "2025-08-13 10:00:00",
+        "requested_quantity": "270.2458409002026342451874367",
+        "constrained_quantity": "270.245",
+        "size_difference": "0.0008409002026342451874367",
+        "entry_price": "39.48",
+        "exit_price": "38.88"
+      },
+      {
+        "trade_id": 10,
+        "entry_time_utc": "2025-08-13 21:30:00",
+        "requested_quantity": "266.8167412211489578037620742",
+        "constrained_quantity": "266.816",
+        "size_difference": "0.0007412211489578037620742",
+        "entry_price": "39.34",
+        "exit_price": "39.07"
+      },
+      {
+        "trade_id": 11,
+        "entry_time_utc": "2025-08-13 22:45:00",
+        "requested_quantity": "264.3164913289340101522842640",
+        "constrained_quantity": "264.316",
+        "size_difference": "0.0004913289340101522842640",
+        "entry_price": "39.4",
+        "exit_price": "38.99"
+      },
+      {
+        "trade_id": 12,
+        "entry_time_utc": "2025-08-14 02:45:00",
+        "requested_quantity": "256.0393019830887838846058194",
+        "constrained_quantity": "256.039",
+        "size_difference": "0.0003019830887838846058194",
+        "entry_price": "40.21",
+        "exit_price": "38.91"
+      },
+      {
+        "trade_id": 13,
+        "entry_time_utc": "2025-08-15 07:15:00",
+        "requested_quantity": "259.0411434122852680895366996",
+        "constrained_quantity": "259.041",
+        "size_difference": "0.0001434122852680895366996",
+        "entry_price": "38.42",
+        "exit_price": "37.59"
+      },
+      {
+        "trade_id": 14,
+        "entry_time_utc": "2025-08-16 18:15:00",
+        "requested_quantity": "265.1993415129498364231188659",
+        "constrained_quantity": "265.199",
+        "size_difference": "0.0003415129498364231188659",
+        "entry_price": "36.68",
+        "exit_price": "36.43"
+      },
+      {
+        "trade_id": 15,
+        "entry_time_utc": "2025-08-17 04:30:00",
+        "requested_quantity": "262.6978156573217201959716930",
+        "constrained_quantity": "262.697",
+        "size_difference": "0.0008156573217201959716930",
+        "entry_price": "36.74",
+        "exit_price": "37.0"
+      },
+      {
+        "trade_id": 16,
+        "entry_time_utc": "2025-08-18 16:15:00",
+        "requested_quantity": "265.5944564786652078774617068",
+        "constrained_quantity": "265.594",
+        "size_difference": "0.0004564786652078774617068",
+        "entry_price": "36.56",
+        "exit_price": "36.17"
+      },
+      {
+        "trade_id": 17,
+        "entry_time_utc": "2025-08-19 10:30:00",
+        "requested_quantity": "267.5465108182325062726512406",
+        "constrained_quantity": "267.546",
+        "size_difference": "0.0005108182325062726512406",
+        "entry_price": "35.87",
+        "exit_price": "35.32"
+      },
+      {
+        "trade_id": 18,
+        "entry_time_utc": "2025-08-20 04:30:00",
+        "requested_quantity": "263.5460564818537130094919040",
+        "constrained_quantity": "263.546",
+        "size_difference": "0.0000564818537130094919040",
+        "entry_price": "35.82",
+        "exit_price": "42.8"
+      },
+      {
+        "trade_id": 19,
+        "entry_time_utc": "2025-08-23 09:00:00",
+        "requested_quantity": "258.2949995397662159064863626",
+        "constrained_quantity": "258.294",
+        "size_difference": "0.0009995397662159064863626",
+        "entry_price": "43.63",
+        "exit_price": "42.92"
+      },
+      {
+        "trade_id": 20,
+        "entry_time_utc": "2025-08-23 22:30:00",
+        "requested_quantity": "255.4750730581314878892733564",
+        "constrained_quantity": "255.475",
+        "size_difference": "0.0000730581314878892733564",
+        "entry_price": "43.35",
+        "exit_price": "43.1"
+      },
+      {
+        "trade_id": 21,
+        "entry_time_utc": "2025-08-24 18:30:00",
+        "requested_quantity": "253.5130850471306752707997234",
+        "constrained_quantity": "253.513",
+        "size_difference": "0.0000850471306752707997234",
+        "entry_price": "43.39",
+        "exit_price": "42.81"
+      },
+      {
+        "trade_id": 22,
+        "entry_time_utc": "2025-08-26 14:15:00",
+        "requested_quantity": "268.1664311129112045510759337",
+        "constrained_quantity": "268.166",
+        "size_difference": "0.0004311129112045510759337",
+        "entry_price": "40.43",
+        "exit_price": "41.9"
+      },
+      {
+        "trade_id": 23,
+        "entry_time_utc": "2025-08-27 18:15:00",
+        "requested_quantity": "264.7437211439858490566037736",
+        "constrained_quantity": "264.743",
+        "size_difference": "0.0007211439858490566037736",
+        "entry_price": "42.4",
+        "exit_price": "42.17"
+      },
+      {
+        "trade_id": 24,
+        "entry_time_utc": "2025-08-28 00:45:00",
+        "requested_quantity": "261.8701157255224231040150270",
+        "constrained_quantity": "261.870",
+        "size_difference": "0.0001157255224231040150270",
+        "entry_price": "42.59",
+        "exit_price": "42.26"
+      },
+      {
+        "trade_id": 25,
+        "entry_time_utc": "2025-08-28 07:45:00",
+        "requested_quantity": "260.12991280",
+        "constrained_quantity": "260.129",
+        "size_difference": "0.00091280",
+        "entry_price": "42.5",
+        "exit_price": "42.13"
+      },
+      {
+        "trade_id": 26,
+        "entry_time_utc": "2025-08-28 14:00:00",
+        "requested_quantity": "257.4850941995531514581373471",
+        "constrained_quantity": "257.485",
+        "size_difference": "0.0000941995531514581373471",
+        "entry_price": "42.52",
+        "exit_price": "42.1"
+      },
+      {
+        "trade_id": 27,
+        "entry_time_utc": "2025-08-28 23:15:00",
+        "requested_quantity": "256.4952229989341544291804832",
+        "constrained_quantity": "256.495",
+        "size_difference": "0.0002229989341544291804832",
+        "entry_price": "42.22",
+        "exit_price": "41.46"
+      },
+      {
+        "trade_id": 28,
+        "entry_time_utc": "2025-08-29 11:45:00",
+        "requested_quantity": "250.7922654441690273843248347",
+        "constrained_quantity": "250.792",
+        "size_difference": "0.0002654441690273843248347",
+        "entry_price": "42.36",
+        "exit_price": "41.59"
+      },
+      {
+        "trade_id": 29,
+        "entry_time_utc": "2025-08-31 02:00:00",
+        "requested_quantity": "258.3025168570897372335151215",
+        "constrained_quantity": "258.302",
+        "size_difference": "0.0005168570897372335151215",
+        "entry_price": "40.34",
+        "exit_price": "40.03"
+      },
+      {
+        "trade_id": 30,
+        "entry_time_utc": "2025-08-31 09:45:00",
+        "requested_quantity": "255.9333509451189296333002973",
+        "constrained_quantity": "255.933",
+        "size_difference": "0.0003509451189296333002973",
+        "entry_price": "40.36",
+        "exit_price": "40.11"
+      },
+      {
+        "trade_id": 31,
+        "entry_time_utc": "2025-08-31 12:15:00",
+        "requested_quantity": "254.1558693900867410161090458",
+        "constrained_quantity": "254.155",
+        "size_difference": "0.0008693900867410161090458",
+        "entry_price": "40.35",
+        "exit_price": "40.01"
+      },
+      {
+        "trade_id": 32,
+        "entry_time_utc": "2025-08-31 16:00:00",
+        "requested_quantity": "252.1987259679741807348560079",
+        "constrained_quantity": "252.198",
+        "size_difference": "0.0007259679741807348560079",
+        "entry_price": "40.28",
+        "exit_price": "40.15"
+      },
+      {
+        "trade_id": 33,
+        "entry_time_utc": "2025-08-31 17:45:00",
+        "requested_quantity": "251.6953669922866384672804180",
+        "constrained_quantity": "251.695",
+        "size_difference": "0.0003669922866384672804180",
+        "entry_price": "40.19",
+        "exit_price": "39.91"
+      },
+      {
+        "trade_id": 34,
+        "entry_time_utc": "2025-09-01 09:00:00",
+        "requested_quantity": "247.5353185661075481006413419",
+        "constrained_quantity": "247.535",
+        "size_difference": "0.0003185661075481006413419",
+        "entry_price": "40.54",
+        "exit_price": "39.68"
+      },
+      {
+        "trade_id": 35,
+        "entry_time_utc": "2025-09-01 19:45:00",
+        "requested_quantity": "244.3903632831880448318804483",
+        "constrained_quantity": "244.390",
+        "size_difference": "0.0003632831880448318804483",
+        "entry_price": "40.15",
+        "exit_price": "39.79"
+      },
+      {
+        "trade_id": 36,
+        "entry_time_utc": "2025-09-01 23:15:00",
+        "requested_quantity": "241.9557762769613947696139477",
+        "constrained_quantity": "241.955",
+        "size_difference": "0.0007762769613947696139477",
+        "entry_price": "40.15",
+        "exit_price": "40.9"
+      },
+      {
+        "trade_id": 37,
+        "entry_time_utc": "2025-09-03 08:15:00",
+        "requested_quantity": "233.1647509704009433962264151",
+        "constrained_quantity": "233.164",
+        "size_difference": "0.0007509704009433962264151",
+        "entry_price": "42.4",
+        "exit_price": "41.81"
+      },
+      {
+        "trade_id": 38,
+        "entry_time_utc": "2025-09-05 00:15:00",
+        "requested_quantity": "237.8217658345543345543345543",
+        "constrained_quantity": "237.821",
+        "size_difference": "0.0007658345543345543345543",
+        "entry_price": "40.95",
+        "exit_price": "40.75"
+      },
+      {
+        "trade_id": 39,
+        "entry_time_utc": "2025-09-06 02:00:00",
+        "requested_quantity": "235.6174768331710878559260161",
+        "constrained_quantity": "235.617",
+        "size_difference": "0.0004768331710878559260161",
+        "entry_price": "41.09",
+        "exit_price": "41.02"
+      },
+      {
+        "trade_id": 40,
+        "entry_time_utc": "2025-09-06 02:45:00",
+        "requested_quantity": "234.9234957941605839416058394",
+        "constrained_quantity": "234.923",
+        "size_difference": "0.0004957941605839416058394",
+        "entry_price": "41.1",
+        "exit_price": "49.45"
+      },
+      {
+        "trade_id": 41,
+        "entry_time_utc": "2025-09-09 06:15:00",
+        "requested_quantity": "232.2658913010806483890334201",
+        "constrained_quantity": "232.265",
+        "size_difference": "0.0008913010806483890334201",
+        "entry_price": "49.97",
+        "exit_price": "49.38"
+      },
+      {
+        "trade_id": 42,
+        "entry_time_utc": "2025-09-11 14:15:00",
+        "requested_quantity": "239.3014301261487050960735171",
+        "constrained_quantity": "239.301",
+        "size_difference": "0.0004301261487050960735171",
+        "entry_price": "47.88",
+        "exit_price": "47.53"
+      },
+      {
+        "trade_id": 43,
+        "entry_time_utc": "2025-09-11 17:30:00",
+        "requested_quantity": "237.0661646199666179845608179",
+        "constrained_quantity": "237.066",
+        "size_difference": "0.0001646199666179845608179",
+        "entry_price": "47.93",
+        "exit_price": "47.52"
+      },
+      {
+        "trade_id": 44,
+        "entry_time_utc": "2025-09-11 22:30:00",
+        "requested_quantity": "234.8022164695389109117462967",
+        "constrained_quantity": "234.802",
+        "size_difference": "0.0002164695389109117462967",
+        "entry_price": "47.93",
+        "exit_price": "47.64"
+      },
+      {
+        "trade_id": 45,
+        "entry_time_utc": "2025-09-12 14:00:00",
+        "requested_quantity": "232.0340041905107973421926910",
+        "constrained_quantity": "232.034",
+        "size_difference": "0.0000041905107973421926910",
+        "entry_price": "48.16",
+        "exit_price": "51.61"
+      },
+      {
+        "trade_id": 46,
+        "entry_time_utc": "2025-09-16 05:30:00",
+        "requested_quantity": "234.3066965476889933411672542",
+        "constrained_quantity": "234.306",
+        "size_difference": "0.0006965476889933411672542",
+        "entry_price": "51.06",
+        "exit_price": "50.76"
+      },
+      {
+        "trade_id": 47,
+        "entry_time_utc": "2025-09-17 07:30:00",
+        "requested_quantity": "230.0828738819713400464756003",
+        "constrained_quantity": "230.082",
+        "size_difference": "0.0008738819713400464756003",
+        "entry_price": "51.64",
+        "exit_price": "51.05"
+      },
+      {
+        "trade_id": 48,
+        "entry_time_utc": "2025-09-18 20:15:00",
+        "requested_quantity": "230.6647860620208374287399253",
+        "constrained_quantity": "230.664",
+        "size_difference": "0.0007860620208374287399253",
+        "entry_price": "50.87",
+        "exit_price": "50.54"
+      },
+      {
+        "trade_id": 49,
+        "entry_time_utc": "2025-09-19 20:30:00",
+        "requested_quantity": "234.5167686036045106725734998",
+        "constrained_quantity": "234.516",
+        "size_difference": "0.0007686036045106725734998",
+        "entry_price": "49.66",
+        "exit_price": "49.33"
+      },
+      {
+        "trade_id": 50,
+        "entry_time_utc": "2025-09-19 21:45:00",
+        "requested_quantity": "232.9122345714429665457476824",
+        "constrained_quantity": "232.912",
+        "size_difference": "0.0002345714429665457476824",
+        "entry_price": "49.62",
+        "exit_price": "49.08"
+      },
+      {
+        "trade_id": 51,
+        "entry_time_utc": "2025-09-20 06:00:00",
+        "requested_quantity": "230.0995041755994358251057828",
+        "constrained_quantity": "230.099",
+        "size_difference": "0.0005041755994358251057828",
+        "entry_price": "49.63",
+        "exit_price": "50.41"
+      },
+      {
+        "trade_id": 52,
+        "entry_time_utc": "2025-09-23 07:15:00",
+        "requested_quantity": "236.4375853959396041624158335",
+        "constrained_quantity": "236.437",
+        "size_difference": "0.0005853959396041624158335",
+        "entry_price": "49.01",
+        "exit_price": "57.16"
+      },
+      {
+        "trade_id": 53,
+        "entry_time_utc": "2025-09-26 19:00:00",
+        "requested_quantity": "242.9330038163008276358402303",
+        "constrained_quantity": "242.933",
+        "size_difference": "0.0000038163008276358402303",
+        "entry_price": "55.58",
+        "exit_price": "55.32"
+      },
+      {
+        "trade_id": 54,
+        "entry_time_utc": "2025-09-27 22:00:00",
+        "requested_quantity": "242.2078862937037705213783150",
+        "constrained_quantity": "242.207",
+        "size_difference": "0.0008862937037705213783150",
+        "entry_price": "55.43",
+        "exit_price": "54.2"
+      },
+      {
+        "trade_id": 55,
+        "entry_time_utc": "2025-09-28 05:45:00",
+        "requested_quantity": "237.0642073491503976861894432",
+        "constrained_quantity": "237.064",
+        "size_difference": "0.0002073491503976861894432",
+        "entry_price": "55.32",
+        "exit_price": "67.06"
+      },
+      {
+        "trade_id": 56,
+        "entry_time_utc": "2025-09-30 14:45:00",
+        "requested_quantity": "224.7172801980050933786078098",
+        "constrained_quantity": "224.717",
+        "size_difference": "0.0002801980050933786078098",
+        "entry_price": "70.68",
+        "exit_price": "123.85"
+      },
+      {
+        "trade_id": 57,
+        "entry_time_utc": "2025-10-03 05:30:00",
+        "requested_quantity": "207.5790337791296558931103979",
+        "constrained_quantity": "207.579",
+        "size_difference": "0.0000337791296558931103979",
+        "entry_price": "133.97",
+        "exit_price": "139.19"
+      },
+      {
+        "trade_id": 58,
+        "entry_time_utc": "2025-10-04 12:15:00",
+        "requested_quantity": "208.1229677379046795010454972",
+        "constrained_quantity": "208.122",
+        "size_difference": "0.0009677379046795010454972",
+        "entry_price": "138.69",
+        "exit_price": "147.02"
+      },
+      {
+        "trade_id": 59,
+        "entry_time_utc": "2025-10-05 17:30:00",
+        "requested_quantity": "192.1701099343685170050920978",
+        "constrained_quantity": "192.170",
+        "size_difference": "0.0001099343685170050920978",
+        "entry_price": "159.07",
+        "exit_price": "154.81"
+      },
+      {
+        "trade_id": 60,
+        "entry_time_utc": "2025-10-06 07:00:00",
+        "requested_quantity": "185.8061645980618943419818693",
+        "constrained_quantity": "185.806",
+        "size_difference": "0.0001645980618943419818693",
+        "entry_price": "159.95",
+        "exit_price": "160.08"
+      },
+      {
+        "trade_id": 61,
+        "entry_time_utc": "2025-10-08 10:30:00",
+        "requested_quantity": "215.1949526388325608342989571",
+        "constrained_quantity": "215.194",
+        "size_difference": "0.0009526388325608342989571",
+        "entry_price": "138.08",
+        "exit_price": "180.38"
+      },
+      {
+        "trade_id": 62,
+        "entry_time_utc": "2025-10-11 01:00:00",
+        "requested_quantity": "169.8456683881492511167557152",
+        "constrained_quantity": "169.845",
+        "size_difference": "0.0006683881492511167557152",
+        "entry_price": "228.34",
+        "exit_price": "218.96"
+      },
+      {
+        "trade_id": 63,
+        "entry_time_utc": "2025-10-11 06:00:00",
+        "requested_quantity": "158.9705947175866495507060334",
+        "constrained_quantity": "158.970",
+        "size_difference": "0.0005947175866495507060334",
+        "entry_price": "233.7",
+        "exit_price": "259.4"
+      },
+      {
+        "trade_id": 64,
+        "entry_time_utc": "2025-10-12 21:15:00",
+        "requested_quantity": "152.5108759930403879613519417",
+        "constrained_quantity": "152.510",
+        "size_difference": "0.0008759930403879613519417",
+        "entry_price": "270.13",
+        "exit_price": "263.29"
+      },
+      {
+        "trade_id": 65,
+        "entry_time_utc": "2025-10-13 01:45:00",
+        "requested_quantity": "148.0218398151291512915129151",
+        "constrained_quantity": "148.021",
+        "size_difference": "0.0008398151291512915129151",
+        "entry_price": "271.0",
+        "exit_price": "262.23"
+      },
+      {
+        "trade_id": 66,
+        "entry_time_utc": "2025-10-13 20:30:00",
+        "requested_quantity": "143.6159622258703703703703704",
+        "constrained_quantity": "143.615",
+        "size_difference": "0.0009622258703703703703704",
+        "entry_price": "270.0",
+        "exit_price": "249.8"
+      },
+      {
+        "trade_id": 67,
+        "entry_time_utc": "2025-10-14 15:30:00",
+        "requested_quantity": "140.6403000646927242759595008",
+        "constrained_quantity": "140.640",
+        "size_difference": "0.0003000646927242759595008",
+        "entry_price": "254.82",
+        "exit_price": "234.01"
+      },
+      {
+        "trade_id": 68,
+        "entry_time_utc": "2025-10-14 22:45:00",
+        "requested_quantity": "131.6549268656295050456511293",
+        "constrained_quantity": "131.654",
+        "size_difference": "0.0009268656295050456511293",
+        "entry_price": "249.72",
+        "exit_price": "248.94"
+      },
+      {
+        "trade_id": 69,
+        "entry_time_utc": "2025-10-17 16:15:00",
+        "requested_quantity": "149.7226674824629595756356320",
+        "constrained_quantity": "149.722",
+        "size_difference": "0.0006674824629595756356320",
+        "entry_price": "218.68",
+        "exit_price": "215.1"
+      },
+      {
+        "trade_id": 70,
+        "entry_time_utc": "2025-10-18 07:15:00",
+        "requested_quantity": "145.9087299795238095238095238",
+        "constrained_quantity": "145.908",
+        "size_difference": "0.0007299795238095238095238",
+        "entry_price": "220.5",
+        "exit_price": "213.72"
+      },
+      {
+        "trade_id": 71,
+        "entry_time_utc": "2025-10-18 09:45:00",
+        "requested_quantity": "142.0128584728528446389496718",
+        "constrained_quantity": "142.012",
+        "size_difference": "0.0008584728528446389496718",
+        "entry_price": "219.36",
+        "exit_price": "215.87"
+      },
+      {
+        "trade_id": 72,
+        "entry_time_utc": "2025-10-18 19:00:00",
+        "requested_quantity": "139.6571426568698983081763874",
+        "constrained_quantity": "139.657",
+        "size_difference": "0.0001426568698983081763874",
+        "entry_price": "219.29",
+        "exit_price": "216.87"
+      },
+      {
+        "trade_id": 73,
+        "entry_time_utc": "2025-10-19 11:15:00",
+        "requested_quantity": "135.5174832026918081246920769",
+        "constrained_quantity": "135.517",
+        "size_difference": "0.0004832026918081246920769",
+        "entry_price": "223.27",
+        "exit_price": "218.04"
+      },
+      {
+        "trade_id": 74,
+        "entry_time_utc": "2025-10-19 14:45:00",
+        "requested_quantity": "132.5415655382784787391675273",
+        "constrained_quantity": "132.541",
+        "size_difference": "0.0005655382784787391675273",
+        "entry_price": "222.71",
+        "exit_price": "250.15"
+      },
+      {
+        "trade_id": 75,
+        "entry_time_utc": "2025-10-21 11:30:00",
+        "requested_quantity": "124.1014590401258851298190401",
+        "constrained_quantity": "124.101",
+        "size_difference": "0.0004590401258851298190401",
+        "entry_price": "266.91",
+        "exit_price": "263.38"
+      },
+      {
+        "trade_id": 76,
+        "entry_time_utc": "2025-10-22 05:00:00",
+        "requested_quantity": "118.3677921509280069600522004",
+        "constrained_quantity": "118.367",
+        "size_difference": "0.0007921509280069600522004",
+        "entry_price": "275.86",
+        "exit_price": "261.23"
+      },
+      {
+        "trade_id": 77,
+        "entry_time_utc": "2025-10-24 00:15:00",
+        "requested_quantity": "127.9383824831842279655400928",
+        "constrained_quantity": "127.938",
+        "size_difference": "0.0003824831842279655400928",
+        "entry_price": "241.44",
+        "exit_price": "251.03"
+      },
+      {
+        "trade_id": 78,
+        "entry_time_utc": "2025-10-24 17:30:00",
+        "requested_quantity": "124.3888721148716755834690238",
+        "constrained_quantity": "124.388",
+        "size_difference": "0.0008721148716755834690238",
+        "entry_price": "257.94",
+        "exit_price": "344.5"
+      },
+      {
+        "trade_id": 79,
+        "entry_time_utc": "2025-10-29 10:15:00",
+        "requested_quantity": "130.2617220395217232566630157",
+        "constrained_quantity": "130.261",
+        "size_difference": "0.0007220395217232566630157",
+        "entry_price": "328.68",
+        "exit_price": "327.64"
+      },
+      {
+        "trade_id": 80,
+        "entry_time_utc": "2025-10-30 23:45:00",
+        "requested_quantity": "124.8095925476127748016744241",
+        "constrained_quantity": "124.809",
+        "size_difference": "0.0005925476127748016744241",
+        "entry_price": "341.61",
+        "exit_price": "399.13"
+      },
+      {
+        "trade_id": 81,
+        "entry_time_utc": "2025-11-01 15:30:00",
+        "requested_quantity": "120.1801243138703757365014972",
+        "constrained_quantity": "120.180",
+        "size_difference": "0.0001243138703757365014972",
+        "entry_price": "414.12",
+        "exit_price": "400.04"
+      },
+      {
+        "trade_id": 82,
+        "entry_time_utc": "2025-11-02 02:30:00",
+        "requested_quantity": "115.4101545271176258560615163",
+        "constrained_quantity": "115.410",
+        "size_difference": "0.0001545271176258560615163",
+        "entry_price": "416.15",
+        "exit_price": "409.83"
+      },
+      {
+        "trade_id": 83,
+        "entry_time_utc": "2025-11-02 06:45:00",
+        "requested_quantity": "112.6845402808356386530573309",
+        "constrained_quantity": "112.684",
+        "size_difference": "0.0005402808356386530573309",
+        "entry_price": "419.32",
+        "exit_price": "409.3"
+      },
+      {
+        "trade_id": 84,
+        "entry_time_utc": "2025-11-02 22:30:00",
+        "requested_quantity": "110.5952849007945080530952210",
+        "constrained_quantity": "110.595",
+        "size_difference": "0.0002849007945080530952210",
+        "entry_price": "416.61",
+        "exit_price": "393.35"
+      },
+      {
+        "trade_id": 85,
+        "entry_time_utc": "2025-11-03 16:45:00",
+        "requested_quantity": "104.8871025014360533873965197",
+        "constrained_quantity": "104.887",
+        "size_difference": "0.0001025014360533873965197",
+        "entry_price": "414.33",
+        "exit_price": "410.41"
+      },
+      {
+        "trade_id": 86,
+        "entry_time_utc": "2025-11-04 22:45:00",
+        "requested_quantity": "96.18309972540818608812346231",
+        "constrained_quantity": "96.183",
+        "size_difference": "0.00009972540818608812346231",
+        "entry_price": "447.1",
+        "exit_price": "417.07"
+      },
+      {
+        "trade_id": 87,
+        "entry_time_utc": "2025-11-05 07:00:00",
+        "requested_quantity": "94.41506258994204127791914051",
+        "constrained_quantity": "94.415",
+        "size_difference": "0.00006258994204127791914051",
+        "entry_price": "424.44",
+        "exit_price": "616.6"
+      },
+      {
+        "trade_id": 88,
+        "entry_time_utc": "2025-11-08 20:00:00",
+        "requested_quantity": "99.08890782234847194303430888",
+        "constrained_quantity": "99.088",
+        "size_difference": "0.00090782234847194303430888",
+        "entry_price": "587.02",
+        "exit_price": "574.05"
+      },
+      {
+        "trade_id": 89,
+        "entry_time_utc": "2025-11-08 21:30:00",
+        "requested_quantity": "96.23111813343776460626587638",
+        "constrained_quantity": "96.231",
+        "size_difference": "0.00011813343776460626587638",
+        "entry_price": "590.5",
+        "exit_price": "572.36"
+      },
+      {
+        "trade_id": 90,
+        "entry_time_utc": "2025-11-09 07:45:00",
+        "requested_quantity": "92.16256294171887038960168839",
+        "constrained_quantity": "92.162",
+        "size_difference": "0.00056294171887038960168839",
+        "entry_price": "597.02",
+        "exit_price": "625.08"
+      },
+      {
+        "trade_id": 91,
+        "entry_time_utc": "2025-11-12 20:00:00",
+        "requested_quantity": "116.9864286880335799658508822",
+        "constrained_quantity": "116.986",
+        "size_difference": "0.0004286880335799658508822",
+        "entry_price": "491.96",
+        "exit_price": "485.41"
+      },
+      {
+        "trade_id": 92,
+        "entry_time_utc": "2025-11-13 19:30:00",
+        "requested_quantity": "108.5685061891506545204011330",
+        "constrained_quantity": "108.568",
+        "size_difference": "0.0005061891506545204011330",
+        "entry_price": "522.52",
+        "exit_price": "489.69"
+      },
+      {
+        "trade_id": 93,
+        "entry_time_utc": "2025-11-14 08:30:00",
+        "requested_quantity": "103.2203789989213456941286222",
+        "constrained_quantity": "103.220",
+        "size_difference": "0.0003789989213456941286222",
+        "entry_price": "514.53",
+        "exit_price": "669.57"
+      },
+      {
+        "trade_id": 94,
+        "entry_time_utc": "2025-11-16 23:45:00",
+        "requested_quantity": "98.27242052388779779694304500",
+        "constrained_quantity": "98.272",
+        "size_difference": "0.00042052388779779694304500",
+        "entry_price": "702.66",
+        "exit_price": "688.04"
+      },
+      {
+        "trade_id": 95,
+        "entry_time_utc": "2025-11-18 18:30:00",
+        "requested_quantity": "106.9171200438688130173955712",
+        "constrained_quantity": "106.917",
+        "size_difference": "0.0001200438688130173955712",
+        "entry_price": "631.77",
+        "exit_price": "606.03"
+      },
+      {
+        "trade_id": 96,
+        "entry_time_utc": "2025-11-19 10:30:00",
+        "requested_quantity": "104.4805165509579842784045970",
+        "constrained_quantity": "104.480",
+        "size_difference": "0.0005165509579842784045970",
+        "entry_price": "619.53",
+        "exit_price": "601.94"
+      },
+      {
+        "trade_id": 97,
+        "entry_time_utc": "2025-11-19 17:45:00",
+        "requested_quantity": "100.9499351276029950510958288",
+        "constrained_quantity": "100.949",
+        "size_difference": "0.0009351276029950510958288",
+        "entry_price": "622.36",
+        "exit_price": "657.4"
+      },
+      {
+        "trade_id": 98,
+        "entry_time_utc": "2025-11-21 08:30:00",
+        "requested_quantity": "97.48832393232413833666627456",
+        "constrained_quantity": "97.488",
+        "size_difference": "0.00032393232413833666627456",
+        "entry_price": "680.08",
+        "exit_price": "667.1"
+      },
+      {
+        "trade_id": 99,
+        "entry_time_utc": "2025-11-21 09:15:00",
+        "requested_quantity": "95.65911061733439345082968918",
+        "constrained_quantity": "95.659",
+        "size_difference": "0.00011061733439345082968918",
+        "entry_price": "679.17",
+        "exit_price": "665.07"
+      },
+      {
+        "trade_id": 100,
+        "entry_time_utc": "2025-11-23 01:45:00",
+        "requested_quantity": "110.6721784716161387500653003",
+        "constrained_quantity": "110.672",
+        "size_difference": "0.0001784716161387500653003",
+        "entry_price": "574.27",
+        "exit_price": "558.6"
+      },
+      {
+        "trade_id": 101,
+        "entry_time_utc": "2025-11-24 16:30:00",
+        "requested_quantity": "109.7875547909889250351092386",
+        "constrained_quantity": "109.787",
+        "size_difference": "0.0005547909889250351092386",
+        "entry_price": "562.53",
+        "exit_price": "550.13"
+      },
+      {
+        "trade_id": 102,
+        "entry_time_utc": "2025-11-26 01:00:00",
+        "requested_quantity": "116.9694600834868076691933389",
+        "constrained_quantity": "116.969",
+        "size_difference": "0.0004600834868076691933389",
+        "entry_price": "515.83",
+        "exit_price": "511.43"
+      },
+      {
+        "trade_id": 103,
+        "entry_time_utc": "2025-11-26 17:00:00",
+        "requested_quantity": "116.4580524736826720710889391",
+        "constrained_quantity": "116.458",
+        "size_difference": "0.0000524736826720710889391",
+        "entry_price": "513.16",
+        "exit_price": "507.76"
+      },
+      {
+        "trade_id": 104,
+        "entry_time_utc": "2025-11-29 10:15:00",
+        "requested_quantity": "126.2843513119735773226730514",
+        "constrained_quantity": "126.284",
+        "size_difference": "0.0003513119735773226730514",
+        "entry_price": "467.78",
+        "exit_price": "464.84"
+      },
+      {
+        "trade_id": 105,
+        "entry_time_utc": "2025-11-30 01:30:00",
+        "requested_quantity": "126.0221158823118579963037779",
+        "constrained_quantity": "126.022",
+        "size_difference": "0.0001158823118579963037779",
+        "entry_price": "465.34",
+        "exit_price": "457.76"
+      },
+      {
+        "trade_id": 106,
+        "entry_time_utc": "2025-12-02 15:45:00",
+        "requested_quantity": "151.0410672010876687196959769",
+        "constrained_quantity": "151.041",
+        "size_difference": "0.0000672010876687196959769",
+        "entry_price": "381.55",
+        "exit_price": "340.07"
+      },
+      {
+        "trade_id": 107,
+        "entry_time_utc": "2025-12-03 07:00:00",
+        "requested_quantity": "153.6642850090293791740289300",
+        "constrained_quantity": "153.664",
+        "size_difference": "0.0002850090293791740289300",
+        "entry_price": "333.91",
+        "exit_price": "365.87"
+      },
+      {
+        "trade_id": 108,
+        "entry_time_utc": "2025-12-07 06:00:00",
+        "requested_quantity": "163.8440458283159767801406027",
+        "constrained_quantity": "163.844",
+        "size_difference": "0.0000458283159767801406027",
+        "entry_price": "342.81",
+        "exit_price": "340.62"
+      },
+      {
+        "trade_id": 109,
+        "entry_time_utc": "2025-12-07 12:00:00",
+        "requested_quantity": "162.2176119117373214233757165",
+        "constrained_quantity": "162.217",
+        "size_difference": "0.0006119117373214233757165",
+        "entry_price": "343.69",
+        "exit_price": "336.02"
+      },
+      {
+        "trade_id": 110,
+        "entry_time_utc": "2025-12-07 18:00:00",
+        "requested_quantity": "157.0524815107579603137978772",
+        "constrained_quantity": "157.052",
+        "size_difference": "0.0004815107579603137978772",
+        "entry_price": "346.72",
+        "exit_price": "336.22"
+      },
+      {
+        "trade_id": 111,
+        "entry_time_utc": "2025-12-08 00:45:00",
+        "requested_quantity": "152.0232912849649845816882331",
+        "constrained_quantity": "152.023",
+        "size_difference": "0.0002912849649845816882331",
+        "entry_price": "346.99",
+        "exit_price": "427.4"
+      },
+      {
+        "trade_id": 112,
+        "entry_time_utc": "2025-12-10 16:45:00",
+        "requested_quantity": "149.1770124264293593161136134",
+        "constrained_quantity": "149.177",
+        "size_difference": "0.0000124264293593161136134",
+        "entry_price": "435.16",
+        "exit_price": "425.09"
+      },
+      {
+        "trade_id": 113,
+        "entry_time_utc": "2025-12-11 08:15:00",
+        "requested_quantity": "151.2281966587729768441155407",
+        "constrained_quantity": "151.228",
+        "size_difference": "0.0001966587729768441155407",
+        "entry_price": "418.9",
+        "exit_price": "412.4"
+      },
+      {
+        "trade_id": 114,
+        "entry_time_utc": "2025-12-11 09:45:00",
+        "requested_quantity": "148.9342185885783950469724858",
+        "constrained_quantity": "148.934",
+        "size_difference": "0.0002185885783950469724858",
+        "entry_price": "418.33",
+        "exit_price": "453.4"
+      },
+      {
+        "trade_id": 115,
+        "entry_time_utc": "2025-12-15 15:45:00",
+        "requested_quantity": "161.7984216914498141263940520",
+        "constrained_quantity": "161.798",
+        "size_difference": "0.0004216914498141263940520",
+        "entry_price": "416.95",
+        "exit_price": "397.81"
+      },
+      {
+        "trade_id": 116,
+        "entry_time_utc": "2025-12-15 23:30:00",
+        "requested_quantity": "155.8237808622770453664210934",
+        "constrained_quantity": "155.823",
+        "size_difference": "0.0007808622770453664210934",
+        "entry_price": "412.64",
+        "exit_price": "404.73"
+      },
+      {
+        "trade_id": 117,
+        "entry_time_utc": "2025-12-16 16:15:00",
+        "requested_quantity": "154.5703691910083415112855741",
+        "constrained_quantity": "154.570",
+        "size_difference": "0.0003691910083415112855741",
+        "entry_price": "407.6",
+        "exit_price": "397.59"
+      },
+      {
+        "trade_id": 118,
+        "entry_time_utc": "2025-12-17 15:00:00",
+        "requested_quantity": "151.6223547778642167395223630",
+        "constrained_quantity": "151.622",
+        "size_difference": "0.0003547778642167395223630",
+        "entry_price": "404.91",
+        "exit_price": "388.1"
+      },
+      {
+        "trade_id": 119,
+        "entry_time_utc": "2025-12-17 17:00:00",
+        "requested_quantity": "146.8511690531976017986510117",
+        "constrained_quantity": "146.851",
+        "size_difference": "0.0001690531976017986510117",
+        "entry_price": "400.3",
+        "exit_price": "392.77"
+      },
+      {
+        "trade_id": 120,
+        "entry_time_utc": "2025-12-18 05:15:00",
+        "requested_quantity": "145.7234348668723603348423156",
+        "constrained_quantity": "145.723",
+        "size_difference": "0.0004348668723603348423156",
+        "entry_price": "395.41",
+        "exit_price": "391.25"
+      },
+      {
+        "trade_id": 121,
+        "entry_time_utc": "2025-12-18 22:30:00",
+        "requested_quantity": "143.9871033524281416689839978",
+        "constrained_quantity": "143.987",
+        "size_difference": "0.0001033524281416689839978",
+        "entry_price": "395.57",
+        "exit_price": "388.75"
+      },
+      {
+        "trade_id": 122,
+        "entry_time_utc": "2025-12-19 03:45:00",
+        "requested_quantity": "141.0623374566736459726041220",
+        "constrained_quantity": "141.062",
+        "size_difference": "0.0003374566736459726041220",
+        "entry_price": "396.41",
+        "exit_price": "443.82"
+      },
+      {
+        "trade_id": 123,
+        "entry_time_utc": "2025-12-21 20:15:00",
+        "requested_quantity": "139.9950945634764313532387305",
+        "constrained_quantity": "139.995",
+        "size_difference": "0.0000945634764313532387305",
+        "entry_price": "446.78",
+        "exit_price": "442.56"
+      },
+      {
+        "trade_id": 124,
+        "entry_time_utc": "2025-12-24 13:00:00",
+        "requested_quantity": "145.2739769332707428705550992",
+        "constrained_quantity": "145.273",
+        "size_difference": "0.0009769332707428705550992",
+        "entry_price": "426.05",
+        "exit_price": "440.16"
+      },
+      {
+        "trade_id": 125,
+        "entry_time_utc": "2025-12-26 02:30:00",
+        "requested_quantity": "143.7042751664792027534699570",
+        "constrained_quantity": "143.704",
+        "size_difference": "0.0002751664792027534699570",
+        "entry_price": "444.53",
+        "exit_price": "439.38"
+      },
+      {
+        "trade_id": 126,
+        "entry_time_utc": "2025-12-26 20:45:00",
+        "requested_quantity": "141.3338004446224512659645978",
+        "constrained_quantity": "141.333",
+        "size_difference": "0.0008004446224512659645978",
+        "entry_price": "446.3",
+        "exit_price": "523.0"
+      },
+      {
+        "trade_id": 127,
+        "entry_time_utc": "2025-12-29 16:45:00",
+        "requested_quantity": "139.8947113981795449809619428",
+        "constrained_quantity": "139.894",
+        "size_difference": "0.0007113981795449809619428",
+        "entry_price": "527.89",
+        "exit_price": "527.08"
+      },
+      {
+        "trade_id": 128,
+        "entry_time_utc": "2025-12-30 10:15:00",
+        "requested_quantity": "137.4212508131914258530306140",
+        "constrained_quantity": "137.421",
+        "size_difference": "0.0002508131914258530306140",
+        "entry_price": "536.03",
+        "exit_price": "531.51"
+      },
+      {
+        "trade_id": 129,
+        "entry_time_utc": "2026-01-01 08:15:00",
+        "requested_quantity": "140.7876417114783514702477425",
+        "constrained_quantity": "140.787",
+        "size_difference": "0.0006417114783514702477425",
+        "entry_price": "518.28",
+        "exit_price": "516.53"
+      },
+      {
+        "trade_id": 130,
+        "entry_time_utc": "2026-01-03 04:45:00",
+        "requested_quantity": "140.6057865574243245335604242",
+        "constrained_quantity": "140.605",
+        "size_difference": "0.0007865574243245335604242",
+        "entry_price": "516.68",
+        "exit_price": "502.5"
+      },
+      {
+        "trade_id": 131,
+        "entry_time_utc": "2026-01-03 19:00:00",
+        "requested_quantity": "139.3456813940734013780032772",
+        "constrained_quantity": "139.345",
+        "size_difference": "0.0006813940734013780032772",
+        "entry_price": "506.53",
+        "exit_price": "505.82"
+      },
+      {
+        "trade_id": 132,
+        "entry_time_utc": "2026-01-05 02:15:00",
+        "requested_quantity": "138.7645588379973592416688016",
+        "constrained_quantity": "138.764",
+        "size_difference": "0.0005588379973592416688016",
+        "entry_price": "507.43",
+        "exit_price": "501.45"
+      },
+      {
+        "trade_id": 133,
+        "entry_time_utc": "2026-01-05 23:45:00",
+        "requested_quantity": "137.9756123518886088009368611",
+        "constrained_quantity": "137.975",
+        "size_difference": "0.0006123518886088009368611",
+        "entry_price": "503.81",
+        "exit_price": "494.77"
+      },
+      {
+        "trade_id": 134,
+        "entry_time_utc": "2026-01-09 06:30:00",
+        "requested_quantity": "155.3434083990228013029315961",
+        "constrained_quantity": "155.343",
+        "size_difference": "0.0004083990228013029315961",
+        "entry_price": "439.01",
+        "exit_price": "431.48"
+      },
+      {
+        "trade_id": 135,
+        "entry_time_utc": "2026-01-11 11:30:00",
+        "requested_quantity": "173.5388484313075029156407931",
+        "constrained_quantity": "173.538",
+        "size_difference": "0.0008484313075029156407931",
+        "entry_price": "385.85",
+        "exit_price": "382.68"
+      },
+      {
+        "trade_id": 136,
+        "entry_time_utc": "2026-01-12 01:30:00",
+        "requested_quantity": "166.1153904242826380890380089",
+        "constrained_quantity": "166.115",
+        "size_difference": "0.0003904242826380890380089",
+        "entry_price": "399.38",
+        "exit_price": "398.71"
+      },
+      {
+        "trade_id": 137,
+        "entry_time_utc": "2026-01-13 08:30:00",
+        "requested_quantity": "164.2274075243242572414306635",
+        "constrained_quantity": "164.227",
+        "size_difference": "0.0004075243242572414306635",
+        "entry_price": "402.89",
+        "exit_price": "385.6"
+      },
+      {
+        "trade_id": 138,
+        "entry_time_utc": "2026-01-13 23:15:00",
+        "requested_quantity": "154.9877495010902320111718157",
+        "constrained_quantity": "154.987",
+        "size_difference": "0.0007495010902320111718157",
+        "entry_price": "408.17",
+        "exit_price": "414.56"
+      },
+      {
+        "trade_id": 139,
+        "entry_time_utc": "2026-01-16 20:45:00",
+        "requested_quantity": "155.3623633464964298680866513",
+        "constrained_quantity": "155.362",
+        "size_difference": "0.0003633464964298680866513",
+        "entry_price": "413.15",
+        "exit_price": "410.71"
+      },
+      {
+        "trade_id": 140,
+        "entry_time_utc": "2026-01-21 06:00:00",
+        "requested_quantity": "177.4140797883245198998051767",
+        "constrained_quantity": "177.414",
+        "size_difference": "0.0000797883245198998051767",
+        "entry_price": "359.3",
+        "exit_price": "353.96"
+      },
+      {
+        "trade_id": 141,
+        "entry_time_utc": "2026-01-21 10:15:00",
+        "requested_quantity": "173.4426788861625656621509538",
+        "constrained_quantity": "173.442",
+        "size_difference": "0.0006788861625656621509538",
+        "entry_price": "361.7",
+        "exit_price": "357.06"
+      },
+      {
+        "trade_id": 142,
+        "entry_time_utc": "2026-01-21 19:30:00",
+        "requested_quantity": "169.2717023370406851076636844",
+        "constrained_quantity": "169.271",
+        "size_difference": "0.0007023370406851076636844",
+        "entry_price": "365.49",
+        "exit_price": "357.03"
+      },
+      {
+        "trade_id": 143,
+        "entry_time_utc": "2026-01-22 09:30:00",
+        "requested_quantity": "166.1957524312632477220799956",
+        "constrained_quantity": "166.195",
+        "size_difference": "0.0007524312632477220799956",
+        "entry_price": "363.27",
+        "exit_price": "357.11"
+      },
+      {
+        "trade_id": 144,
+        "entry_time_utc": "2026-01-22 16:15:00",
+        "requested_quantity": "162.6307924641495460405409112",
+        "constrained_quantity": "162.630",
+        "size_difference": "0.0007924641495460405409112",
+        "entry_price": "364.57",
+        "exit_price": "360.66"
+      },
+      {
+        "trade_id": 145,
+        "entry_time_utc": "2026-01-23 11:30:00",
+        "requested_quantity": "160.3685276457523673983250315",
+        "constrained_quantity": "160.368",
+        "size_difference": "0.0005276457523673983250315",
+        "entry_price": "365.38",
+        "exit_price": "362.27"
+      },
+      {
+        "trade_id": 146,
+        "entry_time_utc": "2026-01-23 14:30:00",
+        "requested_quantity": "159.6214583707508250825082508",
+        "constrained_quantity": "159.621",
+        "size_difference": "0.0004583707508250825082508",
+        "entry_price": "363.6",
+        "exit_price": "360.67"
+      },
+      {
+        "trade_id": 147,
+        "entry_time_utc": "2026-01-23 16:00:00",
+        "requested_quantity": "156.5956064551147657037057206",
+        "constrained_quantity": "156.595",
+        "size_difference": "0.0006064551147657037057206",
+        "entry_price": "367.27",
+        "exit_price": "369.76"
+      },
+      {
+        "trade_id": 148,
+        "entry_time_utc": "2026-01-26 04:45:00",
+        "requested_quantity": "164.3559662632334138371927831",
+        "constrained_quantity": "164.355",
+        "size_difference": "0.0009662632334138371927831",
+        "entry_price": "351.95",
+        "exit_price": "385.2"
+      },
+      {
+        "trade_id": 149,
+        "entry_time_utc": "2026-02-01 23:45:00",
+        "requested_quantity": "206.8728623412703604369725911",
+        "constrained_quantity": "206.872",
+        "size_difference": "0.0008623412703604369725911",
+        "entry_price": "305.74",
+        "exit_price": "299.1"
+      },
+      {
+        "trade_id": 150,
+        "entry_time_utc": "2026-02-02 15:15:00",
+        "requested_quantity": "204.9846347935002487149726414",
+        "constrained_quantity": "204.984",
+        "size_difference": "0.0006347935002487149726414",
+        "entry_price": "301.55",
+        "exit_price": "298.84"
+      },
+      {
+        "trade_id": 151,
+        "entry_time_utc": "2026-02-06 11:30:00",
+        "requested_quantity": "271.2712212868478212686732568",
+        "constrained_quantity": "271.271",
+        "size_difference": "0.0002212868478212686732568",
+        "entry_price": "225.59",
+        "exit_price": "229.44"
+      },
+      {
+        "trade_id": 152,
+        "entry_time_utc": "2026-02-07 15:45:00",
+        "requested_quantity": "259.9337399713013669997073701",
+        "constrained_quantity": "259.933",
+        "size_difference": "0.0007399713013669997073701",
+        "entry_price": "239.21",
+        "exit_price": "233.69"
+      },
+      {
+        "trade_id": 153,
+        "entry_time_utc": "2026-02-08 13:45:00",
+        "requested_quantity": "251.1171471991930477963997517",
+        "constrained_quantity": "251.117",
+        "size_difference": "0.0001471991930477963997517",
+        "entry_price": "241.65",
+        "exit_price": "237.18"
+      },
+      {
+        "trade_id": 154,
+        "entry_time_utc": "2026-02-08 20:00:00",
+        "requested_quantity": "245.2994906585174802110817942",
+        "constrained_quantity": "245.299",
+        "size_difference": "0.0004906585174802110817942",
+        "entry_price": "242.56",
+        "exit_price": "239.04"
+      },
+      {
+        "trade_id": 155,
+        "entry_time_utc": "2026-02-09 01:30:00",
+        "requested_quantity": "242.3254208204608447441360195",
+        "constrained_quantity": "242.325",
+        "size_difference": "0.0004208204608447441360195",
+        "entry_price": "241.73",
+        "exit_price": "236.64"
+      },
+      {
+        "trade_id": 156,
+        "entry_time_utc": "2026-02-09 16:45:00",
+        "requested_quantity": "237.2088166451552795031055901",
+        "constrained_quantity": "237.208",
+        "size_difference": "0.0008166451552795031055901",
+        "entry_price": "241.5",
+        "exit_price": "235.42"
+      },
+      {
+        "trade_id": 157,
+        "entry_time_utc": "2026-02-10 09:00:00",
+        "requested_quantity": "230.9165940648412599859265698",
+        "constrained_quantity": "230.916",
+        "size_difference": "0.0005940648412599859265698",
+        "entry_price": "241.59",
+        "exit_price": "235.52"
+      },
+      {
+        "trade_id": 158,
+        "entry_time_utc": "2026-02-11 06:30:00",
+        "requested_quantity": "229.0006055795363540569020021",
+        "constrained_quantity": "229.000",
+        "size_difference": "0.0006055795363540569020021",
+        "entry_price": "237.25",
+        "exit_price": "230.41"
+      },
+      {
+        "trade_id": 159,
+        "entry_time_utc": "2026-02-11 18:15:00",
+        "requested_quantity": "223.5958539227326715873419869",
+        "constrained_quantity": "223.595",
+        "size_difference": "0.0008539227326715873419869",
+        "entry_price": "235.74",
+        "exit_price": "236.22"
+      },
+      {
+        "trade_id": 160,
+        "entry_time_utc": "2026-02-12 11:15:00",
+        "requested_quantity": "220.2857606798522105790506408",
+        "constrained_quantity": "220.285",
+        "size_difference": "0.0007606798522105790506408",
+        "entry_price": "239.53",
+        "exit_price": "235.54"
+      },
+      {
+        "trade_id": 161,
+        "entry_time_utc": "2026-02-13 11:00:00",
+        "requested_quantity": "222.0528025882277342243927516",
+        "constrained_quantity": "222.052",
+        "size_difference": "0.0008025882277342243927516",
+        "entry_price": "233.43",
+        "exit_price": "232.3"
+      },
+      {
+        "trade_id": 162,
+        "entry_time_utc": "2026-02-13 12:30:00",
+        "requested_quantity": "220.6618370624330921080803323",
+        "constrained_quantity": "220.661",
+        "size_difference": "0.0008370624330921080803323",
+        "entry_price": "233.53",
+        "exit_price": "294.87"
+      },
+      {
+        "trade_id": 163,
+        "entry_time_utc": "2026-02-16 12:30:00",
+        "requested_quantity": "217.4842123481649994981767087",
+        "constrained_quantity": "217.484",
+        "size_difference": "0.0002123481649994981767087",
+        "entry_price": "298.91",
+        "exit_price": "288.7"
+      },
+      {
+        "trade_id": 164,
+        "entry_time_utc": "2026-02-17 01:00:00",
+        "requested_quantity": "213.9137725474728872518927768",
+        "constrained_quantity": "213.913",
+        "size_difference": "0.0007725474728872518927768",
+        "entry_price": "293.22",
+        "exit_price": "289.45"
+      },
+      {
+        "trade_id": 165,
+        "entry_time_utc": "2026-02-17 14:00:00",
+        "requested_quantity": "211.1165023806785214512440698",
+        "constrained_quantity": "211.116",
+        "size_difference": "0.0005023806785214512440698",
+        "entry_price": "292.99",
+        "exit_price": "286.02"
+      },
+      {
+        "trade_id": 166,
+        "entry_time_utc": "2026-02-17 23:30:00",
+        "requested_quantity": "208.3532273243126554296767063",
+        "constrained_quantity": "208.353",
+        "size_difference": "0.0002273243126554296767063",
+        "entry_price": "289.52",
+        "exit_price": "284.51"
+      },
+      {
+        "trade_id": 167,
+        "entry_time_utc": "2026-02-20 01:15:00",
+        "requested_quantity": "222.8112627309805101964030401",
+        "constrained_quantity": "222.811",
+        "size_difference": "0.0002627309805101964030401",
+        "entry_price": "265.78",
+        "exit_price": "263.13"
+      },
+      {
+        "trade_id": 168,
+        "entry_time_utc": "2026-02-20 06:00:00",
+        "requested_quantity": "221.2253249315769593956562795",
+        "constrained_quantity": "221.225",
+        "size_difference": "0.0003249315769593956562795",
+        "entry_price": "264.75",
+        "exit_price": "262.98"
+      },
+      {
+        "trade_id": 169,
+        "entry_time_utc": "2026-02-21 01:45:00",
+        "requested_quantity": "221.9147116877052310042000764",
+        "constrained_quantity": "221.914",
+        "size_difference": "0.0007116877052310042000764",
+        "entry_price": "261.9",
+        "exit_price": "259.83"
+      },
+      {
+        "trade_id": 170,
+        "entry_time_utc": "2026-02-21 22:15:00",
+        "requested_quantity": "220.6136017441593259287629261",
+        "constrained_quantity": "220.613",
+        "size_difference": "0.0006017441593259287629261",
+        "entry_price": "261.1",
+        "exit_price": "259.96"
+      },
+      {
+        "trade_id": 171,
+        "entry_time_utc": "2026-02-23 09:45:00",
+        "requested_quantity": "231.1049828184018393771933363",
+        "constrained_quantity": "231.104",
+        "size_difference": "0.0009828184018393771933363",
+        "entry_price": "247.91",
+        "exit_price": "240.62"
+      },
+      {
+        "trade_id": 172,
+        "entry_time_utc": "2026-02-24 16:30:00",
+        "requested_quantity": "231.3993314947723580622318490",
+        "constrained_quantity": "231.399",
+        "size_difference": "0.0003314947723580622318490",
+        "entry_price": "240.07",
+        "exit_price": "239.2"
+      },
+      {
+        "trade_id": 173,
+        "entry_time_utc": "2026-02-25 13:15:00",
+        "requested_quantity": "229.4790383573414674634794157",
+        "constrained_quantity": "229.479",
+        "size_difference": "0.0000383573414674634794157",
+        "entry_price": "240.96",
+        "exit_price": "245.03"
+      },
+      {
+        "trade_id": 174,
+        "entry_time_utc": "2026-02-27 05:30:00",
+        "requested_quantity": "232.0067997810176771848670081",
+        "constrained_quantity": "232.006",
+        "size_difference": "0.0007997810176771848670081",
+        "entry_price": "242.12",
+        "exit_price": "240.59"
+      },
+      {
+        "trade_id": 175,
+        "entry_time_utc": "2026-02-28 20:30:00",
+        "requested_quantity": "255.2527756790716836034056578",
+        "constrained_quantity": "255.252",
+        "size_difference": "0.0007756790716836034056578",
+        "entry_price": "218.46",
+        "exit_price": "218.92"
+      },
+      {
+        "trade_id": 176,
+        "entry_time_utc": "2026-03-01 14:30:00",
+        "requested_quantity": "250.6920973368510867612717801",
+        "constrained_quantity": "250.692",
+        "size_difference": "0.0000973368510867612717801",
+        "entry_price": "222.68",
+        "exit_price": "220.3"
+      },
+      {
+        "trade_id": 177,
+        "entry_time_utc": "2026-03-02 15:15:00",
+        "requested_quantity": "246.8432889082815086573307682",
+        "constrained_quantity": "246.843",
+        "size_difference": "0.0002889082815086573307682",
+        "entry_price": "223.51",
+        "exit_price": "216.25"
+      },
+      {
+        "trade_id": 178,
+        "entry_time_utc": "2026-03-03 18:45:00",
+        "requested_quantity": "242.0699418269099822960642789",
+        "constrained_quantity": "242.069",
+        "size_difference": "0.0009418269099822960642789",
+        "entry_price": "220.29",
+        "exit_price": "216.51"
+      },
+      {
+        "trade_id": 179,
+        "entry_time_utc": "2026-03-03 22:30:00",
+        "requested_quantity": "239.5027619754357074241800467",
+        "constrained_quantity": "239.502",
+        "size_difference": "0.0007619754357074241800467",
+        "entry_price": "218.61",
+        "exit_price": "216.47"
+      },
+      {
+        "trade_id": 180,
+        "entry_time_utc": "2026-03-04 07:45:00",
+        "requested_quantity": "235.0597406297994009258418807",
+        "constrained_quantity": "235.059",
+        "size_difference": "0.0007406297994009258418807",
+        "entry_price": "220.34",
+        "exit_price": "233.0"
+      },
+      {
+        "trade_id": 181,
+        "entry_time_utc": "2026-03-08 20:15:00",
+        "requested_quantity": "272.1358269513578036407042674",
+        "constrained_quantity": "272.135",
+        "size_difference": "0.0008269513578036407042674",
+        "entry_price": "201.06",
+        "exit_price": "197.69"
+      },
+      {
+        "trade_id": 182,
+        "entry_time_utc": "2026-03-09 00:45:00",
+        "requested_quantity": "268.2921201138927715654952077",
+        "constrained_quantity": "268.292",
+        "size_difference": "0.0001201138927715654952077",
+        "entry_price": "200.32",
+        "exit_price": "198.91"
+      },
+      {
+        "trade_id": 183,
+        "entry_time_utc": "2026-03-09 01:45:00",
+        "requested_quantity": "266.5754821422821141057052853",
+        "constrained_quantity": "266.575",
+        "size_difference": "0.0004821422821141057052853",
+        "entry_price": "199.99",
+        "exit_price": "198.46"
+      },
+      {
+        "trade_id": 184,
+        "entry_time_utc": "2026-03-09 03:00:00",
+        "requested_quantity": "264.8266899797564764243122714",
+        "constrained_quantity": "264.826",
+        "size_difference": "0.0006899797564764243122714",
+        "entry_price": "199.57",
+        "exit_price": "218.85"
+      },
+      {
+        "trade_id": 185,
+        "entry_time_utc": "2026-03-13 01:00:00",
+        "requested_quantity": "271.4703153068592057761732852",
+        "constrained_quantity": "271.470",
+        "size_difference": "0.0003153068592057761732852",
+        "entry_price": "213.29",
+        "exit_price": "212.47"
+      },
+      {
+        "trade_id": 186,
+        "entry_time_utc": "2026-03-14 19:45:00",
+        "requested_quantity": "274.3489388096938532590582298",
+        "constrained_quantity": "274.348",
+        "size_difference": "0.0009388096938532590582298",
+        "entry_price": "210.03",
+        "exit_price": "267.77"
+      },
+      {
+        "trade_id": 187,
+        "entry_time_utc": "2026-03-23 05:15:00",
+        "requested_quantity": "326.7599474712848366129463093",
+        "constrained_quantity": "326.759",
+        "size_difference": "0.0009474712848366129463093",
+        "entry_price": "224.62",
+        "exit_price": "217.75"
+      },
+      {
+        "trade_id": 188,
+        "entry_time_utc": "2026-03-23 11:30:00",
+        "requested_quantity": "312.1364433584445810644651326",
+        "constrained_quantity": "312.136",
+        "size_difference": "0.0004433584445810644651326",
+        "entry_price": "227.72",
+        "exit_price": "226.01"
+      },
+      {
+        "trade_id": 189,
+        "entry_time_utc": "2026-03-24 06:15:00",
+        "requested_quantity": "309.7264023378087369253757581",
+        "constrained_quantity": "309.726",
+        "size_difference": "0.0004023378087369253757581",
+        "entry_price": "227.54",
+        "exit_price": "226.07"
+      },
+      {
+        "trade_id": 190,
+        "entry_time_utc": "2026-03-24 20:45:00",
+        "requested_quantity": "299.3648932744800136951125567",
+        "constrained_quantity": "299.364",
+        "size_difference": "0.0008932744800136951125567",
+        "entry_price": "233.66",
+        "exit_price": "235.02"
+      },
+      {
+        "trade_id": 191,
+        "entry_time_utc": "2026-03-25 16:15:00",
+        "requested_quantity": "297.8118852707724248972501165",
+        "constrained_quantity": "297.811",
+        "size_difference": "0.0008852707724248972501165",
+        "entry_price": "236.01",
+        "exit_price": "234.15"
+      },
+      {
+        "trade_id": 192,
+        "entry_time_utc": "2026-03-28 07:45:00",
+        "requested_quantity": "316.9797750961232197297174319",
+        "constrained_quantity": "316.979",
+        "size_difference": "0.0007750961232197297174319",
+        "entry_price": "219.77",
+        "exit_price": "215.35"
+      },
+      {
+        "trade_id": 193,
+        "entry_time_utc": "2026-03-29 04:45:00",
+        "requested_quantity": "313.5581940483492734964134633",
+        "constrained_quantity": "313.558",
+        "size_difference": "0.0001940483492734964134633",
+        "entry_price": "217.48",
+        "exit_price": "215.79"
+      },
+      {
+        "trade_id": 194,
+        "entry_time_utc": "2026-03-29 08:45:00",
+        "requested_quantity": "311.0810225242993234847438907",
+        "constrained_quantity": "311.081",
+        "size_difference": "0.0000225242993234847438907",
+        "entry_price": "217.29",
+        "exit_price": "216.23"
+      },
+      {
+        "trade_id": 195,
+        "entry_time_utc": "2026-03-29 18:00:00",
+        "requested_quantity": "309.5380699559859965912755079",
+        "constrained_quantity": "309.538",
+        "size_difference": "0.0000699559859965912755079",
+        "entry_price": "217.09",
+        "exit_price": "213.41"
+      },
+      {
+        "trade_id": 196,
+        "entry_time_utc": "2026-03-30 01:30:00",
+        "requested_quantity": "303.1044080114137424214587544",
+        "constrained_quantity": "303.104",
+        "size_difference": "0.0004080114137424214587544",
+        "entry_price": "217.72",
+        "exit_price": "239.8"
+      },
+      {
+        "trade_id": 197,
+        "entry_time_utc": "2026-04-01 17:45:00",
+        "requested_quantity": "295.7362953539341858760283457",
+        "constrained_quantity": "295.736",
+        "size_difference": "0.0002953539341858760283457",
+        "entry_price": "245.54",
+        "exit_price": "242.13"
+      },
+      {
+        "trade_id": 198,
+        "entry_time_utc": "2026-04-02 20:30:00",
+        "requested_quantity": "293.8003918746714309183505832",
+        "constrained_quantity": "293.800",
+        "size_difference": "0.0003918746714309183505832",
+        "entry_price": "243.48",
+        "exit_price": "238.28"
+      },
+      {
+        "trade_id": 199,
+        "entry_time_utc": "2026-04-04 07:00:00",
+        "requested_quantity": "295.0885606314135021097046414",
+        "constrained_quantity": "295.088",
+        "size_difference": "0.0005606314135021097046414",
+        "entry_price": "237.0",
+        "exit_price": "243.21"
+      },
+      {
+        "trade_id": 200,
+        "entry_time_utc": "2026-04-05 09:30:00",
+        "requested_quantity": "287.2731518767729786040548121",
+        "constrained_quantity": "287.273",
+        "size_difference": "0.0001518767729786040548121",
+        "entry_price": "249.58",
+        "exit_price": "243.96"
+      },
+      {
+        "trade_id": 201,
+        "entry_time_utc": "2026-04-06 00:15:00",
+        "requested_quantity": "284.6953018347226740403383214",
+        "constrained_quantity": "284.695",
+        "size_difference": "0.0003018347226740403383214",
+        "entry_price": "245.92",
+        "exit_price": "318.07"
+      },
+      {
+        "trade_id": 202,
+        "entry_time_utc": "2026-04-09 07:30:00",
+        "requested_quantity": "282.8775609250852015133039427",
+        "constrained_quantity": "282.877",
+        "size_difference": "0.0005609250852015133039427",
+        "entry_price": "319.83",
+        "exit_price": "317.7"
+      },
+      {
+        "trade_id": 203,
+        "entry_time_utc": "2026-04-09 15:45:00",
+        "requested_quantity": "273.1533132948916879639771206",
+        "constrained_quantity": "273.153",
+        "size_difference": "0.0003132948916879639771206",
+        "entry_price": "328.68",
+        "exit_price": "368.71"
+      },
+      {
+        "trade_id": 204,
+        "entry_time_utc": "2026-04-11 05:45:00",
+        "requested_quantity": "268.5324219867360555110755271",
+        "constrained_quantity": "268.532",
+        "size_difference": "0.0004219867360555110755271",
+        "entry_price": "374.7",
+        "exit_price": "370.76"
+      },
+      {
+        "trade_id": 205,
+        "entry_time_utc": "2026-04-11 16:00:00",
+        "requested_quantity": "264.9608197188715435025840482",
+        "constrained_quantity": "264.960",
+        "size_difference": "0.0008197188715435025840482",
+        "entry_price": "375.38",
+        "exit_price": "371.88"
+      },
+      {
+        "trade_id": 206,
+        "entry_time_utc": "2026-04-13 06:15:00",
+        "requested_quantity": "262.49236133672",
+        "constrained_quantity": "262.492",
+        "size_difference": "0.00036133672",
+        "entry_price": "375.0",
+        "exit_price": "360.66"
+      },
+      {
+        "trade_id": 207,
+        "entry_time_utc": "2026-04-13 13:30:00",
+        "requested_quantity": "256.7223534539754064985477347",
+        "constrained_quantity": "256.722",
+        "size_difference": "0.0003534539754064985477347",
+        "entry_price": "368.39",
+        "exit_price": "359.82"
+      },
+      {
+        "trade_id": 208,
+        "entry_time_utc": "2026-04-13 21:15:00",
+        "requested_quantity": "253.8033677634148353915124178",
+        "constrained_quantity": "253.803",
+        "size_difference": "0.0003677634148353915124178",
+        "entry_price": "363.59",
+        "exit_price": "358.55"
+      },
+      {
+        "trade_id": 209,
+        "entry_time_utc": "2026-04-14 05:45:00",
+        "requested_quantity": "248.5633475033903866134412424",
+        "constrained_quantity": "248.563",
+        "size_difference": "0.0003475033903866134412424",
+        "entry_price": "365.74",
+        "exit_price": "361.66"
+      },
+      {
+        "trade_id": 210,
+        "entry_time_utc": "2026-04-15 10:30:00",
+        "requested_quantity": "250.5790320957336979268394765",
+        "constrained_quantity": "250.579",
+        "size_difference": "0.0000320957336979268394765",
+        "entry_price": "358.39",
+        "exit_price": "356.9"
+      },
+      {
+        "trade_id": 211,
+        "entry_time_utc": "2026-04-15 14:00:00",
+        "requested_quantity": "249.0509248636439662141443425",
+        "constrained_quantity": "249.050",
+        "size_difference": "0.0009248636439662141443425",
+        "entry_price": "358.73",
+        "exit_price": "355.83"
+      },
+      {
+        "trade_id": 212,
+        "entry_time_utc": "2026-04-17 13:30:00",
+        "requested_quantity": "257.1701167533333333333333333",
+        "constrained_quantity": "257.170",
+        "size_difference": "0.0001167533333333333333333",
+        "entry_price": "344.25",
+        "exit_price": "331.53"
+      },
+      {
+        "trade_id": 213,
+        "entry_time_utc": "2026-04-18 03:30:00",
+        "requested_quantity": "252.7080320467451934488488013",
+        "constrained_quantity": "252.708",
+        "size_difference": "0.0000320467451934488488013",
+        "entry_price": "337.04",
+        "exit_price": "335.47"
+      },
+      {
+        "trade_id": 214,
+        "entry_time_utc": "2026-04-19 11:15:00",
+        "requested_quantity": "255.9877561132118244468625317",
+        "constrained_quantity": "255.987",
+        "size_difference": "0.0007561132118244468625317",
+        "entry_price": "330.84",
+        "exit_price": "323.53"
+      },
+      {
+        "trade_id": 215,
+        "entry_time_utc": "2026-04-20 17:15:00",
+        "requested_quantity": "260.8897586349446599186453505",
+        "constrained_quantity": "260.889",
+        "size_difference": "0.0007586349446599186453505",
+        "entry_price": "317.13",
+        "exit_price": "314.62"
+      },
+      {
+        "trade_id": 216,
+        "entry_time_utc": "2026-04-22 01:15:00",
+        "requested_quantity": "257.8738582710390590603182590",
+        "constrained_quantity": "257.873",
+        "size_difference": "0.0008582710390590603182590",
+        "entry_price": "317.98",
+        "exit_price": "315.55"
+      },
+      {
+        "trade_id": 217,
+        "entry_time_utc": "2026-04-22 02:30:00",
+        "requested_quantity": "254.7490220062049514258853024",
+        "constrained_quantity": "254.749",
+        "size_difference": "0.0000220062049514258853024",
+        "entry_price": "319.1",
+        "exit_price": "316.64"
+      },
+      {
+        "trade_id": 218,
+        "entry_time_utc": "2026-04-22 22:00:00",
+        "requested_quantity": "249.1813393040910355917004236",
+        "constrained_quantity": "249.181",
+        "size_difference": "0.0003393040910355917004236",
+        "entry_price": "323.39",
+        "exit_price": "317.74"
+      },
+      {
+        "trade_id": 219,
+        "entry_time_utc": "2026-04-23 12:00:00",
+        "requested_quantity": "246.1258462792040079661438885",
+        "constrained_quantity": "246.125",
+        "size_difference": "0.0008462792040079661438885",
+        "entry_price": "321.36",
+        "exit_price": "352.26"
+      },
+      {
+        "trade_id": 220,
+        "entry_time_utc": "2026-04-25 21:00:00",
+        "requested_quantity": "242.2050419412644706671886360",
+        "constrained_quantity": "242.205",
+        "size_difference": "0.0000419412644706671886360",
+        "entry_price": "357.62",
+        "exit_price": "355.55"
+      },
+      {
+        "trade_id": 221,
+        "entry_time_utc": "2026-04-26 04:15:00",
+        "requested_quantity": "241.0874231563445802040130030",
+        "constrained_quantity": "241.087",
+        "size_difference": "0.0004231563445802040130030",
+        "entry_price": "356.84",
+        "exit_price": "354.29"
+      },
+      {
+        "trade_id": 222,
+        "entry_time_utc": "2026-04-26 18:45:00",
+        "requested_quantity": "238.4561315950005589090096132",
+        "constrained_quantity": "238.456",
+        "size_difference": "0.0001315950005589090096132",
+        "entry_price": "357.84",
+        "exit_price": "354.93"
+      },
+      {
+        "trade_id": 223,
+        "entry_time_utc": "2026-04-27 00:15:00",
+        "requested_quantity": "236.9881240810466126636208201",
+        "constrained_quantity": "236.988",
+        "size_difference": "0.0001240810466126636208201",
+        "entry_price": "356.77",
+        "exit_price": "351.77"
+      },
+      {
+        "trade_id": 224,
+        "entry_time_utc": "2026-04-27 08:45:00",
+        "requested_quantity": "232.4022751210687874982558951",
+        "constrained_quantity": "232.402",
+        "size_difference": "0.0002751210687874982558951",
+        "entry_price": "358.35",
+        "exit_price": "356.31"
+      },
+      {
+        "trade_id": 225,
+        "entry_time_utc": "2026-04-27 12:00:00",
+        "requested_quantity": "231.1700740616878580410786642",
+        "constrained_quantity": "231.170",
+        "size_difference": "0.0000740616878580410786642",
+        "entry_price": "357.85",
+        "exit_price": "354.42"
+      },
+      {
+        "trade_id": 226,
+        "entry_time_utc": "2026-04-27 14:30:00",
+        "requested_quantity": "228.5071335744297719087635054",
+        "constrained_quantity": "228.507",
+        "size_difference": "0.0001335744297719087635054",
+        "entry_price": "358.19",
+        "exit_price": "350.07"
+      },
+      {
+        "trade_id": 227,
+        "entry_time_utc": "2026-04-30 05:15:00",
+        "requested_quantity": "241.0853837484991100250399735",
+        "constrained_quantity": "241.085",
+        "size_difference": "0.0003837484991100250399735",
+        "entry_price": "331.47",
+        "exit_price": "416.42"
+      },
+      {
+        "trade_id": 228,
+        "entry_time_utc": "2026-05-05 11:00:00",
+        "requested_quantity": "238.0731299299565640502243004",
+        "constrained_quantity": "238.073",
+        "size_difference": "0.0001299299565640502243004",
+        "entry_price": "421.31",
+        "exit_price": "535.11"
+      },
+      {
+        "trade_id": 229,
+        "entry_time_utc": "2026-05-07 06:45:00",
+        "requested_quantity": "227.4670256656301379655443563",
+        "constrained_quantity": "227.467",
+        "size_difference": "0.0000256656301379655443563",
+        "entry_price": "559.56",
+        "exit_price": "555.45"
+      },
+      {
+        "trade_id": 230,
+        "entry_time_utc": "2026-05-07 23:15:00",
+        "requested_quantity": "222.3627107827722283882106302",
+        "constrained_quantity": "222.362",
+        "size_difference": "0.0007107827722283882106302",
+        "entry_price": "567.63",
+        "exit_price": "559.1"
+      },
+      {
+        "trade_id": 231,
+        "entry_time_utc": "2026-05-08 11:00:00",
+        "requested_quantity": "217.3378715434333712485781783",
+        "constrained_quantity": "217.337",
+        "size_difference": "0.0008715434333712485781783",
+        "entry_price": "571.45",
+        "exit_price": "591.84"
+      },
+      {
+        "trade_id": 232,
+        "entry_time_utc": "2026-05-09 20:15:00",
+        "requested_quantity": "214.7045415183204958981470652",
+        "constrained_quantity": "214.704",
+        "size_difference": "0.0005415183204958981470652",
+        "entry_price": "598.51",
+        "exit_price": "595.96"
+      },
+      {
+        "trade_id": 233,
+        "entry_time_utc": "2026-05-10 02:00:00",
+        "requested_quantity": "213.4792264282207154547580079",
+        "constrained_quantity": "213.479",
+        "size_difference": "0.0002264282207154547580079",
+        "entry_price": "598.78",
+        "exit_price": "597.0"
+      },
+      {
+        "trade_id": 234,
+        "entry_time_utc": "2026-05-10 12:15:00",
+        "requested_quantity": "210.4801812223177384691684576",
+        "constrained_quantity": "210.480",
+        "size_difference": "0.0001812223177384691684576",
+        "entry_price": "604.9",
+        "exit_price": "599.14"
+      },
+      {
+        "trade_id": 235,
+        "entry_time_utc": "2026-05-12 22:15:00",
+        "requested_quantity": "223.7821224452536592297854199",
+        "constrained_quantity": "223.782",
+        "size_difference": "0.0001224452536592297854199",
+        "entry_price": "562.96",
+        "exit_price": "559.34"
+      },
+      {
+        "trade_id": 236,
+        "entry_time_utc": "2026-05-14 14:45:00",
+        "requested_quantity": "227.2259590821173520379422507",
+        "constrained_quantity": "227.225",
+        "size_difference": "0.0009590821173520379422507",
+        "entry_price": "550.31",
+        "exit_price": "537.4"
+      },
+      {
+        "trade_id": 237,
+        "entry_time_utc": "2026-05-16 18:30:00",
+        "requested_quantity": "237.1639811418170153200093320",
+        "constrained_quantity": "237.163",
+        "size_difference": "0.0009811418170153200093320",
+        "entry_price": "514.36",
+        "exit_price": "501.03"
+      },
+      {
+        "trade_id": 238,
+        "entry_time_utc": "2026-05-17 05:00:00",
+        "requested_quantity": "230.8285226943958309026562439",
+        "constrained_quantity": "230.828",
+        "size_difference": "0.0005226943958309026562439",
+        "entry_price": "514.26",
+        "exit_price": "520.98"
+      },
+      {
+        "trade_id": 239,
+        "entry_time_utc": "2026-05-18 15:45:00",
+        "requested_quantity": "225.8521968143552723102663884",
+        "constrained_quantity": "225.852",
+        "size_difference": "0.0001968143552723102663884",
+        "entry_price": "531.93",
+        "exit_price": "654.28"
+      },
+      {
+        "trade_id": 240,
+        "entry_time_utc": "2026-05-23 18:00:00",
+        "requested_quantity": "244.7718636862524040055706612",
+        "constrained_quantity": "244.771",
+        "size_difference": "0.0008636862524040055706612",
+        "entry_price": "603.16",
+        "exit_price": "650.59"
+      },
+      {
+        "trade_id": 241,
+        "entry_time_utc": "2026-05-28 18:15:00",
+        "requested_quantity": "284.1396742518886963976353343",
+        "constrained_quantity": "284.139",
+        "size_difference": "0.0006742518886963976353343",
+        "entry_price": "559.91",
+        "exit_price": "539.17"
+      },
+      {
+        "trade_id": 242,
+        "entry_time_utc": "2026-05-29 17:00:00",
+        "requested_quantity": "275.6596055482177272645400674",
+        "constrained_quantity": "275.659",
+        "size_difference": "0.0006055482177272645400674",
+        "entry_price": "555.19",
+        "exit_price": "527.35"
+      },
+      {
+        "trade_id": 243,
+        "entry_time_utc": "2026-05-30 16:00:00",
+        "requested_quantity": "271.9015594700986725083787377",
+        "constrained_quantity": "271.901",
+        "size_difference": "0.0005594700986725083787377",
+        "entry_price": "534.09",
+        "exit_price": "527.25"
+      },
+      {
+        "trade_id": 244,
+        "entry_time_utc": "2026-05-31 01:00:00",
+        "requested_quantity": "267.7631742020622218898403320",
+        "constrained_quantity": "267.763",
+        "size_difference": "0.0001742020622218898403320",
+        "entry_price": "534.86",
+        "exit_price": "550.64"
+      },
+      {
+        "trade_id": 245,
+        "entry_time_utc": "2026-06-01 19:15:00",
+        "requested_quantity": "265.7617334105531899538106236",
+        "constrained_quantity": "265.761",
+        "size_difference": "0.0007334105531899538106236",
+        "entry_price": "554.24",
+        "exit_price": "538.83"
+      },
+      {
+        "trade_id": 246,
+        "entry_time_utc": "2026-06-02 03:15:00",
+        "requested_quantity": "255.8028009930083685001072885",
+        "constrained_quantity": "255.802",
+        "size_difference": "0.0008009930083685001072885",
+        "entry_price": "559.24",
+        "exit_price": "585.2"
+      },
+      {
+        "trade_id": 247,
+        "entry_time_utc": "2026-06-06 00:15:00",
+        "requested_quantity": "376.4995929782482817653130586",
+        "constrained_quantity": "376.499",
+        "size_difference": "0.0005929782482817653130586",
+        "entry_price": "397.21",
+        "exit_price": "372.21"
+      },
+      {
+        "trade_id": 248,
+        "entry_time_utc": "2026-06-06 07:30:00",
+        "requested_quantity": "364.9809297022630096986129941",
+        "constrained_quantity": "364.980",
+        "size_difference": "0.0009297022630096986129941",
+        "entry_price": "383.56",
+        "exit_price": "372.91"
+      },
+      {
+        "trade_id": 249,
+        "entry_time_utc": "2026-06-07 01:15:00",
+        "requested_quantity": "358.9887793697689768976897690",
+        "constrained_quantity": "358.988",
+        "size_difference": "0.0007793697689768976897690",
+        "entry_price": "378.75",
+        "exit_price": "435.31"
+      },
+      {
+        "trade_id": 250,
+        "entry_time_utc": "2026-06-10 15:45:00",
+        "requested_quantity": "356.8984857255914961709909704",
+        "constrained_quantity": "356.898",
+        "size_difference": "0.0004857255914961709909704",
+        "entry_price": "437.45",
+        "exit_price": "430.69"
+      },
+      {
+        "trade_id": 251,
+        "entry_time_utc": "2026-06-11 08:15:00",
+        "requested_quantity": "361.0318890880022570709801801",
+        "constrained_quantity": "361.031",
+        "size_difference": "0.0008890880022570709801801",
+        "entry_price": "425.33",
+        "exit_price": "420.24"
+      },
+      {
+        "trade_id": 252,
+        "entry_time_utc": "2026-06-11 18:00:00",
+        "requested_quantity": "345.6103228924067951202827500",
+        "constrained_quantity": "345.610",
+        "size_difference": "0.0003228924067951202827500",
+        "entry_price": "438.55",
+        "exit_price": "422.17"
+      },
+      {
+        "trade_id": 253,
+        "entry_time_utc": "2026-06-12 09:15:00",
+        "requested_quantity": "334.4290991759934838472834068",
+        "constrained_quantity": "334.429",
+        "size_difference": "0.0000991759934838472834068",
+        "entry_price": "435.84",
+        "exit_price": "427.35"
+      },
+      {
+        "trade_id": 254,
+        "entry_time_utc": "2026-06-13 21:45:00",
+        "requested_quantity": "334.3886888788673677307539171",
+        "constrained_quantity": "334.388",
+        "size_difference": "0.0006888788673677307539171",
+        "entry_price": "426.97",
+        "exit_price": "417.22"
+      },
+      {
+        "trade_id": 255,
+        "entry_time_utc": "2026-06-14 13:45:00",
+        "requested_quantity": "325.8727395724707147700437233",
+        "constrained_quantity": "325.872",
+        "size_difference": "0.0007395724707147700437233",
+        "entry_price": "427.69",
+        "exit_price": "506.44"
+      },
+      {
+        "trade_id": 256,
+        "entry_time_utc": "2026-06-17 03:30:00",
+        "requested_quantity": "322.6099680722964644191825315",
+        "constrained_quantity": "322.609",
+        "size_difference": "0.0009680722964644191825315",
+        "entry_price": "511.09",
+        "exit_price": "504.11"
+      },
+      {
+        "trade_id": 257,
+        "entry_time_utc": "2026-06-17 10:00:00",
+        "requested_quantity": "317.5171228769348030018761726",
+        "constrained_quantity": "317.517",
+        "size_difference": "0.0001228769348030018761726",
+        "entry_price": "511.68",
+        "exit_price": "507.62"
+      },
+      {
+        "trade_id": 258,
+        "entry_time_utc": "2026-06-19 22:45:00",
+        "requested_quantity": "346.8009646441232850158306231",
+        "constrained_quantity": "346.800",
+        "size_difference": "0.0009646441232850158306231",
+        "entry_price": "464.29",
+        "exit_price": "467.88"
+      },
+      {
+        "trade_id": 259,
+        "entry_time_utc": "2026-06-21 03:30:00",
+        "requested_quantity": "344.8854143456947724516499649",
+        "constrained_quantity": "344.885",
+        "size_difference": "0.0004143456947724516499649",
+        "entry_price": "470.01",
+        "exit_price": "464.27"
+      },
+      {
+        "trade_id": 260,
+        "entry_time_utc": "2026-06-22 08:45:00",
+        "requested_quantity": "352.8919081312213201553123897",
+        "constrained_quantity": "352.891",
+        "size_difference": "0.0009081312213201553123897",
+        "entry_price": "453.28",
+        "exit_price": "450.64"
+      },
+      {
+        "trade_id": 261,
+        "entry_time_utc": "2026-06-22 18:30:00",
+        "requested_quantity": "350.3224310599131182606011158",
+        "constrained_quantity": "350.322",
+        "size_difference": "0.0004310599131182606011158",
+        "entry_price": "453.49",
+        "exit_price": "450.09"
+      },
+      {
+        "trade_id": 262,
+        "entry_time_utc": "2026-06-24 23:30:00",
+        "requested_quantity": "378.1862439916928765215721111",
+        "constrained_quantity": "378.186",
+        "size_difference": "0.0002439916928765215721111",
+        "entry_price": "416.51",
+        "exit_price": "411.59"
+      },
+      {
+        "trade_id": 263,
+        "entry_time_utc": "2026-06-25 06:00:00",
+        "requested_quantity": "373.9804941117845117845117845",
+        "constrained_quantity": "373.980",
+        "size_difference": "0.0004941117845117845117845",
+        "entry_price": "415.8",
+        "exit_price": "413.49"
+      },
+      {
+        "trade_id": 264,
+        "entry_time_utc": "2026-06-25 22:30:00",
+        "requested_quantity": "374.7474145854983868228901341",
+        "constrained_quantity": "374.747",
+        "size_difference": "0.0004145854983868228901341",
+        "entry_price": "412.23",
+        "exit_price": "402.76"
+      },
+      {
+        "trade_id": 265,
+        "entry_time_utc": "2026-06-26 03:15:00",
+        "requested_quantity": "365.8390515487443891786970763",
+        "constrained_quantity": "365.839",
+        "size_difference": "0.0000515487443891786970763",
+        "entry_price": "412.15",
+        "exit_price": "405.84"
+      },
+      {
+        "trade_id": 266,
+        "entry_time_utc": "2026-06-26 16:00:00",
+        "requested_quantity": "361.8239569780450320786475740",
+        "constrained_quantity": "361.823",
+        "size_difference": "0.0009569780450320786475740",
+        "entry_price": "409.93",
+        "exit_price": "408.48"
+      },
+      {
+        "trade_id": 267,
+        "entry_time_utc": "2026-06-29 10:30:00",
+        "requested_quantity": "382.0966605074659696703069199",
+        "constrained_quantity": "382.096",
+        "size_difference": "0.0006605074659696703069199",
+        "entry_price": "386.42",
+        "exit_price": "382.32"
+      },
+      {
+        "trade_id": 268,
+        "entry_time_utc": "2026-06-29 12:15:00",
+        "requested_quantity": "374.4741775006415026558209951",
+        "constrained_quantity": "374.474",
+        "size_difference": "0.0001775006415026558209951",
+        "entry_price": "389.71",
+        "exit_price": "379.3"
+      },
+      {
+        "trade_id": 269,
+        "entry_time_utc": "2026-06-29 15:00:00",
+        "requested_quantity": "365.7723564777279406078416209",
+        "constrained_quantity": "365.772",
+        "size_difference": "0.0003564777279406078416209",
+        "entry_price": "387.93",
+        "exit_price": "394.73"
+      },
+      {
+        "trade_id": 270,
+        "entry_time_utc": "2026-06-30 14:45:00",
+        "requested_quantity": "359.1409349425949902893282207",
+        "constrained_quantity": "359.140",
+        "size_difference": "0.0009349425949902893282207",
+        "entry_price": "401.62",
+        "exit_price": "394.29"
+      },
+      {
+        "trade_id": 271,
+        "entry_time_utc": "2026-07-01 00:15:00",
+        "requested_quantity": "354.1793258379735109286197141",
+        "constrained_quantity": "354.179",
+        "size_difference": "0.0003258379735109286197141",
+        "entry_price": "399.41",
+        "exit_price": "394.61"
+      },
+      {
+        "trade_id": 272,
+        "entry_time_utc": "2026-07-01 02:30:00",
+        "requested_quantity": "348.6629859611811711824197778",
+        "constrained_quantity": "348.662",
+        "size_difference": "0.0009859611811711824197778",
+        "entry_price": "400.45",
+        "exit_price": "395.31"
+      },
+      {
+        "trade_id": 273,
+        "entry_time_utc": "2026-07-01 13:45:00",
+        "requested_quantity": "338.7738520116007282747761047",
+        "constrained_quantity": "338.773",
+        "size_difference": "0.0008520116007282747761047",
+        "entry_price": "406.44",
+        "exit_price": "426.25"
+      },
+      {
+        "trade_id": 274,
+        "entry_time_utc": "2026-07-03 06:00:00",
+        "requested_quantity": "331.7266627504369021339220015",
+        "constrained_quantity": "331.726",
+        "size_difference": "0.0006627504369021339220015",
+        "entry_price": "434.88",
+        "exit_price": "458.44"
+      },
+      {
+        "trade_id": 275,
+        "entry_time_utc": "2026-07-05 13:15:00",
+        "requested_quantity": "328.4232315645265888456549935",
+        "constrained_quantity": "328.423",
+        "size_difference": "0.0002315645265888456549935",
+        "entry_price": "462.6",
+        "exit_price": "457.25"
+      },
+      {
+        "trade_id": 276,
+        "entry_time_utc": "2026-07-06 21:30:00",
+        "requested_quantity": "329.2738831971971642413467659",
+        "constrained_quantity": "329.273",
+        "size_difference": "0.0008831971971642413467659",
+        "entry_price": "455.61",
+        "exit_price": "447.43"
+      },
+      {
+        "trade_id": 277,
+        "entry_time_utc": "2026-07-07 08:15:00",
+        "requested_quantity": "324.9759266897370222349797964",
+        "constrained_quantity": "324.975",
+        "size_difference": "0.0009266897370222349797964",
+        "entry_price": "452.89",
+        "exit_price": "469.75"
+      },
+      {
+        "trade_id": 278,
+        "entry_time_utc": "2026-07-09 07:30:00",
+        "requested_quantity": "325.5785587112313735536484352",
+        "constrained_quantity": "325.578",
+        "size_difference": "0.0005587112313735536484352",
+        "entry_price": "468.42",
+        "exit_price": "519.45"
+      },
+      {
+        "trade_id": 279,
+        "entry_time_utc": "2026-07-14 11:15:00",
+        "requested_quantity": "331.0947060455115518018459368",
+        "constrained_quantity": "331.094",
+        "size_difference": "0.0007060455115518018459368",
+        "entry_price": "510.31",
+        "exit_price": "559.81"
+      },
+      {
+        "trade_id": 280,
+        "entry_time_utc": "2026-07-17 16:00:00",
+        "requested_quantity": "340.6481673438529038429698854",
+        "constrained_quantity": "340.648",
+        "size_difference": "0.0001673438529038429698854",
+        "entry_price": "543.59",
+        "exit_price": "538.89"
+      },
+      {
+        "trade_id": 281,
+        "entry_time_utc": "2026-07-18 12:45:00",
+        "requested_quantity": "335.5181663487961506092429288",
+        "constrained_quantity": "335.518",
+        "size_difference": "0.0001663487961506092429288",
+        "entry_price": "546.58",
+        "exit_price": "552.71"
+      },
+      {
+        "trade_id": 282,
+        "entry_time_utc": "2026-07-20 16:30:00",
+        "requested_quantity": "337.1548171213055980199461309",
+        "constrained_quantity": "337.154",
+        "size_difference": "0.0008171213055980199461309",
+        "entry_price": "549.48",
+        "exit_price": "539.88"
+      },
+      {
+        "trade_id": 283,
+        "entry_time_utc": "2026-07-21 03:15:00",
+        "requested_quantity": "329.4194012157518115942028986",
+        "constrained_quantity": "329.419",
+        "size_difference": "0.0004012157518115942028986",
+        "entry_price": "552.0",
+        "exit_price": "539.8"
+      },
+      {
+        "trade_id": 284,
+        "entry_time_utc": "2026-07-21 14:15:00",
+        "requested_quantity": "324.2448213758898258679224619",
+        "constrained_quantity": "324.244",
+        "size_difference": "0.0008213758898258679224619",
+        "entry_price": "547.86",
+        "exit_price": "541.21"
+      },
+      {
+        "trade_id": 285,
+        "entry_time_utc": "2026-07-26 00:00:00",
+        "requested_quantity": "361.3405536986870310825294748",
+        "constrained_quantity": "361.340",
+        "size_difference": "0.0005536986870310825294748",
+        "entry_price": "485.16",
+        "exit_price": "486.85"
+      },
+      {
+        "trade_id": 286,
+        "entry_time_utc": "2026-07-29 18:15:00",
+        "requested_quantity": "374.6706915655886240566238861",
+        "constrained_quantity": "374.670",
+        "size_difference": "0.0006915655886240566238861",
+        "entry_price": "469.06",
+        "exit_price": "459.1"
+      },
+      {
+        "trade_id": 287,
+        "entry_time_utc": "2026-07-29 23:00:00",
+        "requested_quantity": "367.7240413699015621656323561",
+        "constrained_quantity": "367.724",
+        "size_difference": "0.0000413699015621656323561",
+        "entry_price": "467.3",
+        "exit_price": "469.87"
+      },
+      {
+        "trade_id": 288,
+        "entry_time_utc": "2026-07-31 01:15:00",
+        "requested_quantity": "362.7483718510738903833221251",
+        "constrained_quantity": "362.748",
+        "size_difference": "0.0003718510738903833221251",
+        "entry_price": "475.84",
+        "exit_price": "466.45"
+      },
+      {
+        "trade_id": 289,
+        "entry_time_utc": "2026-08-01 04:00:00",
+        "requested_quantity": "364.2640174018511335229721576",
+        "constrained_quantity": "364.264",
+        "size_difference": "0.0000174018511335229721576",
+        "entry_price": "464.04",
+        "exit_price": "463.22"
+      },
+      {
+        "trade_id": 290,
+        "entry_time_utc": "2026-08-02 01:15:00",
+        "requested_quantity": "360.0672742429456370821317954",
+        "constrained_quantity": "360.067",
+        "size_difference": "0.0002742429456370821317954",
+        "entry_price": "468.15",
+        "exit_price": "476.03"
+      },
+      {
+        "trade_id": 291,
+        "entry_time_utc": "2026-08-03 05:15:00",
+        "requested_quantity": "358.4676736869975715960475632",
+        "constrained_quantity": "358.467",
+        "size_difference": "0.0006736869975715960475632",
+        "entry_price": "477.68",
+        "exit_price": "476.14"
+      },
+      {
+        "trade_id": 292,
+        "entry_time_utc": "2026-08-03 10:45:00",
+        "requested_quantity": "355.4361767069019427999666472",
+        "constrained_quantity": "355.436",
+        "size_difference": "0.0001767069019427999666472",
+        "entry_price": "479.72",
+        "exit_price": "480.75"
+      },
+      {
+        "trade_id": 293,
+        "entry_time_utc": "2026-08-04 02:45:00",
+        "requested_quantity": "351.3755073121217734963566753",
+        "constrained_quantity": "351.375",
+        "size_difference": "0.0005073121217734963566753",
+        "entry_price": "485.82",
+        "exit_price": "511.22"
+      },
+      {
+        "trade_id": 294,
+        "entry_time_utc": "2026-08-07 01:00:00",
+        "requested_quantity": "354.8785921875",
+        "constrained_quantity": "354.878",
+        "size_difference": "0.0005921875",
+        "entry_price": "505.68",
+        "exit_price": "506.23"
+      },
+      {
+        "trade_id": 295,
+        "entry_time_utc": "2026-08-08 04:00:00",
+        "requested_quantity": "352.1448780513783969390758364",
+        "constrained_quantity": "352.144",
+        "size_difference": "0.0008780513783969390758364",
+        "entry_price": "509.65",
+        "exit_price": "507.74"
+      },
+      {
+        "trade_id": 296,
+        "entry_time_utc": "2026-08-08 04:45:00",
+        "requested_quantity": "350.5424554348052202924148759",
+        "constrained_quantity": "350.542",
+        "size_difference": "0.0004554348052202924148759",
+        "entry_price": "509.55",
+        "exit_price": "507.32"
+      },
+      {
+        "trade_id": 297,
+        "entry_time_utc": "2026-08-08 18:00:00",
+        "requested_quantity": "350.5435403504962411949251199",
+        "constrained_quantity": "350.543",
+        "size_difference": "0.0005403504962411949251199",
+        "entry_price": "506.81",
+        "exit_price": "504.53"
+      },
+      {
+        "trade_id": 298,
+        "entry_time_utc": "2026-08-08 19:30:00",
+        "requested_quantity": "347.0145822767848374742217421",
+        "constrained_quantity": "347.014",
+        "size_difference": "0.0005822767848374742217421",
+        "entry_price": "509.15",
+        "exit_price": "511.46"
+      },
+      {
+        "trade_id": 299,
+        "entry_time_utc": "2026-08-12 11:30:00",
+        "requested_quantity": "362.4872100563335650325060310",
+        "constrained_quantity": "362.487",
+        "size_difference": "0.0002100563335650325060310",
+        "entry_price": "489.14",
+        "exit_price": "489.11"
+      },
+      {
+        "trade_id": 300,
+        "entry_time_utc": "2026-08-13 14:45:00",
+        "requested_quantity": "357.8157936627878787878787879",
+        "constrained_quantity": "357.815",
+        "size_difference": "0.0007936627878787878787879",
+        "entry_price": "495.0",
+        "exit_price": "487.32"
+      },
+      {
+        "trade_id": 301,
+        "entry_time_utc": "2026-08-14 00:30:00",
+        "requested_quantity": "354.7110595770225416929687023",
+        "constrained_quantity": "354.711",
+        "size_difference": "0.0000595770225416929687023",
+        "entry_price": "491.09",
+        "exit_price": "488.69"
+      },
+      {
+        "trade_id": 302,
+        "entry_time_utc": "2026-08-14 17:30:00",
+        "requested_quantity": "351.9214308449814050846424289",
+        "constrained_quantity": "351.921",
+        "size_difference": "0.0004308449814050846424289",
+        "entry_price": "492.07",
+        "exit_price": "486.91"
+      },
+      {
+        "trade_id": 303,
+        "entry_time_utc": "2026-08-14 19:45:00",
+        "requested_quantity": "349.4361972434065485425002041",
+        "constrained_quantity": "349.436",
+        "size_difference": "0.0001972434065485425002041",
+        "entry_price": "489.88",
+        "exit_price": "490.01"
+      },
+      {
+        "trade_id": 304,
+        "entry_time_utc": "2026-08-15 17:00:00",
+        "requested_quantity": "348.1631282989965602165638802",
+        "constrained_quantity": "348.163",
+        "size_difference": "0.0001282989965602165638802",
+        "entry_price": "491.31",
+        "exit_price": "489.35"
+      },
+      {
+        "trade_id": 305,
+        "entry_time_utc": "2026-08-16 14:30:00",
+        "requested_quantity": "345.6387960132201531182096948",
+        "constrained_quantity": "345.638",
+        "size_difference": "0.0007960132201531182096948",
+        "entry_price": "492.43",
+        "exit_price": "486.28"
+      },
+      {
+        "trade_id": 306,
+        "entry_time_utc": "2026-08-17 02:00:00",
+        "requested_quantity": "342.3761244184576485461441214",
+        "constrained_quantity": "342.376",
+        "size_difference": "0.0001244184576485461441214",
+        "entry_price": "490.42",
+        "exit_price": "506.28"
+      },
+      {
+        "trade_id": 307,
+        "entry_time_utc": "2026-08-18 15:45:00",
+        "requested_quantity": "338.3037865428722136479965616",
+        "constrained_quantity": "338.303",
+        "size_difference": "0.0007865428722136479965616",
+        "entry_price": "511.87",
+        "exit_price": "505.14"
+      },
+      {
+        "trade_id": 308,
+        "entry_time_utc": "2026-08-18 19:30:00",
+        "requested_quantity": "334.7426495307549019607843137",
+        "constrained_quantity": "334.742",
+        "size_difference": "0.0006495307549019607843137",
+        "entry_price": "510.0",
+        "exit_price": "505.24"
+      },
+      {
+        "trade_id": 309,
+        "entry_time_utc": "2026-08-19 10:00:00",
+        "requested_quantity": "333.1337768532148983575526944",
+        "constrained_quantity": "333.133",
+        "size_difference": "0.0007768532148983575526944",
+        "entry_price": "507.17",
+        "exit_price": "504.94"
+      },
+      {
+        "trade_id": 310,
+        "entry_time_utc": "2026-08-19 11:15:00",
+        "requested_quantity": "330.9776794223784763255337588",
+        "constrained_quantity": "330.977",
+        "size_difference": "0.0006794223784763255337588",
+        "entry_price": "507.72",
+        "exit_price": "776.54"
+      },
+      {
+        "trade_id": 311,
+        "entry_time_utc": "2026-08-23 07:15:00",
+        "requested_quantity": "323.0694741100278025890374769",
+        "constrained_quantity": "323.069",
+        "size_difference": "0.0004741100278025890374769",
+        "entry_price": "794.89",
+        "exit_price": "830.17"
+      },
+      {
+        "trade_id": 312,
+        "entry_time_utc": "2026-08-24 10:15:00",
+        "requested_quantity": "319.6650703787327455588828309",
+        "constrained_quantity": "319.665",
+        "size_difference": "0.0000703787327455588828309",
+        "entry_price": "838.19",
+        "exit_price": "811.26"
+      },
+      {
+        "trade_id": 313,
+        "entry_time_utc": "2026-08-25 01:00:00",
+        "requested_quantity": "309.7452757369468788483841270",
+        "constrained_quantity": "309.745",
+        "size_difference": "0.0002757369468788483841270",
+        "entry_price": "836.39",
+        "exit_price": "836.71"
+      },
+      {
+        "trade_id": 314,
+        "entry_time_utc": "2026-08-26 22:15:00",
+        "requested_quantity": "326.0311444037110260414043218",
+        "constrained_quantity": "326.031",
+        "size_difference": "0.0001444037110260414043218",
+        "entry_price": "794.12",
+        "exit_price": "788.14"
+      },
+      {
+        "trade_id": 315,
+        "entry_time_utc": "2026-08-27 09:00:00",
+        "requested_quantity": "323.7608360876877672253963449",
+        "constrained_quantity": "323.760",
+        "size_difference": "0.0008360876877672253963449",
+        "entry_price": "792.87",
+        "exit_price": "780.42"
+      },
+      {
+        "trade_id": 316,
+        "entry_time_utc": "2026-08-27 14:30:00",
+        "requested_quantity": "317.0840499009421518748822310",
+        "constrained_quantity": "317.084",
+        "size_difference": "0.0000499009421518748822310",
+        "entry_price": "796.05",
+        "exit_price": "782.03"
+      },
+      {
+        "trade_id": 317,
+        "entry_time_utc": "2026-08-28 12:15:00",
+        "requested_quantity": "308.1657626227343409840144306",
+        "constrained_quantity": "308.165",
+        "size_difference": "0.0007626227343409840144306",
+        "entry_price": "803.85",
+        "exit_price": "791.93"
+      },
+      {
+        "trade_id": 318,
+        "entry_time_utc": "2026-08-28 14:45:00",
+        "requested_quantity": "299.8104229228891512334292531",
+        "constrained_quantity": "299.810",
+        "size_difference": "0.0004229228891512334292531",
+        "entry_price": "813.18",
+        "exit_price": "792.89"
+      },
+      {
+        "trade_id": 319,
+        "entry_time_utc": "2026-08-28 22:45:00",
+        "requested_quantity": "296.9971321415788091396840881",
+        "constrained_quantity": "296.997",
+        "size_difference": "0.0001321415788091396840881",
+        "entry_price": "799.59",
+        "exit_price": "794.09"
+      },
+      {
+        "trade_id": 320,
+        "entry_time_utc": "2026-08-29 10:45:00",
+        "requested_quantity": "293.3850450770863945408811297",
+        "constrained_quantity": "293.385",
+        "size_difference": "0.0000450770863945408811297",
+        "entry_price": "803.06",
+        "exit_price": "830.45"
+      },
+      {
+        "trade_id": 321,
+        "entry_time_utc": "2026-08-31 16:15:00",
+        "requested_quantity": "288.7125302872037577396626575",
+        "constrained_quantity": "288.712",
+        "size_difference": "0.0005302872037577396626575",
+        "entry_price": "843.06",
+        "exit_price": "846.65"
+      }
+    ],
+    "arithmetic_trade_pct_sum": 415.95469645340205
+  },
+  "candle_parity": {},
+  "raw_coverage": {},
+  "input_binding": {
+    "tool_version": "2.0",
+    "generated_at_ms": 1788963153101,
+    "manifest_path": "ZEC_MOMENTUM_M03_15M.yaml",
+    "manifest_hash": "da3c8e6d00a84414e4601eec096e75db52478b6f27614f641f856cf29967f1b7",
+    "strategy_hash": "ab11519515f84efc45ecdab92d1774ea187ccc00df5c4218fcefac140a497e0e",
+    "helper_hash": null,
+    "benchmark_csv_hash": "b9932713fe636c6edc10f535d6a5e64b5f687beaaad51881f559f634e1e5e098",
+    "canonical_candles_hash": "524305d76a89d641ce76cc2d0b79d9a78de55fa5ec48d274446ff9307b9221e7",
+    "raw_file_hashes": {
+      "2025-08.parquet": "fe3b7b042c9fd4e9cd5951ea799deb5cce58d901ab7d3007796b04d0892a4c90",
+      "2025-09.parquet": "1d74acbfe1196e9210df636616990efed3281f1562d6b692fd318643054a3c61",
+      "2025-10.parquet": "06637e4b16024939993ea25828136621f55e00a783c58c1f964fab2212206f6f",
+      "2025-11.parquet": "a876683e58ab15a67704fa7908ba75ac9aac71922834a398b252d8848d275bab",
+      "2025-12.parquet": "7d86156d9b1db006b92e4e045f1f0e0975df0e8e6d2d6b138e75265228403483",
+      "2026-01.parquet": "2e8792847c78c5123ee3e7b18035863a4087881326a0173cda87643db6fd4222",
+      "2026-02.parquet": "19b654d329f4f7d0b7cc01675b224a1cc0640956ddb9097f87dab3470c1dd2ff",
+      "2026-03.parquet": "cb2e9ecc0d88ca58af9b8483c2873aeace05731394bdb39a7d7fd7ad938e0760",
+      "2026-04.parquet": "696e529c64b825f222f83e81edeb5a6b3e6cfe907715df3b5975c1e17c3d0145",
+      "2026-05.parquet": "d43bbcacdafbe58f9e87e54bfd8d1e46fc403a74d1d80f3f1bc20b3d3abdc3d8",
+      "2026-06.parquet": "72983aa8aae99d8213441f5d5b1c3385b7f78fbb789ae4324fbc564ae50e23b9",
+      "2026-07.parquet": "9ac4b6bb9bdbc1695ba3b158e699c25f299b9f3f3d7b8c19c0e0fbfa73d00fef",
+      "2026-08.parquet": "dcf092234bf2b5db09f5570fd714a4c8154297e469fa39c4a5be5b65ba60482a"
+    }
+  },
+  "mismatches": []
+}

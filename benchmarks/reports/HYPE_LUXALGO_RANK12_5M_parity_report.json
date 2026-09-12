@@ -1,0 +1,70 @@
+{
+  "benchmark_id": "HYPE_LUXALGO_RANK12_5M",
+  "status": "PASS",
+  "strategy_decision_parity_pct": 100.0,
+  "candle_timestamp_parity_pct": 100.0,
+  "entry_signal_parity_pct": 100.0,
+  "exit_signal_parity_pct": 100.0,
+  "trade_direction_parity_pct": 100.0,
+  "benchmark_trades_count": 1369,
+  "replay_trades_count": 1369,
+  "matched_trades_count": 1369,
+  "benchmark_net_return_pct": 1156.1478685047628,
+  "replay_net_return_pct": 1156.1478685047628,
+  "profit_factor": 2.525,
+  "winning_trades": 1064,
+  "losing_trades": 305,
+  "exit_reason_counts": {
+    "TP": 1062,
+    "SL": 293,
+    "TIME": 3,
+    "WINDOW_END": 11
+  },
+  "raw_coverage": {
+    "ok": true,
+    "errors": []
+  },
+  "verification": {
+    "oracle": "Original optimize_luxalgo_long + fastsim aggTrade tick cache",
+    "all_candle_signals_compared": 132066,
+    "evaluation_window_signals": 1596,
+    "signal_mismatches": 0,
+    "bounded_history_signal_mismatches": 0,
+    "operational_history_candles": 1000,
+    "tick_cache_loaded": true,
+    "slots": 12,
+    "leverage": 3
+  },
+  "oracle_input_hashes": {
+    "fastsim.py": "7b24c27842ed2fff072785ea2a749b20300d1821f8b5d9dff21bfa79c71e86eb",
+    "engine.py": "37ec1741285971382613351b309af62b5254bf683fd6660493164fcf62287620",
+    "indicators.py": "368b36f60df5606cb559c79521a7d21fb968510154321ce16578cc4465ee712f",
+    "optimize_luxalgo_long.py": "2b382c6bd52aeb9327c741b32d385a771a720ca05df2f1c9b68767aea3348174",
+    "finalize.py": "bd83bf2f91726b8d9ee15168c160ecacfaf2577154b06952fa26f6bd10b632c1"
+  },
+  "mismatches": [],
+  "input_binding": {
+    "tool_version": "2.0",
+    "generated_at_ms": 1789225184343,
+    "manifest_path": "HYPE_LUXALGO_RANK12_5M.yaml",
+    "manifest_hash": "8b16c73b3b893bbc527ddc6a770bd015f0e3fea52616bee7fe11209fb1480b8e",
+    "strategy_hash": "9dfe0edd19a3f3f05da3165585e6eae181e98dd99a4e1239786190e5db7da16d",
+    "helper_hash": null,
+    "benchmark_csv_hash": "1e7c41a9703120358a28c922667c488dc43302e487409b0453fa21fbb29e9e19",
+    "canonical_candles_hash": "177526886a67ac0e508ad09000767d7552f8a3fcbde41a50cee8a9cc5dc2da1d",
+    "raw_file_hashes": {
+      "2025-09.parquet": "c577786b4e0a2bc64cd4a308cabeb435d2c5008ec2ec688ad24653d596ffa9a0",
+      "2025-10.parquet": "4a37922f1abd13b869e471c8810d776a2abbac1f14179ac4f2a47dd181bc41dd",
+      "2025-11.parquet": "f3c802c4ba38a560a6c1f746a754ae70bb536fea459a883fa66b0d17d1626f84",
+      "2025-12.parquet": "91c4dede10f5b9a79a92ee19211761b266699de52da5271c3d2b653f872ba102",
+      "2026-01.parquet": "f056491c011ecef663591128e941d03a779d3a9f74cd44477e17443946d378bd",
+      "2026-02.parquet": "7697768cda139a2c85a6cdb8127f36c31d12e6216cbd0164821b6f41ea674342",
+      "2026-03.parquet": "af51333b8a9e65ae683a7bac09bec16f3989387220780f03905244015739d118",
+      "2026-04.parquet": "0a1ba7bf6fd0fc302d3470506670645d62cdf77e1d6722c7286765776854903d",
+      "2026-05.parquet": "dd2aad876531deb837b76021dae515d796de695630bf49d315344f8c13a1ecd4",
+      "2026-06.parquet": "23fef1137ad67f566f17b9977f9e484c94555ff68ebbd1849baecf7f3253201f",
+      "2026-07.parquet": "2a8b48146910bb6648f82ed230abdf26579c9694bd8cc60e58be774ce015b5bc",
+      "2026-08.parquet": "b6089a7278b9a7c20e8495d8f92fc3326cd2a9f573f4a10a81be98ada112d4b4"
+    }
+  }
+}

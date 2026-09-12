@@ -1,0 +1,14 @@
+{
+  "mode": "SHADOW",
+  "symbol": "ZECUSDT",
+  "timeframe": "15m",
+  "manifest_path": "benchmarks/manifests/ZEC_MOMENTUM_M03_15M.yaml",
+  "event_store_path": "data/zec_shadow.db",
+  "kill_switch_path": ".kill_switch",
+  "warmup_candles": 250,
+  "stake_amount": "10000.0",
+  "stake_rule": "full_compounding",
+  "max_open_trades": 1,
+  "canary_mode": false,
+  "log_level": "INFO"
+}

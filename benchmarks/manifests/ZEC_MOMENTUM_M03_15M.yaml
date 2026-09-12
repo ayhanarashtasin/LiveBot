@@ -1,0 +1,64 @@
+benchmark_id: ZEC_MOMENTUM_M03_15M
+exchange: binance
+market_type: usdm_futures
+symbol: ZECUSDT
+strategy:
+  name: Momentum M03 - EMA Cross (10, 100)
+  class: ZECMomentumEMA15M
+  source_file: strategies/approved/ZECMomentumEMA15M.py
+  source_hash: ab11519515f84efc45ecdab92d1774ea187ccc00df5c4218fcefac140a497e0e
+data:
+  historical_source: binance_vision
+  canonical_event_type: aggTrade
+  base_timeframe: 1m
+  strategy_timeframe: 15m
+  timezone: UTC
+  dataset_candle_path: ZECUSDT_USDM_DATA/candles/ZECUSDT_15m.parquet
+  dataset_aggtrade_path: ZECUSDT_USDM_DATA/aggTrades/2026-08.parquet
+  # Raw coverage for the full evaluation window. Replay validates this list against
+  # the window before it starts; a missing month fails closed.
+  dataset_aggtrade_paths:
+  - ZECUSDT_USDM_DATA/aggTrades/2025-08.parquet
+  - ZECUSDT_USDM_DATA/aggTrades/2025-09.parquet
+  - ZECUSDT_USDM_DATA/aggTrades/2025-10.parquet
+  - ZECUSDT_USDM_DATA/aggTrades/2025-11.parquet
+  - ZECUSDT_USDM_DATA/aggTrades/2025-12.parquet
+  - ZECUSDT_USDM_DATA/aggTrades/2026-01.parquet
+  - ZECUSDT_USDM_DATA/aggTrades/2026-02.parquet
+  - ZECUSDT_USDM_DATA/aggTrades/2026-03.parquet
+  - ZECUSDT_USDM_DATA/aggTrades/2026-04.parquet
+  - ZECUSDT_USDM_DATA/aggTrades/2026-05.parquet
+  - ZECUSDT_USDM_DATA/aggTrades/2026-06.parquet
+  - ZECUSDT_USDM_DATA/aggTrades/2026-07.parquet
+  - ZECUSDT_USDM_DATA/aggTrades/2026-08.parquet
+  evaluation_window_start: '2025-08-01 00:00:00+00:00'
+  evaluation_window_end: '2026-08-31 23:59:59+00:00'
+signal:
+  closed_candle_only: true
+  warmup_candles: 250
+execution_model:
+  entry_order_type: market
+  exit_order_type: market
+  # Momentum M03 is a full-reversal model: both sides fill at the next bar open.
+  entry_fill_model: next_open
+  exit_fill_model: next_open
+  stop_model: strategy_flip
+  take_profit_model: none
+  intrabar_priority: not_applicable
+  intrabar_resolution: aggTrade
+fees:
+  maker: 0.0002
+  taker: 0.0005
+slippage:
+  model: zero_or_measured
+risk:
+  stake_rule: full_compounding
+  max_open_trades: 1
+  stoploss: -0.99
+  take_profit: null
+  trailing_stop: false
+  leverage: 1
+allowed_modes:
+- SHADOW
+- PAPER
+benchmark_result_reference: benchmarks/results/ZEC_15M_trades.csv
