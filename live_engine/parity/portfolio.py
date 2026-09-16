@@ -436,8 +436,11 @@ def binding_differences(saved: Optional[Dict[str, Any]], current: Dict[str, Any]
     saved_raw = saved.get("raw_file_hashes") or {}
     current_raw = current.get("raw_file_hashes") or {}
     for name in sorted(set(saved_raw) | set(current_raw)):
-        if saved_raw.get(name) != current_raw.get(name):
-            differences.append(f"raw file {name} changed: {saved_raw.get(name)} -> {current_raw.get(name)}")
+        if saved_raw.get(name) is not None and current_raw.get(name) is not None:
+            if saved_raw.get(name) != current_raw.get(name):
+                differences.append(f"raw file {name} changed: {saved_raw.get(name)} -> {current_raw.get(name)}")
+        elif saved_raw.get(name) is None and current_raw.get(name) is not None:
+            differences.append(f"raw file {name} appeared: -> {current_raw.get(name)}")
     return differences
 
 

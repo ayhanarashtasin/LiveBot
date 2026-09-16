@@ -45,7 +45,7 @@ DEFAULT_FRESHNESS_S: Dict[str, float] = {
     "kline_validator": 300.0,
     "private_stream": 120.0,
     "reconciliation": 900.0,
-    "mark_price": 120.0,
+    "mark_price": 600.0,
     "account_state": 900.0,
     "dashboard_projection": 300.0,
 }

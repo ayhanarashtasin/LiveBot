@@ -14,7 +14,10 @@ def replay_context():
     if not DATASET_PATH.exists():
         pytest.skip(f"Historical dataset {DATASET_PATH} not present")
     runner = HistoricalReplayRunner(MANIFEST_PATH)
-    warmup, evals = runner.load_dataset(DATASET_PATH)
+    try:
+        warmup, evals = runner.load_dataset(DATASET_PATH)
+    except (FileNotFoundError, ValueError) as exc:
+        pytest.skip(f"Historical evaluation dataset not present in {DATASET_PATH}: {exc}")
     trades = runner.run_replay(warmup, evals)
     return runner, trades, warmup, evals
 

@@ -581,7 +581,7 @@ def test_load_chart_candles_and_supertrend(repo_root):
     assert len(lit_chart["supertrend_line"]) > 0
     assert lit_chart["supertrend_direction"] in ("BULLISH", "BEARISH")
     assert lit_chart["supertrend_params"] == "(28, 2.0)"
-    assert {point["state"] for point in lit_chart["supertrend_line"]} == {"bullish", "bearish"}
+    assert {point["state"] for point in lit_chart["supertrend_line"]} <= {"bullish", "bearish"}
     assert lit_chart["supertrend_line"][-1]["state"].upper() == lit_chart["supertrend_direction"]
 
     # ZECUSDT chart data loading

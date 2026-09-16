@@ -124,3 +124,17 @@ def test_freshness_reported_for_health_state():
     assert stream.freshness_s is None
     stream._handle_message('{"e": "ACCOUNT_UPDATE"}')
     assert stream.freshness_s is not None and stream.freshness_s < 5.0
+
+
+def test_user_stream_on_heartbeat_invoked():
+    heartbeat_count = 0
+
+    def on_beat():
+        nonlocal heartbeat_count
+        heartbeat_count += 1
+
+    stream = BinanceUserDataStream(api_key=SECRET_KEY, on_heartbeat=on_beat)
+    assert stream.on_heartbeat is not None
+    stream.on_heartbeat()
+    assert heartbeat_count == 1
+

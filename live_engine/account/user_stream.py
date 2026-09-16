@@ -22,6 +22,12 @@ import random
 import time
 import urllib.error
 import urllib.request
+import ssl
+try:
+    import certifi
+    DEFAULT_SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())
+except Exception:
+    DEFAULT_SSL_CONTEXT = None
 from typing import Any, Callable, Dict, Optional
 
 logger = logging.getLogger(__name__)
@@ -70,6 +76,7 @@ class BinanceUserDataStream:
         on_order_trade_update: Optional[Callable[[Dict[str, Any]], None]] = None,
         on_account_update: Optional[Callable[[Dict[str, Any]], None]] = None,
         on_lifecycle_event: Optional[Callable[[str, Dict[str, Any]], None]] = None,
+        on_heartbeat: Optional[Callable[[], None]] = None,
         keepalive_interval_s: float = KEEPALIVE_INTERVAL_S,
     ):
         self.api_key = api_key
@@ -81,6 +88,7 @@ class BinanceUserDataStream:
         self.on_order_trade_update = on_order_trade_update
         self.on_account_update = on_account_update
         self.on_lifecycle_event = on_lifecycle_event
+        self.on_heartbeat = on_heartbeat
         self.keepalive_interval_s = keepalive_interval_s
 
         self.listen_key: Optional[str] = None
@@ -122,7 +130,10 @@ class BinanceUserDataStream:
             headers={"X-MBX-APIKEY": self.api_key, "User-Agent": "Escanor-LiveBot/1.0"},
             method=method,
         )
-        with urllib.request.urlopen(req, timeout=10) as resp:
+        urlopen_kwargs: Dict[str, Any] = {"timeout": 10}
+        if DEFAULT_SSL_CONTEXT:
+            urlopen_kwargs["context"] = DEFAULT_SSL_CONTEXT
+        with urllib.request.urlopen(req, **urlopen_kwargs) as resp:
             body = resp.read().decode("utf-8")
         return json.loads(body) if body.strip() else {}
 
@@ -196,19 +207,45 @@ class BinanceUserDataStream:
                 endpoint = build_stream_url(self.listen_key, self.testnet, self._base_ws_url)
 
                 # The URL embeds the listen key, so only the host is ever logged.
-                self._event("CONNECTING", host=self.ws_url)
-                async with websockets.connect(endpoint, ping_interval=20, ping_timeout=20,
-                                              close_timeout=5, open_timeout=20) as ws:
+                ws_kwargs: dict = {
+                    "ping_interval": 20,
+                    "ping_timeout": 20,
+                    "close_timeout": 5,
+                    "open_timeout": 35,
+                }
+                if DEFAULT_SSL_CONTEXT:
+                    ws_kwargs["ssl"] = DEFAULT_SSL_CONTEXT
+                async with websockets.connect(endpoint, **ws_kwargs) as ws:
                     self.is_connected = True
                     attempt = 0
                     self.last_event_ms = int(time.time() * 1000)
                     self._event("CONNECTED", host=self.ws_url)
+                    last_beat_time = time.time()
+                    if self.on_heartbeat:
+                        try:
+                            self.on_heartbeat()
+                        except Exception as exc:
+                            logger.warning("User stream heartbeat callback failed: %s", exc)
 
                     while self._running and not self._rotate.is_set():
                         try:
                             msg = await asyncio.wait_for(ws.recv(), timeout=1.0)
                         except asyncio.TimeoutError:
+                            now = time.time()
+                            if now - last_beat_time >= 15.0:
+                                last_beat_time = now
+                                if self.on_heartbeat:
+                                    try:
+                                        self.on_heartbeat()
+                                    except Exception as exc:
+                                        logger.warning("User stream heartbeat callback failed: %s", exc)
                             continue
+                        last_beat_time = time.time()
+                        if self.on_heartbeat:
+                            try:
+                                self.on_heartbeat()
+                            except Exception as exc:
+                                logger.warning("User stream heartbeat callback failed: %s", exc)
                         self._handle_message(msg)
                         if self._rotate.is_set():
                             break

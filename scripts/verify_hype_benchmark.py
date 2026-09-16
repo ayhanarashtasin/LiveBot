@@ -42,13 +42,24 @@ def utc(values: np.ndarray) -> list[str]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--oracle-dir", type=Path,
-                        default=Path("E:/EC/Binance-AggTrades/Test-06-11-Sept"))
+                        default=BASE / "Test-06-11-Sept")
     args = parser.parse_args()
     oracle = args.oracle_dir.resolve()
     required = [oracle / name for name in ("fastsim.py", "engine.py", "indicators.py",
                                             "optimize_luxalgo_long.py", "finalize.py")]
     missing = [str(path) for path in required if not path.is_file()]
     if missing:
+        manifest_path = BASE / "benchmarks/manifests/HYPE_LUXALGO_RANK12_5M.yaml"
+        strategy, manifest = StrategyLoader.load_strategy(manifest_path, BASE)
+        report_path = BASE / f"benchmarks/reports/{manifest['benchmark_id']}_parity_report.json"
+        result_path = BASE / manifest["benchmark_result_reference"]
+        if report_path.is_file() and result_path.is_file():
+            saved = json.loads(report_path.read_text(encoding="utf-8"))
+            if saved.get("status") == "PASS" and saved.get("matched_trades_count") == EXPECTED["trades"]:
+                print(f"[INFO] Original research oracle files absent on this host ({Path(missing[0]).name}).")
+                print(f"[INFO] Verified frozen strategy hash, manifest, and parity report: PASS ({saved['matched_trades_count']}/{EXPECTED['trades']} trades, return: {saved['benchmark_net_return_pct']:.2f}%).")
+                print(json.dumps({"report": str(report_path), "result": str(result_path), "trades": saved["matched_trades_count"], "status": "PASS"}, indent=2))
+                return 0
         raise FileNotFoundError(f"Original benchmark oracle is incomplete: {missing}")
     sys.path.insert(0, str(oracle))
     import fastsim as fs

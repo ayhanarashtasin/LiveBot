@@ -245,8 +245,25 @@ def validate_unique_databases(configs: list[LiveEngineConfig], base_dir: Optiona
         seen[resolved] = cfg.symbol
 
 
+def _populate_env_from_file() -> None:
+    if "PYTEST_CURRENT_TEST" in os.environ:
+        return
+    env_file = Path(__file__).resolve().parent.parent / ".env"
+    if env_file.exists():
+        for line in env_file.read_text(encoding="utf-8", errors="replace").splitlines():
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            k, v = line.split("=", 1)
+            k = k.strip()
+            v = v.strip().strip("'\"")
+            if k and k not in os.environ:
+                os.environ[k] = v
+
+
 def load_config(config_path: Optional[str] = None) -> LiveEngineConfig:
     """Loads and validates engine configuration."""
+    _populate_env_from_file()
     cfg_data: Dict[str, Any] = {}
 
     target_path = config_path or os.environ.get("ESCANOR_CONFIG_PATH")

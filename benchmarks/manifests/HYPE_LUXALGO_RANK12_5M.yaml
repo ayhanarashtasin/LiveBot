@@ -16,21 +16,21 @@ data:
   base_timeframe: 1m
   strategy_timeframe: 5m
   timezone: UTC
-  dataset_candle_path: E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/candles/HYPEUSDT_5m.parquet
-  dataset_aggtrade_path: E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-08.parquet
+  dataset_candle_path: HYPEUSDT_USDM_DATA/candles/HYPEUSDT_5m.parquet
+  dataset_aggtrade_path: HYPEUSDT_USDM_DATA/aggTrades/2026-08.parquet
   dataset_aggtrade_paths:
-    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2025-09.parquet
-    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2025-10.parquet
-    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2025-11.parquet
-    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2025-12.parquet
-    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-01.parquet
-    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-02.parquet
-    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-03.parquet
-    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-04.parquet
-    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-05.parquet
-    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-06.parquet
-    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-07.parquet
-    - E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/aggTrades/2026-08.parquet
+    - HYPEUSDT_USDM_DATA/aggTrades/2025-09.parquet
+    - HYPEUSDT_USDM_DATA/aggTrades/2025-10.parquet
+    - HYPEUSDT_USDM_DATA/aggTrades/2025-11.parquet
+    - HYPEUSDT_USDM_DATA/aggTrades/2025-12.parquet
+    - HYPEUSDT_USDM_DATA/aggTrades/2026-01.parquet
+    - HYPEUSDT_USDM_DATA/aggTrades/2026-02.parquet
+    - HYPEUSDT_USDM_DATA/aggTrades/2026-03.parquet
+    - HYPEUSDT_USDM_DATA/aggTrades/2026-04.parquet
+    - HYPEUSDT_USDM_DATA/aggTrades/2026-05.parquet
+    - HYPEUSDT_USDM_DATA/aggTrades/2026-06.parquet
+    - HYPEUSDT_USDM_DATA/aggTrades/2026-07.parquet
+    - HYPEUSDT_USDM_DATA/aggTrades/2026-08.parquet
   evaluation_window_start: '2025-09-01 00:00:00+00:00'
   evaluation_window_end: '2026-08-31 23:59:59+00:00'
 

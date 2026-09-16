@@ -314,6 +314,16 @@ def handle_parity_check(config: LiveEngineConfig, raw_aggtrades: bool = False) -
         manifest = yaml.safe_load(manifest_p.read_text())
         data_cfg = manifest.get("data", {})
         warmup_dataset_p = Path(data_cfg.get("dataset_candle_path", f"{config.symbol}_USDM_DATA/candles/{config.symbol}_{config.timeframe}.parquet"))
+        if not warmup_dataset_p.is_absolute():
+            warmup_dataset_p = repo_root / warmup_dataset_p
+        if not warmup_dataset_p.exists():
+            fallback_p = repo_root / f"{config.symbol}_USDM_DATA/candles/{config.symbol}_{config.timeframe}.parquet"
+            if fallback_p.exists():
+                warmup_dataset_p = fallback_p
+            else:
+                fallback_data = repo_root / f"data/{config.symbol}_{config.timeframe}.parquet"
+                if fallback_data.exists():
+                    warmup_dataset_p = fallback_data
         aggtrade_dataset_p = Path(data_cfg.get("dataset_aggtrade_path", f"{config.symbol}_USDM_DATA/aggTrades/2026-08.parquet"))
     except Exception as e:
         print(f"[ERROR] Could not load manifest: {e}")

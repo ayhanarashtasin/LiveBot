@@ -155,8 +155,8 @@ def test_unrecorded_testnet_or_chaos_evidence_fails_closed(tmp_path):
 def test_raw_coverage_gate_reads_the_manifest_and_disk(tmp_path):
     store = EventStore(tmp_path / "cov.db")
     cfg = _config(tmp_path)
-    cfg.manifest_path = "benchmarks/manifests/ZEC_MOMENTUM_M03_15M.yaml"
-    cfg.symbol, cfg.timeframe = "ZECUSDT", "15m"
+    cfg.manifest_path = "benchmarks/manifests/HYPE_LUXALGO_RANK12_5M.yaml"
+    cfg.symbol, cfg.timeframe = "HYPEUSDT", "5m"
     verifier = SafetyGateVerifier(cfg, base_dir=BASE, event_store=store)
 
     _, results = verifier.evaluate_all_gates()

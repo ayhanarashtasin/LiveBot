@@ -914,25 +914,29 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
               ? 'bg-red-500/20 text-red-400 border border-red-500/30'
               : 'bg-dark-700 text-gray-400';
 
-            const actionLabel = isBuy ? 'BUY / ENTER LONG' : isSell ? 'SELL / EXIT LONG' : s.action;
+            const actionLabel = isBuy ? 'BUY / ENTER LONG' : isSell ? 'SELL / TAKE PROFIT' : s.action;
+            const priceVal = s.fill_price ? parseFloat(s.fill_price) : parseFloat(s.price || 0);
 
             return `
               <div class="p-3 bg-dark-900/80 border border-dark-700 rounded-lg space-y-1.5 hover:border-dark-600 transition">
                 <div class="flex items-center justify-between">
-                  <span class="px-2 py-0.5 rounded text-xs font-bold ${badgeClass}">${escapeHtml(actionLabel)}</span>
+                  <div class="flex items-center space-x-2">
+                    <span class="px-2 py-0.5 rounded text-xs font-bold ${badgeClass}">${escapeHtml(actionLabel)}</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-700/50 font-mono uppercase">EXECUTED</span>
+                  </div>
                   <span class="text-xs text-gray-500 font-mono">${escapeHtml(s.timestamp_utc || '')}</span>
                 </div>
                 <div class="flex items-center justify-between text-xs font-mono">
-                  <span class="text-gray-400">Trigger Price:</span>
-                  <span class="text-white font-bold">$${parseFloat(s.price || 0).toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
+                  <span class="text-gray-400">Execution Price:</span>
+                  <span class="text-white font-bold">$${priceVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 3 })}</span>
                 </div>
-                <div class="text-xs text-gray-400 truncate">${escapeHtml(s.reason || 'Supertrend indicator signal')}</div>
+                <div class="text-xs text-gray-400 truncate">${escapeHtml(s.reason || 'Strategy decision')}</div>
               </div>
             `;
           }).join('');
         } else {
           const indName = data.indicator_name || 'Strategy';
-          feedContainer.innerHTML = '<div class="text-center py-16 text-gray-500 text-xs">No signals generated yet. ' + escapeHtml(indName) + ' evaluates at each candle close.</div>';
+          feedContainer.innerHTML = '<div class="text-center py-16 text-gray-500 text-xs">No executed trade signals yet. ' + escapeHtml(indName) + ' evaluates at each candle close.</div>';
         }
 
         // 5. Update Orders Table
@@ -1269,20 +1273,49 @@ class DashboardDataAggregator:
                     except Exception as e:
                         logger.debug(f"Failed to load position data from dashboard: {e}")
 
-                    # Recent Signals
+                    # Recent Signals (Option A: only signals that actually executed into trades)
                     try:
                         if "signals" not in tables:
                             raise LookupError("Waiting for signals")
-                        cur.execute("SELECT signal_id, action, reference_price, candle_open_time, reason FROM signals WHERE symbol=? ORDER BY generated_at DESC LIMIT 20;", (self.config.symbol,))
-                        for s_row in cur.fetchall():
-                            dt_str = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(s_row["candle_open_time"] / 1000))
-                            payload["signals"].append({
-                                "signal_id": s_row["signal_id"],
-                                "action": s_row["action"],
-                                "price": s_row["reference_price"],
-                                "timestamp_utc": dt_str + " UTC",
-                                "reason": s_row["reason"],
-                            })
+                        if "orders" in tables:
+                            cur.execute(
+                                """SELECT DISTINCT s.signal_id, s.action, s.reference_price, s.candle_open_time, s.reason,
+                                          o.avg_fill_price, o.quantity, o.status
+                                   FROM signals s
+                                   LEFT JOIN orders o ON (
+                                       (o.signal_id = s.signal_id OR o.client_order_id LIKE '%' || CAST(s.candle_open_time / 1000 AS TEXT) || '%')
+                                       AND (
+                                           (s.action IN ('ENTER_LONG', 'BUY') AND o.side = 'BUY')
+                                           OR (s.action IN ('EXIT_LONG', 'SELL') AND o.side = 'SELL')
+                                       )
+                                   )
+                                   WHERE s.symbol=? AND (o.status IS NULL OR o.status IN ('FILLED', 'NEW', 'PARTIALLY_FILLED', 'SUBMITTING'))
+                                   ORDER BY s.generated_at DESC LIMIT 20;""",
+                                (self.config.symbol,),
+                            )
+                            for s_row in cur.fetchall():
+                                dt_str = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(s_row["candle_open_time"] / 1000))
+                                payload["signals"].append({
+                                    "signal_id": s_row["signal_id"],
+                                    "action": s_row["action"],
+                                    "price": s_row["reference_price"],
+                                    "fill_price": s_row["avg_fill_price"],
+                                    "quantity": s_row["quantity"],
+                                    "status": s_row["status"],
+                                    "timestamp_utc": dt_str + " UTC",
+                                    "reason": s_row["reason"],
+                                })
+                        else:
+                            cur.execute("SELECT signal_id, action, reference_price, candle_open_time, reason FROM signals WHERE symbol=? ORDER BY generated_at DESC LIMIT 20;", (self.config.symbol,))
+                            for s_row in cur.fetchall():
+                                dt_str = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(s_row["candle_open_time"] / 1000))
+                                payload["signals"].append({
+                                    "signal_id": s_row["signal_id"],
+                                    "action": s_row["action"],
+                                    "price": s_row["reference_price"],
+                                    "timestamp_utc": dt_str + " UTC",
+                                    "reason": s_row["reason"],
+                                })
                     except Exception as e:
                         logger.debug(f"Failed to load signals from dashboard: {e}")
 
@@ -1330,9 +1363,19 @@ class DashboardDataAggregator:
                                 if balance is not None:
                                     payload["paper_balance"] = str(balance)
                                     payload["account_available"] = True
-                            first = conn.execute("SELECT payload_json FROM audit_events WHERE event_type='BALANCE_RECONCILIATION' ORDER BY event_id LIMIT 1").fetchone()
-                            if first:
-                                payload["initial_balance"] = json.loads(first[0]).get("balances", {}).get("USDT", "10000.00")
+                            mode_target = self.config.mode.upper()
+                            first_rows = conn.execute("SELECT payload_json FROM audit_events WHERE event_type='BALANCE_RECONCILIATION' ORDER BY event_id ASC").fetchall()
+                            found_init = False
+                            for f_row in first_rows:
+                                f_data = json.loads(f_row[0])
+                                if f_data.get("mode", "").upper() == mode_target:
+                                    bal_val = f_data.get("balances", {}).get("USDT")
+                                    if bal_val is not None:
+                                        payload["initial_balance"] = str(bal_val)
+                                        found_init = True
+                                        break
+                            if not found_init and payload.get("paper_balance") is not None:
+                                payload["initial_balance"] = str(payload["paper_balance"])
                     except (ValueError, TypeError, AttributeError, sqlite3.Error) as exc:
                         logger.debug("Account snapshot unavailable: %s", exc)
 
@@ -1487,14 +1530,12 @@ class DashboardDataAggregator:
         except (ValueError, TypeError):
             pass
 
-        # Compute total portfolio equity and true net return %
+        # Compute total portfolio equity and true net return % (Authoritative Futures standard)
         try:
             cash = float(payload["paper_balance"])
             init = float(payload["initial_balance"])
-            pos_qty = float(payload["position"]["quantity"])
-            entry_px = float(payload["position"]["entry_price"])
-            margin_locked = (pos_qty * entry_px) if pos_qty > 0 else 0.0
-            equity = cash + margin_locked + u_pnl
+            # In Binance USD-M Futures, Margin Equity = Wallet Balance + Unrealized PnL
+            equity = cash + u_pnl
             payload["total_equity"] = f"{equity:.2f}"
             if init > 0:
                 payload["total_return_pct"] = f"{((equity - init) / init) * 100:.2f}"

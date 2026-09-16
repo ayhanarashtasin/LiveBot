@@ -41,15 +41,25 @@ TEST_FILTERS = {
         price_precision=2,
         qty_precision=3,
     ),
+    "HYPEUSDT": SymbolFilters(
+        symbol="HYPEUSDT",
+        tick_size=Decimal("0.001"),
+        step_size=Decimal("0.01"),
+        min_qty=Decimal("0.01"),
+        max_qty=Decimal("10000.0"),
+        min_notional=Decimal("5.0"),
+        price_precision=3,
+        qty_precision=2,
+    ),
 }
 
 
-def mock_fetch_public_exchange_info(symbol: str, timeout: int = 10):
+def mock_fetch_public_exchange_info(symbol: str, timeout: int = 10, *args, **kwargs):
     sym_upper = symbol.upper()
     return TEST_FILTERS.get(sym_upper, TEST_FILTERS["BTCUSDT"])
 
 
-def mock_fetch_closed_klines(symbol, timeframe, start_ms, end_ms=None, base_url=""):
+def mock_fetch_closed_klines(symbol, timeframe, start_ms, end_ms=None, base_url="", *args, **kwargs):
     """No warm-up backfill in tests; the Parquet fixture is the whole history."""
     return []
 

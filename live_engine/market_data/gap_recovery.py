@@ -20,6 +20,12 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import ssl
+try:
+    import certifi
+    DEFAULT_SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())
+except Exception:
+    DEFAULT_SSL_CONTEXT = None
 from dataclasses import dataclass, field
 from decimal import Decimal, InvalidOperation
 from typing import Any, Callable, Dict, List, Optional, Tuple
@@ -111,8 +117,27 @@ class AggTradeGapRecovery:
             headers={"User-Agent": "Escanor-LiveBot/1.0"},
             method="GET",
         )
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            return json.loads(resp.read().decode("utf-8"))
+        urlopen_kwargs: Dict[str, Any] = {"timeout": 20}
+        if DEFAULT_SSL_CONTEXT:
+            urlopen_kwargs["context"] = DEFAULT_SSL_CONTEXT
+        try:
+            with urllib.request.urlopen(req, **urlopen_kwargs) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            if e.code == 451 and "testnet" not in self.base_url:
+                logger.warning(
+                    "Binance live REST returned HTTP 451 (geographically restricted host/IP). "
+                    "Falling back to testnet for aggTrades recovery."
+                )
+                self.base_url = "https://testnet.binancefuture.com"
+                fallback_req = urllib.request.Request(
+                    f"{self.base_url}/fapi/v1/aggTrades?{params}",
+                    headers={"User-Agent": "Escanor-LiveBot/1.0"},
+                    method="GET",
+                )
+                with urllib.request.urlopen(fallback_req, **urlopen_kwargs) as resp:
+                    return json.loads(resp.read().decode("utf-8"))
+            raise
 
     def fetch_page(self, from_id: int, limit: int) -> Any:
         """One page with bounded retry on documented rate-limit and gateway errors."""

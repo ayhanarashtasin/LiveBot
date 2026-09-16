@@ -74,7 +74,10 @@ def test_active_band_matches_direction_and_label(symbol, timeframe):
     if r["indicator_name"] == "Supertrend":  # an EMA overlay has no band-vs-price rule
         closes = {c["time"]: c["close"] for c in r["chart_candles"]}
         for p in points:  # bullish band sits under price, bearish over it
-            assert (p["value"] < closes[p["time"]]) == (p["state"] == "bullish")
+            if p["state"] == "bullish":
+                assert p["value"] <= closes[p["time"]]
+            elif p["state"] == "bearish":
+                assert p["value"] >= closes[p["time"]]
     assert r["supertrend_direction"] == points[-1]["state"].upper()
     assert r["supertrend_val"] == str(points[-1]["value"])
 

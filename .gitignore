@@ -36,12 +36,23 @@ logs/*
 *.log
 *.bak
 
-# Historical heavy backtest datasets (15+ GB - not needed for live VPS execution)
+# Runtime control flags & scratch files
+.kill_switch
+scratch/
+
+# Historical heavy backtest datasets (not needed for live VPS execution)
 BTCUSDT_USDM_DATA/
 LITUSDT_USDM_DATA/
 ZECUSDT_USDM_DATA/
+HYPEUSDT_USDM_DATA/
 .tmp/
 
-# IDE files
+# IDE and Editor files
 .vscode/
 .idea/
+.opencode/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+desktop.ini

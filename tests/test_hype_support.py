@@ -40,7 +40,7 @@ def test_hype_dashboard_uses_external_history_and_isolated_database():
     dashboard = HYPEDashboard(mode="SHADOW", base_dir=BASE)
     payload = dashboard.get_dashboard_payload()
     assert dashboard.db_path == BASE / "data/hype_shadow.db"
-    assert dashboard.candles_dir == Path("E:/EC/Binance-AggTrades/HYPEUSDT_USDM_DATA/candles")
+    assert dashboard.candles_dir == BASE / "HYPEUSDT_USDM_DATA/candles"
     assert len(payload["candles"]) == 1000
     assert "taker_buy_base_volume" in payload["candles"][-1]
     assert payload["strategy_name"] == "HYPELuxAlgoRank12_5M"

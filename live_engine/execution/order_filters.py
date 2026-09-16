@@ -123,7 +123,7 @@ def validate_symbol_for_path(symbol: str) -> bool:
     return True
 
 
-def fetch_public_exchange_info(symbol: str, timeout: int = 30) -> Optional[SymbolFilters]:
+def fetch_public_exchange_info(symbol: str, timeout: int = 30, base_url: Optional[str] = None) -> Optional[SymbolFilters]:
     """Fetches public Binance USD-M Futures exchange info without authentication.
 
     Returns SymbolFilters for the symbol or None if not found/failed.
@@ -134,40 +134,71 @@ def fetch_public_exchange_info(symbol: str, timeout: int = 30) -> Optional[Symbo
         return None
 
     import time
-    for attempt in range(1, 4):
-        try:
-            url = f"https://fapi.binance.com/fapi/v1/exchangeInfo?symbol={symbol}"
-            req = urllib.request.Request(
-                url,
-                method="GET",
-                headers={"User-Agent": "Escanor-LiveBot/1.0"},
-            )
+    try:
+        import ssl
+        import certifi
+        ssl_ctx = ssl.create_default_context(cafile=certifi.where())
+    except Exception:
+        ssl_ctx = None
 
-            with urllib.request.urlopen(req, timeout=timeout) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
+    candidate_hosts = []
+    if base_url:
+        candidate_hosts.append(base_url.rstrip("/"))
+    if "https://fapi.binance.com" not in candidate_hosts:
+        candidate_hosts.append("https://fapi.binance.com")
+    if "https://testnet.binancefuture.com" not in candidate_hosts:
+        candidate_hosts.append("https://testnet.binancefuture.com")
 
-            symbols = data.get("symbols", [])
-            for sym_info in symbols:
-                if sym_info.get("symbol") == symbol and sym_info.get("status") == "TRADING":
-                    # Check if perpetual USD-M futures
-                    if sym_info.get("contractType") == "PERPETUAL":
-                        return SymbolFilters.from_exchange_info(sym_info)
+    for host in candidate_hosts:
+        for attempt in range(1, 4):
+            try:
+                url = f"{host}/fapi/v1/exchangeInfo?symbol={symbol}"
+                req = urllib.request.Request(
+                    url,
+                    method="GET",
+                    headers={"User-Agent": "Escanor-LiveBot/1.0"},
+                )
 
-            logger.error(f"Symbol {symbol} not found or not tradable in USD-M Futures")
-            return None
+                urlopen_kwargs = {"timeout": timeout}
+                if ssl_ctx is not None:
+                    urlopen_kwargs["context"] = ssl_ctx
 
-        except (urllib.error.URLError, TimeoutError) as e:
-            if attempt < 3:
-                backoff = 2.0 ** (attempt - 1)
-                logger.warning(f"Network glitch fetching exchange info for {symbol} (attempt {attempt}/3): {e}. Retrying in {backoff}s...")
-                time.sleep(backoff)
-                continue
-            logger.error(f"Network error fetching exchange info for {symbol}: {e}")
-            return None
-        except json.JSONDecodeError as e:
-            logger.error(f"Malformed response fetching exchange info for {symbol}: {e}")
-            return None
-        except Exception as e:
-            logger.error(f"Failed to fetch exchange info for {symbol}: {e}")
-            return None
+                with urllib.request.urlopen(req, **urlopen_kwargs) as resp:
+                    data = json.loads(resp.read().decode("utf-8"))
+
+                symbols = data.get("symbols", [])
+                for sym_info in symbols:
+                    if sym_info.get("symbol") == symbol and sym_info.get("status") == "TRADING":
+                        # Check if perpetual USD-M futures
+                        if sym_info.get("contractType") == "PERPETUAL":
+                            return SymbolFilters.from_exchange_info(sym_info)
+
+                logger.error(f"Symbol {symbol} not found or not tradable in USD-M Futures on {host}")
+                break
+
+            except urllib.error.HTTPError as e:
+                if e.code == 451:
+                    logger.warning(f"Exchange info on {host} returned 451 (restricted location). Trying fallback host...")
+                    break
+                if attempt < 3:
+                    backoff = 2.0 ** (attempt - 1)
+                    logger.warning(f"Network glitch fetching exchange info for {symbol} on {host} (attempt {attempt}/3): {e}. Retrying in {backoff}s...")
+                    time.sleep(backoff)
+                    continue
+                logger.error(f"Network error fetching exchange info for {symbol} on {host}: {e}")
+                break
+            except (urllib.error.URLError, TimeoutError) as e:
+                if attempt < 3:
+                    backoff = 2.0 ** (attempt - 1)
+                    logger.warning(f"Network glitch fetching exchange info for {symbol} on {host} (attempt {attempt}/3): {e}. Retrying in {backoff}s...")
+                    time.sleep(backoff)
+                    continue
+                logger.error(f"Network error fetching exchange info for {symbol} on {host}: {e}")
+                break
+            except json.JSONDecodeError as e:
+                logger.error(f"Malformed response fetching exchange info for {symbol} on {host}: {e}")
+                break
+            except Exception as e:
+                logger.error(f"Failed to fetch exchange info for {symbol} on {host}: {e}")
+                break
     return None

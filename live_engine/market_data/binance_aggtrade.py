@@ -8,6 +8,12 @@ from typing import Any, Awaitable, Callable, Optional
 
 import websockets
 from websockets.exceptions import ConnectionClosed
+import ssl
+try:
+    import certifi
+    DEFAULT_SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())
+except Exception:
+    DEFAULT_SSL_CONTEXT = None
 
 from live_engine.market_data.models import AggTrade
 
@@ -85,13 +91,15 @@ class BinanceAggTradeStream:
         while self._running:
             try:
                 logger.info(f"Connecting to Binance aggTrade stream: {self.stream_url}")
-                async with websockets.connect(
-                    self.stream_url,
-                    ping_interval=20,
-                    ping_timeout=20,
-                    close_timeout=5,
-                    open_timeout=20,
-                ) as ws:
+                ws_kwargs: dict = {
+                    "ping_interval": 20,
+                    "ping_timeout": 20,
+                    "close_timeout": 5,
+                    "open_timeout": 35,
+                }
+                if DEFAULT_SSL_CONTEXT:
+                    ws_kwargs["ssl"] = DEFAULT_SSL_CONTEXT
+                async with websockets.connect(self.stream_url, **ws_kwargs) as ws:
                     self._ws = ws
                     self.is_connected = True
                     attempt = 0

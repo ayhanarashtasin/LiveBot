@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "AGENTS.md",
+    "OPERATOR.md"
+  ],
+  "skills": [
+    ".agents/skills"
+  ],
+  "permission": {
+    "read": {
+      "*.env": "ask",
+      "*.env.*": "ask"
+    },
+    "edit": {
+      "strategies/v6_optimized_target.py": "deny"
+    }
+  }
+}

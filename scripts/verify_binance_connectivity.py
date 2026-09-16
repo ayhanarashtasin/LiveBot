@@ -58,8 +58,11 @@ def get_outgoing_ip() -> str:
 def main():
     load_env_if_present()
 
+    is_testnet = "--testnet" in sys.argv or os.environ.get("BINANCE_TESTNET", "").lower() in ("true", "1", "yes")
+
     print("=" * 60)
     print("      ESCANOR BINANCE USD-M CONNECTIVITY VERIFIER")
+    print(f"      Target: {'TESTNET (testnet.binancefuture.com)' if is_testnet else 'LIVE (fapi.binance.com)'}")
     print("=" * 60)
 
     # 1. Check IP
@@ -67,11 +70,20 @@ def main():
     print(f"Detected Outgoing Public IP: {outgoing_ip}")
 
     # 2. Check credentials
-    api_key = os.environ.get("BINANCE_API_KEY", "")
-    api_secret = os.environ.get("BINANCE_API_SECRET") or os.environ.get("BINANCE_SECRET_KEY", "")
+    if is_testnet:
+        api_key = os.environ.get("BINANCE_TESTNET_API_KEY") or os.environ.get("BINANCE_API_KEY", "")
+        api_secret = (
+            os.environ.get("BINANCE_TESTNET_API_SECRET")
+            or os.environ.get("BINANCE_API_SECRET")
+            or os.environ.get("BINANCE_SECRET_KEY", "")
+        )
+    else:
+        api_key = os.environ.get("BINANCE_API_KEY", "")
+        api_secret = os.environ.get("BINANCE_API_SECRET") or os.environ.get("BINANCE_SECRET_KEY", "")
 
     if not api_key or not api_secret:
-        print("\n[ERROR] BINANCE_API_KEY or BINANCE_API_SECRET is missing from environment / .env")
+        key_name = "BINANCE_TESTNET_API_KEY / BINANCE_TESTNET_API_SECRET" if is_testnet else "BINANCE_API_KEY / BINANCE_API_SECRET"
+        print(f"\n[ERROR] {key_name} is missing from environment / .env")
         print("Please configure them in your .env file or environment variables.")
         return 1
 
@@ -79,7 +91,7 @@ def main():
     print(f"Binance API Key: {key_prefix} (length: {len(api_key)})")
     print(f"Binance API Secret: [CONFIGURED] (length: {len(api_secret)})")
 
-    base_url = "https://fapi.binance.com"
+    base_url = "https://testnet.binancefuture.com" if is_testnet else "https://fapi.binance.com"
 
     # 3. Test Binance server time sync
     try:

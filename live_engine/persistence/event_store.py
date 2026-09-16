@@ -343,6 +343,28 @@ class EventStore:
             conn.commit()
             return cur.rowcount > 0
 
+    def get_signal(self, signal_id: str) -> Optional[SignalEvent]:
+        """Fetch a stored signal by its signal_id."""
+        with self._get_connection() as conn:
+            row = conn.execute("SELECT * FROM signals WHERE signal_id = ?;", (signal_id,)).fetchone()
+            if not row:
+                return None
+            payload = json.loads(row["payload_json"]) if row["payload_json"] else {}
+            return SignalEvent(
+                signal_id=row["signal_id"],
+                benchmark_id=row["benchmark_id"],
+                strategy_hash=row["strategy_hash"],
+                symbol=row["symbol"],
+                timeframe=row["timeframe"],
+                candle_open_time=row["candle_open_time"],
+                candle_close_time=row["candle_close_time"],
+                generated_at=row["generated_at"],
+                action=SignalAction(row["action"]),
+                reference_price=Decimal(str(row["reference_price"])),
+                reason=row["reason"],
+                indicator_snapshot=payload,
+            )
+
     def save_order(self, order: Order) -> None:
         """Insert or update order in local database."""
         with self._get_connection() as conn:

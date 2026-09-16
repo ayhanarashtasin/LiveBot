@@ -100,6 +100,35 @@ class AccountReconciler:
         }
 
         if not result["matched"]:
+            # Check if this apparent mismatch is caused by fills or open orders that arrived while
+            # the private stream was reconnecting or lagging.
+            if self.fill_applier and self.broker.mode in ("LIVE", "TESTNET"):
+                try:
+                    self.reconcile_recent_fills(symbol)
+                    if self.order_manager:
+                        open_ords = [o for o in self.order_manager.orders.values() if not o.is_terminal]
+                        if open_ords:
+                            self.reconcile_open_orders(open_ords)
+                except Exception as rec_err:
+                    logger.warning(f"Pre-mismatch fill recovery failed: {rec_err}")
+
+                local_side = self.position_manager.side
+                local_qty = self.position_manager.quantity
+                local_entry_px = self.position_manager.entry_price
+                qty_diff = abs(local_qty - exch_qty)
+                side_match = (local_side == exch_side) or (local_qty == Decimal("0") and exch_qty == Decimal("0"))
+                if side_match and qty_diff <= self.max_qty_discrepancy:
+                    result["matched"] = True
+                    result["local"] = {
+                        "side": local_side.value if local_side else None,
+                        "quantity": str(local_qty),
+                        "entry_price": str(local_entry_px),
+                    }
+                    result["quantity_difference"] = str(qty_diff)
+                    result["action_taken"] = "Resolved via REST fill reconciliation"
+                    logger.info(f"Position mismatch on {symbol} resolved via REST fill reconciliation")
+
+        if not result["matched"]:
             msg = (
                 f"POSITION RECONCILIATION MISMATCH on {symbol}! "
                 f"Local: ({local_side}, {local_qty}) vs Exchange: ({exch_side}, {exch_qty})"

@@ -140,6 +140,8 @@ class LiveEngineOrchestrator:
             event_store=self.event_store,
             symbol=config.symbol,
         )
+        self._pending_signals_by_cid: Dict[str, SignalEvent] = {}
+        self._pending_slot_exits_by_cid: Dict[str, str] = {}
 
         # 6. Exchange Filters (Default BTCUSDT USD-M specs if not overridden)
         self.filters = SymbolFilters(
@@ -242,6 +244,7 @@ class LiveEngineOrchestrator:
                 on_order_trade_update=self.on_user_order_trade_update,
                 on_account_update=self.on_user_account_update,
                 on_lifecycle_event=self.on_user_stream_lifecycle,
+                on_heartbeat=lambda: self.health.beat("private_stream", "OK", "socket_connected"),
             )
 
         self._latest_strategy_candle: Optional[Candle] = None
@@ -423,7 +426,7 @@ class LiveEngineOrchestrator:
         if self.config.mode in ("SHADOW", "PAPER"):
             # For SHADOW/PAPER, fetch from public Binance endpoint (no authentication)
             try:
-                public_filters = fetch_public_exchange_info(self.config.symbol, timeout=10)
+                public_filters = fetch_public_exchange_info(self.config.symbol, timeout=10, base_url=self.rest_base_url)
                 if public_filters:
                     self.filters = public_filters
                     self.risk_guards.filters = public_filters
@@ -451,10 +454,19 @@ class LiveEngineOrchestrator:
         ds_path = (self.base_dir / dataset_path).resolve()
 
         if not ds_path.exists():
-            raise RuntimeError(
-                f"WARMUP VALIDATION FAILED: Dataset not found at {ds_path}. "
-                f"Symbol {self.config.symbol} requires historical candle data."
-            )
+            # Robust fallback for deployment nodes where dataset_candle_path was an external absolute path
+            local_fallback = (self.base_dir / f"{self.config.symbol}_USDM_DATA/candles/{self.config.symbol}_{self.config.timeframe}.parquet").resolve()
+            if local_fallback.exists():
+                ds_path = local_fallback
+            else:
+                local_data = (self.base_dir / f"data/{self.config.symbol}_{self.config.timeframe}.parquet").resolve()
+                if local_data.exists():
+                    ds_path = local_data
+                else:
+                    raise RuntimeError(
+                        f"WARMUP VALIDATION FAILED: Dataset not found at {ds_path}. "
+                        f"Symbol {self.config.symbol} requires historical candle data."
+                    )
 
         try:
             self.warmup_manager.load_from_parquet(str(ds_path))
@@ -722,6 +734,11 @@ class LiveEngineOrchestrator:
             )
             # Reconcile on each candle close even if no signal
             self.reconciler.reconcile_position()
+            if self.config.mode in ("LIVE", "TESTNET") and candle.open_time % 3600000 == 0:
+                try:
+                    self.reconciler.reconcile_balance()
+                except Exception as exc:
+                    logger.debug("Hourly balance reconciliation skipped: %s", exc)
             return slot_exit_signals + replayed_signals
 
         if signal.action == SignalAction.ENTER_LONG and self.slot_book and not self.slot_book.can_open:
@@ -816,7 +833,7 @@ class LiveEngineOrchestrator:
         )
         if self.slot_book.has_slot(slot.slot_id):
             remaining = next(value for value in self.slot_book.slots if value.slot_id == slot.slot_id)
-            if remaining.state == "EXIT_PENDING":
+            if remaining.state == "EXIT_PENDING" and (order is None or order.status in (OrderStatus.REJECTED, OrderStatus.CANCELED)):
                 self.slot_book.reopen(slot.slot_id)
         return signal if order and order.status in (OrderStatus.FILLED, OrderStatus.PARTIALLY_FILLED) else None
 
@@ -1010,6 +1027,7 @@ class LiveEngineOrchestrator:
         )
         self.order_manager.upsert_order(intent_order)
         self.event_store.save_order(intent_order)
+        self._pending_signals_by_cid[cid] = signal
 
         try:
             self.telemetry.mark(telemetry, "T1")
@@ -1018,6 +1036,7 @@ class LiveEngineOrchestrator:
                 quantity=target_qty, price=price, client_order_id=cid,
                 position_side=self.exit_position_side,
             )
+            order.signal_id = signal.signal_id
             self.telemetry.mark(telemetry, "T2")
             self.order_manager.upsert_order(order)
             self.event_store.save_order(order)
@@ -1108,6 +1127,9 @@ class LiveEngineOrchestrator:
         )
         self.order_manager.upsert_order(intent_order)
         self.event_store.save_order(intent_order)
+        self._pending_signals_by_cid[cid] = signal
+        if slot_id:
+            self._pending_slot_exits_by_cid[cid] = slot_id
 
         try:
             self.telemetry.mark(telemetry, "T1")
@@ -1116,6 +1138,7 @@ class LiveEngineOrchestrator:
                 quantity=exit_qty, price=price, client_order_id=cid,
                 reduce_only=True, position_side=self.exit_position_side,
             )
+            order.signal_id = signal.signal_id
             self.telemetry.mark(telemetry, "T2")
             self.order_manager.upsert_order(order)
             self.event_store.save_order(order)
@@ -1154,6 +1177,11 @@ class LiveEngineOrchestrator:
                 )
             elif self.position_manager.is_flat:
                 self.protective.on_exit_filled(order, signal.reason)
+            if self.reconciler and self.config.mode in ("LIVE", "TESTNET"):
+                try:
+                    self.reconciler.reconcile_balance()
+                except Exception as exc:
+                    logger.warning("Failed to reconcile balance after exit fill: %s", exc)
         self.telemetry.finish(telemetry, order=order, realized_pnl=self.position_manager.realized_pnl,
                               exit_reason=signal.reason)
         return order
@@ -1546,7 +1574,57 @@ class LiveEngineOrchestrator:
         out-of-order events change nothing.
         """
         self.health.beat("private_stream")
-        self.fill_applier.apply_stream_event(data)
+        applied = self.fill_applier.apply_stream_event(data)
+        if applied > Decimal("0"):
+            o = data.get("o", {})
+            cid = str(o.get("c") or "")
+            side = str(o.get("S", "BUY")).upper()
+            reduce_only = bool(o.get("R", False))
+            last_price = Decimal(str(o.get("L", "0"))) if o.get("L") else Decimal("0")
+            avg_price = Decimal(str(o.get("ap", "0"))) if o.get("ap") else Decimal("0")
+            fill_px = last_price if last_price > Decimal("0") else avg_price
+            commission = Decimal(str(o.get("n", "0"))) if o.get("n") else Decimal("0")
+
+            if side == "BUY" and not reduce_only:
+                signal = self._pending_signals_by_cid.get(cid)
+                if not signal and self.event_store:
+                    order = self.order_manager.get_order_by_client_id(cid)
+                    sig_id = getattr(order, "signal_id", None) if order else None
+                    if sig_id:
+                        signal = self.event_store.get_signal(sig_id)
+                if signal and self.slot_book and not self.slot_book.has_slot(signal.signal_id):
+                    tf_ms = TIMEFRAME_MAP_MS.get(self.config.timeframe, 300000)
+                    self.slot_book.add_fill(
+                        signal, applied, fill_px,
+                        signal.candle_open_time + tf_ms,
+                        commission,
+                    )
+                    logger.info("Registered stream fill into slot book: slot=%s qty=%s @ %s", signal.signal_id, applied, fill_px)
+                elif signal and not self.slot_book:
+                    order = self.order_manager.get_order_by_client_id(cid)
+                    if order:
+                        snapshot = signal.indicator_snapshot or {}
+                        self.protective.on_entry_filled(order, fill_px, snapshot.get("atr"), signal.signal_id)
+            elif side == "SELL" or reduce_only:
+                slot_id = self._pending_slot_exits_by_cid.get(cid)
+                if not slot_id and self.slot_book and self.slot_book.slots:
+                    pending_slots = [s for s in self.slot_book.slots if s.state == "EXIT_PENDING"]
+                    if len(pending_slots) == 1:
+                        slot_id = pending_slots[0].slot_id
+                    elif len(self.slot_book.slots) == 1:
+                        slot_id = self.slot_book.slots[0].slot_id
+                if slot_id and self.slot_book and self.slot_book.has_slot(slot_id):
+                    self.slot_book.close_fill(slot_id, applied, fill_px, commission, "STREAM_EXIT_FILL")
+                    logger.info("Closed slot from stream fill: slot=%s qty=%s @ %s", slot_id, applied, fill_px)
+                elif self.position_manager.is_flat:
+                    order = self.order_manager.get_order_by_client_id(cid)
+                    if order:
+                        self.protective.on_exit_filled(order, "STREAM_EXIT_FILL")
+                if self.reconciler and self.config.mode in ("LIVE", "TESTNET"):
+                    try:
+                        self.reconciler.reconcile_balance()
+                    except Exception as exc:
+                        logger.warning("Failed to reconcile balance after stream exit fill: %s", exc)
 
     def on_user_stream_lifecycle(self, kind: str, payload: Dict[str, Any]) -> None:
         """Records private-stream lifecycle transitions and keeps health freshness current.

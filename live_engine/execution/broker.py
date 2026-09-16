@@ -20,6 +20,12 @@ import time
 import urllib.parse
 import urllib.request
 import urllib.error
+import ssl
+try:
+    import certifi
+    DEFAULT_SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())
+except Exception:
+    DEFAULT_SSL_CONTEXT = None
 
 from live_engine.execution.models import Order, OrderSide, OrderStatus, OrderType
 from live_engine.execution.position_manager import PositionManager
@@ -469,7 +475,10 @@ class BaseBinanceBroker(ExecutionBroker):
         """Calculates server time offset to eliminate timestamp drift issues."""
         try:
             req = urllib.request.Request(f"{self.base_url}/fapi/v1/time", method="GET")
-            with urllib.request.urlopen(req, timeout=5) as resp:
+            urlopen_kwargs: Dict[str, Any] = {"timeout": 5}
+            if DEFAULT_SSL_CONTEXT:
+                urlopen_kwargs["context"] = DEFAULT_SSL_CONTEXT
+            with urllib.request.urlopen(req, **urlopen_kwargs) as resp:
                 server_time = json.loads(resp.read().decode("utf-8")).get("serverTime", 0)
                 if server_time:
                     self._time_offset_ms = server_time - int(time.time() * 1000)
@@ -520,7 +529,10 @@ class BaseBinanceBroker(ExecutionBroker):
         )
 
         try:
-            with urllib.request.urlopen(req, timeout=10) as resp:
+            urlopen_kwargs: Dict[str, Any] = {"timeout": 10}
+            if DEFAULT_SSL_CONTEXT:
+                urlopen_kwargs["context"] = DEFAULT_SSL_CONTEXT
+            with urllib.request.urlopen(req, **urlopen_kwargs) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except urllib.error.HTTPError as e:
             err_content = e.read().decode("utf-8")
@@ -674,6 +686,17 @@ class BaseBinanceBroker(ExecutionBroker):
         order_status = status_map.get(exchange_status, OrderStatus.NEW)
         executed_qty = Decimal(str(resp.get("executedQty", "0")))
         avg_price = Decimal(str(resp.get("avgPrice", "0"))) if resp.get("avgPrice") else None
+
+        if order_type == OrderType.MARKET and order_status == OrderStatus.NEW:
+            time.sleep(0.1)
+            try:
+                queried = self.query_order(symbol, cid)
+                if queried and queried.status in (OrderStatus.FILLED, OrderStatus.PARTIALLY_FILLED):
+                    order_status = queried.status
+                    executed_qty = queried.filled_quantity
+                    avg_price = queried.average_fill_price
+            except Exception as q_err:
+                logger.debug(f"Immediate fill query for {cid} deferred: {q_err}")
 
         return Order(
             client_order_id=cid,

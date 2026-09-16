@@ -44,6 +44,9 @@ def fetch_closed_klines(
                             "startTime": str(cursor), "limit": 1500},
                     timeout=20,
                 )
+                if resp.status_code == 451 and "testnet" not in base_url:
+                    base_url = "https://testnet.binancefuture.com"
+                    continue
                 resp.raise_for_status()
                 rows = resp.json()
                 break

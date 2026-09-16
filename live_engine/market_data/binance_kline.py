@@ -9,6 +9,12 @@ from typing import Any, Callable, Dict, Optional, Tuple
 
 import websockets
 from websockets.exceptions import ConnectionClosed
+import ssl
+try:
+    import certifi
+    DEFAULT_SSL_CONTEXT = ssl.create_default_context(cafile=certifi.where())
+except Exception:
+    DEFAULT_SSL_CONTEXT = None
 
 from live_engine.market_data.models import Candle, KlineValidationResult
 
@@ -189,7 +195,14 @@ class BinanceKlineValidator:
     async def _run_loop(self) -> None:
         while self._running:
             try:
-                async with websockets.connect(self.stream_url, ping_interval=20, ping_timeout=20, open_timeout=20) as ws:
+                ws_kwargs: dict = {
+                    "ping_interval": 20,
+                    "ping_timeout": 20,
+                    "open_timeout": 35,
+                }
+                if DEFAULT_SSL_CONTEXT:
+                    ws_kwargs["ssl"] = DEFAULT_SSL_CONTEXT
+                async with websockets.connect(self.stream_url, **ws_kwargs) as ws:
                     self._ws = ws
                     logger.info(f"Connected to Binance 1m Kline stream: {self.stream_url}")
                     if "market/ws" in self.stream_url or self.stream_url.endswith("/ws"):
