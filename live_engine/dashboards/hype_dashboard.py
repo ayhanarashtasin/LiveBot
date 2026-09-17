@@ -38,14 +38,18 @@ class HYPEDashboard(BaseDashboard):
                         "SELECT value_json FROM engine_state WHERE key=?",
                         (f"slot_book:{self.benchmark_id}",),
                     ).fetchone()
+                    init_bal = float(payload.get("initial_balance") or 1062.0)
                     if row:
-                        metrics["open_slots"] = len(json.loads(row[0]).get("slots", []))
+                        book_data = json.loads(row[0])
+                        open_slots_list = book_data.get("slots", [])
+                        metrics["open_slots"] = f"{len(open_slots_list)} / 12"
                     rows = conn.execute(
                         "SELECT payload_json, timestamp FROM audit_events "
                         "WHERE event_type='STRATEGY_SLOT_CLOSED' ORDER BY event_id"
                     ).fetchall()
                     journal, wins, losses, gross_profit, gross_loss = [], 0, 0, 0.0, 0.0
-                    peak, max_drawdown = 10000.0, 0.0
+                    peak, max_drawdown = init_bal, 0.0
+                    running_eq = init_bal
                     for row in rows:
                         trade = json.loads(row[0])
                         pnl = float(trade["net_pnl"])
@@ -53,9 +57,9 @@ class HYPEDashboard(BaseDashboard):
                         losses += pnl < 0
                         gross_profit += max(pnl, 0.0)
                         gross_loss += max(-pnl, 0.0)
-                        equity = float(trade["realized_equity"])
-                        peak = max(peak, equity)
-                        max_drawdown = max(max_drawdown, (peak - equity) / peak * 100 if peak else 0.0)
+                        running_eq += pnl
+                        peak = max(peak, running_eq)
+                        max_drawdown = max(max_drawdown, (peak - running_eq) / peak * 100 if peak else 0.0)
                         journal.append({
                             "entry_time": time.strftime("%b %d %H:%M", time.gmtime(int(trade["entry_open_time"]) / 1000)),
                             "exit_time": time.strftime("%b %d %H:%M", time.gmtime(row[1] / 1000)),

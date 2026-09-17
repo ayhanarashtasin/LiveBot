@@ -111,8 +111,14 @@ class LiveEngineOrchestrator:
         self.adapter = StrategyAdapter(strat_instance, self.manifest)
         self.signal_engine = SignalEngine(self.adapter)
         slot_count = int(self.manifest.get("risk", {}).get("slots", 1))
+        slot_initial_equity = config.stake_amount
+        if getattr(config, "canary_mode", False):
+            canary_cap = getattr(config, "max_canary_allocation_usd", Decimal("100.0"))
+            canary_cap = Decimal(str(canary_cap))
+            if Decimal(str(slot_initial_equity)) > canary_cap:
+                slot_initial_equity = canary_cap
         self.slot_book: Optional[SlotBook] = (
-            SlotBook(self.event_store, self.manifest, config.stake_amount) if slot_count > 1 else None
+            SlotBook(self.event_store, self.manifest, slot_initial_equity) if slot_count > 1 else None
         )
 
         # 4. Market Data Pipeline
@@ -199,6 +205,7 @@ class LiveEngineOrchestrator:
         )
         self.risk_guards.equity_tracker = self.equity
         self.supervisor.equity = self.equity
+        self.equity_tracker = self.equity
 
         # 9. Account Reconciler
         self.reconciler = AccountReconciler(
@@ -951,11 +958,18 @@ class LiveEngineOrchestrator:
         )
         # The client order ID keys on the signal candle, so a restart cannot submit twice.
         cid_key = int(row["signal_candle_open_time"])
-        self.event_store.resolve_pending_action(row["signal_id"], "EXECUTED")
-        if signal.action == SignalAction.ENTER_LONG:
-            self._submit_entry(signal, price, cid_key, self._latest_strategy_candle)
-        else:
-            self._submit_exit(signal, price, cid_key)
+        order = None
+        try:
+            if signal.action == SignalAction.ENTER_LONG:
+                order = self._submit_entry(signal, price, cid_key, self._latest_strategy_candle)
+            else:
+                order = self._submit_exit(signal, price, cid_key)
+            resolution = "EXECUTED" if order is not None else "BLOCKED"
+        except Exception as exc:
+            logger.exception("Error executing pending action %s: %s", row["signal_id"], exc)
+            self.event_store.record_incident("PENDING_EXECUTION_FAILED", "HIGH", str(exc))
+            resolution = "FAILED"
+        self.event_store.resolve_pending_action(row["signal_id"], resolution)
 
     # --- order submission ---------------------------------------------------
 
@@ -977,8 +991,28 @@ class LiveEngineOrchestrator:
                 logger.error(reason)
                 return None
             # Reserve the entry fee outside SHADOW so all 12 slots fit available margin.
+            current_equity = None
+            if self.config.mode in ("LIVE", "TESTNET"):
+                eq_tracker = getattr(self, "equity", None) or getattr(self, "equity_tracker", None)
+                if eq_tracker and getattr(eq_tracker, "account_equity", None):
+                    current_equity = eq_tracker.account_equity.value
+                elif self.broker:
+                    try:
+                        bal = self.broker.get_account_balance()
+                        current_equity = bal.get("USDT")
+                    except Exception:
+                        pass
+            if getattr(self.config, "canary_mode", False):
+                canary_cap = Decimal(str(getattr(self.config, "max_canary_allocation_usd", Decimal("100.0"))))
+                uncapped = current_equity if current_equity is not None else self.slot_book.realized_equity
+                if uncapped is not None and Decimal(str(uncapped)) > canary_cap:
+                    self.event_store.log_event("CANARY_CAP_APPLIED", {"stake": str(canary_cap), "cap": str(canary_cap), "uncapped_equity": str(uncapped), "path": "slot"})
+                    current_equity = canary_cap
+                elif current_equity is None and uncapped is not None:
+                    current_equity = uncapped
             slot_notional = self.slot_book.entry_notional(
-                fee_rate if self.config.mode != "SHADOW" else Decimal("0")
+                fee_rate if self.config.mode != "SHADOW" else Decimal("0"),
+                current_equity=current_equity,
             )
             raw_qty = slot_notional / price
         else:

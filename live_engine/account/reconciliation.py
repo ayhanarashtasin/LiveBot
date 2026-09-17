@@ -356,6 +356,19 @@ class AccountReconciler:
         for trade in sorted(trades, key=lambda t: int(t.get("time", 0))):
             cid = str(trade.get("clientOrderId") or "")
             if not is_escanor_order(cid):
+                eid = str(trade.get("orderId")) if trade.get("orderId") is not None else None
+                if eid:
+                    if self.order_manager:
+                        ord_obj = self.order_manager.get_order_by_exchange_id(eid)
+                        if ord_obj:
+                            cid = ord_obj.client_order_id
+                    if (not cid or not is_escanor_order(cid)) and self.event_store:
+                        lookup_fn = getattr(self.event_store, "get_order_by_exchange_id", None)
+                        if lookup_fn:
+                            ord_obj = lookup_fn(eid)
+                            if ord_obj:
+                                cid = ord_obj.client_order_id
+            if not is_escanor_order(cid):
                 continue
             qty = Decimal(str(trade.get("qty", "0")))
             delta = self.fill_applier.apply(
@@ -424,8 +437,24 @@ class AccountReconciler:
         get_trades = getattr(self.broker, "get_user_trades", None)
         if get_trades is None:
             return False
+        target_eid = None
+        if self.order_manager:
+            ord_obj = self.order_manager.get_order_by_client_id(client_order_id)
+            if ord_obj and ord_obj.exchange_order_id:
+                target_eid = str(ord_obj.exchange_order_id)
+        if not target_eid and self.event_store:
+            lookup_fn = getattr(self.event_store, "get_order_by_client_id", None)
+            if lookup_fn:
+                ord_obj = lookup_fn(client_order_id)
+                if ord_obj and ord_obj.exchange_order_id:
+                    target_eid = str(ord_obj.exchange_order_id)
         try:
-            return any(str(t.get("clientOrderId")) == client_order_id for t in get_trades(symbol, None))
+            for t in get_trades(symbol, None):
+                if str(t.get("clientOrderId")) == client_order_id:
+                    return True
+                if target_eid and str(t.get("orderId")) == target_eid:
+                    return True
+            return False
         except Exception:
             # Unreadable trade history cannot prove absence: assume it may exist.
             return True

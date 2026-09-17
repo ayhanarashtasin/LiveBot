@@ -141,6 +141,23 @@ class RiskGuardEngine:
             if not is_valid:
                 return GuardResult(passed=False, reason=f"Symbol filters rejected: {reason}")
 
+        # 8. Maximum Total Notional vs Leverage Cap Guard
+        # Total notional across all positions (existing + new order) must never exceed max_leverage * collateral
+        if self.equity_tracker is not None and getattr(self.equity_tracker, "account_equity", None) is not None:
+            collateral = self.equity_tracker.account_equity.value
+            if collateral > Decimal("0"):
+                max_total_notional = collateral * self.leverage
+                current_open_notional = abs(Decimal(str(position_manager.quantity))) * price
+                new_total_notional = current_open_notional + notional
+                if new_total_notional > max_total_notional:
+                    return GuardResult(
+                        passed=False,
+                        reason=(
+                            f"Total notional ${new_total_notional:.2f} exceeds {self.leverage}x "
+                            f"collateral cap (${max_total_notional:.2f} on collateral ${collateral:.2f})"
+                        ),
+                    )
+
         # 9. Available margin, from authoritative account data.
         if self.equity_tracker is not None:
             shortfall = self.equity_tracker.margin_shortfall(notional, self.leverage, notional * self.taker_fee)

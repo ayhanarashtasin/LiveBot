@@ -916,21 +916,26 @@ DASHBOARD_HTML = r"""<!DOCTYPE html>
 
             const actionLabel = isBuy ? 'BUY / ENTER LONG' : isSell ? 'SELL / TAKE PROFIT' : s.action;
             const priceVal = s.fill_price ? parseFloat(s.fill_price) : parseFloat(s.price || 0);
+            const statusLabel = (s.status === 'FILLED' || !s.status) ? 'EXECUTED' : s.status;
+            const statusClass = (s.status === 'FILLED' || !s.status)
+              ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-700/50'
+              : 'bg-amber-950/80 text-amber-300 border border-amber-700/50';
 
             return `
               <div class="p-3 bg-dark-900/80 border border-dark-700 rounded-lg space-y-1.5 hover:border-dark-600 transition">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center space-x-2">
                     <span class="px-2 py-0.5 rounded text-xs font-bold ${badgeClass}">${escapeHtml(actionLabel)}</span>
-                    <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-700/50 font-mono uppercase">EXECUTED</span>
+                    <span class="text-[10px] px-1.5 py-0.5 rounded ${statusClass} font-mono uppercase">${escapeHtml(statusLabel)}</span>
                   </div>
                   <span class="text-xs text-gray-500 font-mono">${escapeHtml(s.timestamp_utc || '')}</span>
                 </div>
                 <div class="flex items-center justify-between text-xs font-mono">
                   <span class="text-gray-400">Execution Price:</span>
-                  <span class="text-white font-bold">$${priceVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 3 })}</span>
+                  <span class="text-white font-bold">$${priceVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 })}</span>
                 </div>
-                <div class="text-xs text-gray-400 truncate">${escapeHtml(s.reason || 'Strategy decision')}</div>
+                ${s.quantity ? `<div class="flex items-center justify-between text-xs font-mono"><span class="text-gray-400">Quantity:</span><span class="text-gray-300 font-bold">${parseFloat(s.quantity).toFixed(4)}</span></div>` : ''}
+                <div class="text-xs text-gray-400 truncate" title="${escapeHtml(s.reason || 'Strategy decision')}">${escapeHtml(s.reason || 'Strategy decision')}</div>
               </div>
             `;
           }).join('');
@@ -1273,29 +1278,30 @@ class DashboardDataAggregator:
                     except Exception as e:
                         logger.debug(f"Failed to load position data from dashboard: {e}")
 
-                    # Recent Signals (Option A: only signals that actually executed into trades)
+                    # Strategy decisions (buys, sells, exits) that actually executed into trades
                     try:
-                        if "signals" not in tables:
-                            raise LookupError("Waiting for signals")
-                        if "orders" in tables:
+                        executed_signals = []
+                        if "signals" in tables and "orders" in tables:
                             cur.execute(
                                 """SELECT DISTINCT s.signal_id, s.action, s.reference_price, s.candle_open_time, s.reason,
-                                          o.avg_fill_price, o.quantity, o.status
+                                          o.avg_fill_price, o.quantity, o.status, COALESCE(o.filled_at, o.created_at) as decision_time
                                    FROM signals s
-                                   LEFT JOIN orders o ON (
+                                   INNER JOIN orders o ON (
                                        (o.signal_id = s.signal_id OR o.client_order_id LIKE '%' || CAST(s.candle_open_time / 1000 AS TEXT) || '%')
                                        AND (
                                            (s.action IN ('ENTER_LONG', 'BUY') AND o.side = 'BUY')
                                            OR (s.action IN ('EXIT_LONG', 'SELL') AND o.side = 'SELL')
                                        )
                                    )
-                                   WHERE s.symbol=? AND (o.status IS NULL OR o.status IN ('FILLED', 'NEW', 'PARTIALLY_FILLED', 'SUBMITTING'))
-                                   ORDER BY s.generated_at DESC LIMIT 20;""",
+                                   WHERE s.symbol = ? AND o.status IN ('FILLED', 'NEW', 'PARTIALLY_FILLED', 'SUBMITTING')
+                                   ORDER BY COALESCE(o.filled_at, o.created_at) DESC
+                                   LIMIT 50;""",
                                 (self.config.symbol,),
                             )
                             for s_row in cur.fetchall():
-                                dt_str = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(s_row["candle_open_time"] / 1000))
-                                payload["signals"].append({
+                                t_val = s_row["decision_time"]
+                                dt_str = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(t_val / 1000)) if t_val else "--"
+                                executed_signals.append({
                                     "signal_id": s_row["signal_id"],
                                     "action": s_row["action"],
                                     "price": s_row["reference_price"],
@@ -1305,7 +1311,9 @@ class DashboardDataAggregator:
                                     "timestamp_utc": dt_str + " UTC",
                                     "reason": s_row["reason"],
                                 })
-                        else:
+                        if executed_signals:
+                            payload["signals"] = executed_signals
+                        elif "signals" in tables:
                             cur.execute("SELECT signal_id, action, reference_price, candle_open_time, reason FROM signals WHERE symbol=? ORDER BY generated_at DESC LIMIT 20;", (self.config.symbol,))
                             for s_row in cur.fetchall():
                                 dt_str = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(s_row["candle_open_time"] / 1000))
@@ -1313,6 +1321,9 @@ class DashboardDataAggregator:
                                     "signal_id": s_row["signal_id"],
                                     "action": s_row["action"],
                                     "price": s_row["reference_price"],
+                                    "fill_price": None,
+                                    "quantity": None,
+                                    "status": "SIGNAL",
                                     "timestamp_utc": dt_str + " UTC",
                                     "reason": s_row["reason"],
                                 })
@@ -1326,6 +1337,12 @@ class DashboardDataAggregator:
                         cur.execute("SELECT client_order_id, side, quantity, price, status, avg_fill_price, accumulated_fees, created_at, rejection_reason, filled_at FROM orders WHERE symbol=? ORDER BY created_at DESC LIMIT 25;", (self.config.symbol,))
                         for o_row in cur.fetchall():
                             dt_str = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(o_row["created_at"] / 1000))
+                            st = o_row["status"]
+                            fee_val = o_row["accumulated_fees"]
+                            if st == "FILLED" and (not fee_val or float(fee_val) == 0):
+                                est_fee = float(o_row["quantity"] or 0) * float(o_row["avg_fill_price"] or o_row["price"] or 0) * 0.0005
+                                if est_fee > 0:
+                                    fee_val = f"{est_fee:.4f}"
                             payload["orders"].append({
                                 "client_order_id": o_row["client_order_id"],
                                 "side": o_row["side"],
@@ -1333,7 +1350,7 @@ class DashboardDataAggregator:
                                 "price": o_row["price"],
                                 "status": o_row["status"],
                                 "avg_fill_price": o_row["avg_fill_price"],
-                                "accumulated_fees": o_row["accumulated_fees"],
+                                "accumulated_fees": fee_val,
                                 "created_at_utc": dt_str + " UTC",
                                 "created_at_ms": o_row["created_at"],
                                 "rejection_reason": o_row["rejection_reason"] or "",
@@ -1385,8 +1402,18 @@ class DashboardDataAggregator:
                             raise LookupError("Waiting for orders")
                         cur.execute("SELECT SUM(CAST(accumulated_fees AS REAL)) FROM orders WHERE symbol=? AND status='FILLED';", (self.config.symbol,))
                         fee_row = cur.fetchone()
-                        if fee_row and fee_row[0] is not None:
-                            payload["total_fees_paid"] = f"{fee_row[0]:.4f}"
+                        total_fees = float(fee_row[0]) if (fee_row and fee_row[0] is not None) else 0.0
+                        if "fills" in tables:
+                            cur.execute("SELECT SUM(CAST(commission AS REAL)) FROM fills WHERE symbol=?;", (self.config.symbol,))
+                            fills_row = cur.fetchone()
+                            if fills_row and fills_row[0] is not None and float(fills_row[0]) > total_fees:
+                                total_fees = float(fills_row[0])
+                        if total_fees <= 0.0:
+                            cur.execute("SELECT SUM(CAST(quantity AS REAL) * CAST(avg_fill_price AS REAL) * 0.0005) FROM orders WHERE symbol=? AND status='FILLED';", (self.config.symbol,))
+                            est_row = cur.fetchone()
+                            if est_row and est_row[0] is not None and float(est_row[0]) > 0:
+                                total_fees = float(est_row[0])
+                        payload["total_fees_paid"] = f"{total_fees:.4f}"
                     except Exception:
                         pass
 
@@ -1409,6 +1436,10 @@ class DashboardDataAggregator:
                                 qty = float(pending_entry["quantity"])
                                 entry_fee = float(pending_entry["accumulated_fees"] or 0)
                                 exit_fee = float(fill["accumulated_fees"] or 0)
+                                if entry_fee <= 0.0 and entry_px > 0 and qty > 0:
+                                    entry_fee = entry_px * qty * 0.0005
+                                if exit_fee <= 0.0 and exit_px > 0 and qty > 0:
+                                    exit_fee = exit_px * qty * 0.0005
                                 pnl = (exit_px - entry_px) * qty - entry_fee - exit_fee
                                 entry_dt = time.strftime("%b %d %H:%M", time.gmtime(pending_entry["created_at"] / 1000))
                                 exit_dt = time.strftime("%b %d %H:%M", time.gmtime(fill["created_at"] / 1000))
@@ -1976,14 +2007,41 @@ def read_single_account_snapshot(config: LiveEngineConfig, base_dir: Optional[Pa
             "realized_pnl": f"{realized_pnl:+.2f}",
         }
 
-        # 4. Signals
-        if "signals" in tables:
-            try:
+        # 4. Signals (Strategy execution decisions)
+        try:
+            signals_list = []
+            if "signals" in tables and "orders" in tables:
+                cur.execute(
+                    """SELECT DISTINCT s.signal_id, s.action, COALESCE(o.avg_fill_price, s.reference_price, o.price) as reference_price,
+                              s.reason, COALESCE(o.filled_at, o.created_at) as decision_time
+                       FROM signals s
+                       INNER JOIN orders o ON (
+                           (o.signal_id = s.signal_id OR o.client_order_id LIKE '%' || CAST(s.candle_open_time / 1000 AS TEXT) || '%')
+                           AND (
+                               (o.side = 'BUY' AND s.action IN ('ENTER_LONG', 'BUY'))
+                               OR (o.side = 'SELL' AND s.action IN ('EXIT_LONG', 'SELL'))
+                           )
+                       )
+                       WHERE s.symbol = ? AND o.status IN ('FILLED', 'NEW', 'PARTIALLY_FILLED', 'SUBMITTING')
+                       ORDER BY COALESCE(o.filled_at, o.created_at) DESC
+                       LIMIT 20;""",
+                    (config.symbol,),
+                )
+                for sr in cur.fetchall():
+                    t_val = sr["decision_time"]
+                    dt_str = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(t_val / 1000)) if t_val else "--"
+                    signals_list.append({
+                        "signal_id": sr["signal_id"],
+                        "action": sr["action"],
+                        "price": str(sr["reference_price"]),
+                        "timestamp_utc": dt_str + " UTC",
+                        "reason": sr["reason"],
+                    })
+            if not signals_list and "signals" in tables:
                 cur.execute(
                     "SELECT signal_id, action, reference_price, candle_open_time, generated_at, reason FROM signals WHERE symbol = ? ORDER BY generated_at DESC LIMIT 20;",
                     (config.symbol,),
                 )
-                signals_list = []
                 for sr in cur.fetchall():
                     dt_str = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(sr["candle_open_time"] / 1000))
                     signals_list.append({
@@ -1993,11 +2051,11 @@ def read_single_account_snapshot(config: LiveEngineConfig, base_dir: Optional[Pa
                         "timestamp_utc": dt_str + " UTC",
                         "reason": sr["reason"],
                     })
-                snapshot["recent_signals"] = signals_list
-                if signals_list:
-                    snapshot["latest_signal"] = signals_list[0]
-            except Exception as e:
-                logger.warning(f"Error querying signals for {config.symbol}: {e}")
+            snapshot["recent_signals"] = signals_list
+            if signals_list:
+                snapshot["latest_signal"] = signals_list[0]
+        except Exception as e:
+            logger.warning(f"Error querying signals for {config.symbol}: {e}")
 
         # 5. Orders & Fills
         if "orders" in tables:

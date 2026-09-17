@@ -86,8 +86,15 @@ class SlotBook:
     def has_slot(self, slot_id: str) -> bool:
         return any(slot.slot_id == slot_id for slot in self.slots)
 
-    def entry_notional(self, taker_fee: Decimal = Decimal("0")) -> Decimal:
-        gross = max(Decimal("100"), self.realized_equity) * self.leverage / self.limit
+    def sync_equity(self, equity: Decimal) -> None:
+        """Syncs realized equity from authoritative account balance when flat."""
+        if self.open_count == 0 and equity > Decimal("0"):
+            self.realized_equity = Decimal(str(equity))
+            self._save()
+
+    def entry_notional(self, taker_fee: Decimal = Decimal("0"), current_equity: Optional[Decimal] = None) -> Decimal:
+        equity = current_equity if (current_equity is not None and current_equity > Decimal("0")) else self.realized_equity
+        gross = max(Decimal("100"), equity) * self.leverage / self.limit
         return gross / (Decimal("1") + Decimal(str(taker_fee)) * self.leverage)
 
     def add_fill(

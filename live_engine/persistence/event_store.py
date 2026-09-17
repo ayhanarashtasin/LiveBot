@@ -120,6 +120,7 @@ class EventStore:
                 );
             """)
             conn.execute("CREATE INDEX IF NOT EXISTS idx_orders_signal ON orders(signal_id);")
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_orders_exchange_id ON orders(exchange_order_id);")
 
             # 5. Operational incidents and audit table
             conn.execute("""
@@ -436,6 +437,13 @@ class EventStore:
         with self._get_connection() as conn:
             row = conn.execute(
                 "SELECT * FROM orders WHERE client_order_id = ?;", (client_order_id,)
+            ).fetchone()
+            return self._row_to_order(row) if row else None
+
+    def get_order_by_exchange_id(self, exchange_order_id: str) -> Optional[Order]:
+        with self._get_connection() as conn:
+            row = conn.execute(
+                "SELECT * FROM orders WHERE exchange_order_id = ?;", (str(exchange_order_id),)
             ).fetchone()
             return self._row_to_order(row) if row else None
 
